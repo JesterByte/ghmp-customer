@@ -4,29 +4,148 @@
 <div id="map" class="rounded shadow" style="height: 500px;"></div>
 
 <!-- Include Leaflet CSS and JS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<link rel="stylesheet" href="<?= base_url("css/leaflet.css") ?>" />
+<script src="<?= base_url("js/leaflet.js") ?>"></script>
+
+<?= $this->include("modals/confirm_lot_reservation.php") ?>
 
 <script>
     // Initialize the map
-    var map = L.map('map').setView([12.9716, 77.5946], 13); // Set default coordinates and zoom level
+    var map = L.map("map").setView([14.871318, 120.976566], 18); // Set default coordinates and zoom level
 
     // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 20
     }).addTo(map);
 
-    // Data for available lots (latitude, longitude)
-    var availableLots = [
-        { lat: 12.9716, lon: 77.5946, lotNumber: 'A1-1' },
-        { lat: 12.9736, lon: 77.5956, lotNumber: 'B1-1' },
-        { lat: 12.9756, lon: 77.5966, lotNumber: 'C1-1' }
-    ];
+    // Fetch lot data from the API
+    fetch("<?= base_url('api/available_lots') ?>")
+        .then(response => response.json())
+        .then(lots => {
+            lots.forEach(lot => {
+                // Define rectangle bounds
+                var bounds = [
+                    [lot.latitude_start, lot.longitude_start], // Bottom-left corner
+                    [lot.latitude_end, lot.longitude_end]  // Top-right corner
+                ];
 
-    // Loop through the available lots and add a marker for each
-    availableLots.forEach(function(lot) {
-        var marker = L.marker([lot.lat, lot.lon]).addTo(map);
-        marker.bindPopup('<b>Lot: ' + lot.lotNumber + '</b>');
-    });
+                // Draw rectangle
+                var rectangle = L.rectangle(bounds, {
+                    color: "green",      // Border color
+                    weight: 2,           // Border thickness
+                    fillColor: "#00ff00", // Fill color
+                    fillOpacity: 0.4     // Transparency
+                }).addTo(map);
+
+                // Bind a popup with lot details and Reserve button
+                rectangle.bindPopup(`
+                    <b>Lot ID:</b> ${lot.formatted_lot_id}<br>
+                    <div class="text-center">
+                        <button class="btn btn-primary" onclick="showReserveModal('${lot.lot_id}')">Reserve</button>
+                    </div>
+                `);
+            });
+        })
+        .catch(error => console.error("Error fetching lot data:", error));
+
+    // Function to show the reserve confirmation modal
+    function showReserveModal(lotId) {
+        $('#reserveModal').modal('show');
+        $('#reserveLotId').val(lotId);
+    }
 </script>
+
+
+<!-- <script>
+    // Initialize the map
+    var map = L.map("map").setView([14.871318, 120.976566], 18);
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 20
+    }).addTo(map);
+
+    // Fetch lot data from the API
+    fetch("<?= base_url('api/available_lots') ?>")
+        .then(response => response.json())
+        .then(lots => {
+            lots.forEach(lot => {
+                // Define rectangle bounds
+                var bounds = [
+                    [lot.latitude_start, lot.longitude_start], // Bottom-left corner
+                    [lot.latitude_end, lot.longitude_end]  // Top-right corner
+                ];
+
+                // Draw rectangle
+                var rectangle = L.rectangle(bounds, {
+                    color: "green",      // Border color
+                    weight: 2,           // Border thickness
+                    fillColor: "#00ff00", // Fill color
+                    fillOpacity: 0.4     // Transparency
+                }).addTo(map);
+
+                // Bind a popup with lot details and a reserve button
+                rectangle.bindPopup(`
+                    <b>Lot ID:</b> ${lot.formatted_lot_id}<br>
+                    <div class="text-center">
+                        <button class="reserve-btn btn btn-primary" data-lot-id="${lot.lot_id}">Reserve</button>
+                    </div>
+                `);
+            });
+
+            // Add event listener to handle reservation button clicks
+            map.on("popupopen", function (e) {
+                document.querySelectorAll(".reserve-btn").forEach(button => {
+                    button.addEventListener("click", function () {
+                        var lotId = this.getAttribute("data-lot-id");
+
+                        // Redirect to reservation page
+                        window.location.href = "<?= base_url('reserve') ?>/" + lotId;
+                    });
+                });
+            });
+        })
+        .catch(error => console.error("Error fetching lot data:", error));
+</script> -->
+
+<!-- <script>
+    // Initialize the map
+    var map = L.map("map").setView([14.871318, 120.976566], 18);; // Set default coordinates and zoom level
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 20
+    }).addTo(this.map);
+
+    // Fetch lot data from the API
+    fetch("<?= base_url('api/available_lots') ?>")
+        .then(response => response.json())
+        .then(lots => {
+            lots.forEach(lot => {
+                // Define rectangle bounds
+                var bounds = [
+                    [lot.latitude_start, lot.longitude_start], // Bottom-left corner
+                    [lot.latitude_end, lot.longitude_end]  // Top-right corner
+                ];
+
+                // Draw rectangle
+                var rectangle = L.rectangle(bounds, {
+                    color: "green",      // Border color
+                    weight: 2,           // Border thickness
+                    fillColor: "#00ff00", // Fill color
+                    fillOpacity: 0.4     // Transparency
+                }).addTo(map);
+
+                // Bind a popup with lot details
+                rectangle.bindPopup(`
+                    <b>Lot ID:</b> ${lot.formatted_lot_id}<br>
+                `);
+            });
+        })
+        .catch(error => console.error("Error fetching lot data:", error));
+</script> -->
+
 <?= $this->endSection(); ?>

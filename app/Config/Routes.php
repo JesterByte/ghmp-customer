@@ -17,6 +17,11 @@ $routes->get("/signout", "SignoutController::signout");
 
 $routes->post("/signin/submit", "SigninController::submit");
 
-$routes->get("dashboard", "AdminController::index");
-$routes->get("my_lots_and_estates", "MyLotsAndEstatesController::index");
-$routes->get("reserve_lot", "ReserveLotController::index");
+$routes->get("/dashboard", "AdminController::index");
+$routes->get("/my_lots_and_estates", "MyLotsAndEstatesController::index");
+$routes->get("/reserve_lot", "ReserveLotController::index");
+
+$routes->post("reserve/submitReservation", "ReserveLotController::submitReservation");
+
+
+$routes->get("/api/available_lots", "ReserveLotController::getAvailableLots");

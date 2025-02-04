@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\UserModel;
+use App\Models\CustomerModel;
 
 
 class SigninController extends BaseController {
@@ -20,8 +20,8 @@ class SigninController extends BaseController {
             return redirect()->to( base_url("signin"));
         }
 
-        $userModel = new UserModel();
-        $user = $userModel->where("email_address", $email)->first();
+        $customerModel = new CustomerModel();
+        $user = $customerModel->where("email_address", $email)->first();
 
         if ($user) {
             if (password_verify($password, $user["password_hashed"]) || $password == $user["password_hashed"]) {
@@ -30,7 +30,7 @@ class SigninController extends BaseController {
                     "email" => $user["email_address"],
                     "isLoggedIn" => true
                 ]);
-                return redirect()->to( base_url("admin/"));
+                return redirect()->to( base_url("dashboard"));
             } else {
                 $session->setFlashdata("error", "Invalid password.");
             }
