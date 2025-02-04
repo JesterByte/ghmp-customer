@@ -23,4 +23,14 @@ class Home extends BaseController {
         $data = ["pageTitle" => "Contact"];
         return view("brochure/contact", $data);
     }
+
+    // public function signup() {
+    //     $data = ["pageTitle" => "Sign Up"];
+    //     return view("signup", $data);
+    // }
+
+    // public function signin() {
+    //     $data = ["pageTitle" => "Sign In"];
+    //     return view("signin", $data);
+    // }
 }

@@ -27,8 +27,8 @@
         </ul>
         <!-- Replacing the search bar with Sign Up and Sign In buttons -->
         <div class="d-flex">
-          <a href="signup" class="btn btn-outline-light me-2">Sign Up</a>
-          <a href="signin" class="btn btn-outline-light">Sign In</a>
+          <a href="signup" class="btn btn-outline-light me-2 <?= echo_if_route($pageTitle, "Sign Up", "active") ?>" <?= echo_if_route($pageTitle, "Sign Up", 'aria-current="page"') ?>>Sign Up</a>
+          <a href="signin" class="btn btn-outline-light <?= echo_if_route($pageTitle, "Sign In", "active") ?>" <?= echo_if_route($pageTitle, "Sign In", 'aria-current="page"') ?>>Sign In</a>
         </div>
       </div>
     </div>

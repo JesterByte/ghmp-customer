@@ -1,13 +1,6 @@
-<!-- signup.php -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Green Haven Memorial Park</title>
-    <link href="<?= base_url("css/bootstrap.min.css") ?>" rel="stylesheet">
-</head>
-<body>
+<?= $this->extend("components/brochure_template") ?>
+
+<?= $this->section("content") ?>
     <div class="container mt-5">
         <h2 class="mb-4">Sign Up</h2>
         <form action="<?= base_url('signup/submit') ?>" method="post">
@@ -41,7 +34,4 @@
 
         <p class="mt-3">Already have an account? <a href="signin">Sign In</a></p>
     </div>
-
-    <script src="<?= base_url("js/bootstrap.bundle.min.js") ?>"></script>
-</body>
-</html>
+<?= $this->endSection() ?>
