@@ -11,10 +11,12 @@ class LotReservationModel extends Model {
     protected $returnType     = 'array'; // Return results as an array
     protected $allowedFields  = ['id', 'lot_id', 'reservee_id', 'lot_type', 'payment_option', 'reservation_status']; // Define the allowed fields
 
-    // Define any custom query to fetch available lots
-    // public function getAvailableLots() {
-    //     return $this->where('status', "Available")->findAll();
-    // }
+    public function updateLotPaymentOption($lotId, $reserveeId, $paymentOption) {
+        return $this->db->table($this->table)
+        ->where("lot_id", $lotId)
+        ->where("reservee_id", $reserveeId)
+        ->update(["payment_option" => $paymentOption]);
+    }
 
-    
+    public function setCashSalePayment($lotId)
 }

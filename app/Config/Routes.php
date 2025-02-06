@@ -19,9 +19,12 @@ $routes->post("/signin/submit", "SigninController::submit");
 
 $routes->get("/dashboard", "AdminController::index");
 $routes->get("/my_lots_and_estates", "MyLotsAndEstatesController::index");
+$routes->get("/select_payment_option/(:any)/(:any)", "MyLotsAndEstatesController::selectPaymentOption/$1/$2");
+
 $routes->get("/reserve_lot", "ReserveLotController::index");
 
 $routes->post("reserve/submitReservation", "ReserveLotController::submitReservation");
+$routes->post("/payment_option_submit", "MyLotsAndEstatesController::paymentOptionSubmit");
 
 
 $routes->get("/api/available_lots", "ReserveLotController::getAvailableLots");

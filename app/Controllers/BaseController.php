@@ -21,6 +21,13 @@ use Psr\Log\LoggerInterface;
  */
 abstract class BaseController extends Controller
 {
+    protected $encrypter;
+
+    public function __construct() {
+        $this->encrypter = \Config\Services::encrypter();
+        date_default_timezone_set("Asia/Manila");
+    }
+
     /**
      * Instance of the main Request object.
      *
@@ -55,4 +62,5 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = service('session');
     }
+
 }
