@@ -11,12 +11,12 @@ class AssetModel extends Model {
     
         // First query for lot_reservations
         $builder1 = $this->db->table("lot_reservations")
-                      ->select("lot_id AS asset_id, reservee_id, lot_type AS asset_type, payment_option, reservation_status")
+                      ->select("lot_id AS asset_id, reservee_id, lot_type AS asset_type, payment_option, reservation_status, 'lot' AS asset")
                       ->where("reservee_id", $userId);
     
         // Second query for estate_reservations
         $builder2 = $this->db->table("estate_reservations")
-                      ->select("estate_id AS asset_id, reservee_id, estate_type AS asset_type, payment_option, reservation_status")
+                      ->select("estate_id AS asset_id, reservee_id, estate_type AS asset_type, payment_option, reservation_status, 'estate' AS asset")
                       ->where("reservee_id", $userId);
     
         // Get the compiled SELECT SQL queries

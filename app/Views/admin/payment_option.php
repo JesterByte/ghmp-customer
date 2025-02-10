@@ -56,8 +56,8 @@
             <div class="card shadow p-3 h-100">
                 <h4>Installment Plan (1-5 Years)</h4>
                 <form action="<?= base_url("payment_option_submit") ?>" method="post">
-                    <label for="years">Select Installment Duration:</label>
-                    <select id="years" class="form-control mb-3">
+                    <label for="payment_option">Select Installment Duration:</label>
+                    <select id="payment_option" name="payment_option" class="form-control mb-3">
                         <option value="1">1 Year (0% Interest)</option>
                         <option value="2">2 Years (10% Interest)</option>
                         <option value="3">3 Years (15% Interest)</option>
@@ -72,7 +72,7 @@
                     <p><b>Monthly Payment:</b> <span id="monthlyPayment"></span></p>
                     <p><b>Total Payable Amount:</b> <span id="totalPayableAmount"></span></p>
 
-                    <input type="hidden" value="<?= $encryptedAssetType ?>" name="asset_id">
+                    <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">
 
                     <button class="btn btn-primary w-100 mt-3" type="submit">Choose this option</button>

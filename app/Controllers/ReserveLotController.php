@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Helpers\FormatterHelper;
 use App\Models\LotModel;
 use App\Models\LotReservationModel;
 
@@ -12,10 +13,10 @@ class ReserveLotController extends BaseController {
     }
 
     public function getAvailableLots() {
-        $reserveLotModel = new LotModel();
-        $availableLots = $reserveLotModel->getAvailableLots();
+        $lotModel = new LotModel();
+        $availableLots = $lotModel->getAvailableLots();
         foreach ($availableLots as $availableLot) {
-            $availableLot["formatted_lot_id"] = format_lot_id($availableLot["lot_id"]);
+            $availableLot["formatted_lot_id"] = FormatterHelper::formatLotId($availableLot["lot_id"]);
             $availableLots[] = $availableLot;
         }
 
@@ -25,7 +26,8 @@ class ReserveLotController extends BaseController {
     // In ReserveController.php
     public function submitReservation() {
         $session = session();
-        $lotId = $this->request->getJSON('lot_id');  // Get the lot ID from the AJAX request
+        // $lotId = $this->request->getJSON('lot_id');  // Get the lot ID from the AJAX request
+        $lotId = $this->request->getJSON()->lot_id;  // Get the lot ID from the AJAX request
 
         // Check if the lot exists and is available
         $lotModel = new LotModel();

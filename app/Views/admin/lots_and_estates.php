@@ -19,26 +19,26 @@
             </tr>
         </thead>
         <tbody>
-            <?php 
+            <?php
 
-                if (isset($table)) {
-                    foreach ($table as $row) {
-                        
-                        if ($row["payment_option"] == "Pending") {
-                            $paymentOption = $row["payment_option"] . " <a role='button' href='select_payment_option/{$row["encrypted_asset_id"]}/{$row["encrypted_asset_type"]}' class='btn btn-primary'>Choose</a>";
-                        } else {
-                            $paymentOption = $row["payment_option"];
-                        }
+            if (isset($table)) {
+                foreach ($table as $row) {
 
-                        echo "<tr>";
-                        echo "<td>" . $row['asset_id'] . "</td>";
-                        echo "<td>" . $row["asset_type"] . "</td>";
-                        echo "<td>" . $paymentOption . "</td>";
-                        echo "<td>" . $row["reservation_status"] . "</td>";
-                        echo "<td></td>";
-                        echo "</tr>";
+                    if ($row["payment_option"] == "Pending") {
+                        $paymentOption = $row["payment_option"] . " <a role='button' href='select_payment_option/{$row["encrypted_asset_id"]}/{$row["encrypted_asset_type"]}' class='btn btn-primary'>Choose</a>";
+                    } else {
+                        $paymentOption = $row["payment_option"];
                     }
+
+                    echo "<tr>";
+                    echo "<td>" . $row['asset_id'] . "</td>";
+                    echo "<td>" . $row["asset_type"] . "</td>";
+                    echo "<td>" . $paymentOption . "</td>";
+                    echo "<td>" . $row["reservation_status"] . "</td>";
+                    echo "<td></td>";
+                    echo "</tr>";
                 }
+            }
 
             ?>
         </tbody>

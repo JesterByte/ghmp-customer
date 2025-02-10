@@ -8,3 +8,9 @@ if (!function_exists('echo_if_route')) {
         }
     }
 }
+
+if (!function_exists("page_in_list")) {
+    function page_in_List($pageTitle, $pageList, $displayIfTrue, $displayIfFalse = "") {
+        echo in_array($pageTitle, $pageList) ? $displayIfTrue : $displayIfFalse;
+    }
+}

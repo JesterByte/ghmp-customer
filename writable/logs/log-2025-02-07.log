@@ -1,0 +1,32 @@
+CRITICAL - 2025-02-07 19:39:19 --> ParseError: syntax error, unexpected token "}", expecting ";" or "{"
+[Method: POST, Route: payment_option_submit]
+in APPPATH\Models\LotReservationModel.php on line 22.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ghmp-customer\\app\\Models\\LotReservationModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\LotReservationModel')
+ 3 APPPATH\Controllers\MyLotsAndEstatesController.php(94): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\LotReservationModel')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->paymentOptionSubmit()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(58): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-02-07 21:17:44 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: payment_option_submit]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 95.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(95): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 95)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->paymentOptionSubmit()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(58): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-02-07 21:20:53 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: payment_option_submit]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 96.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(96): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 96)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->paymentOptionSubmit()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(58): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

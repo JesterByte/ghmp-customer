@@ -19,16 +19,25 @@ class FormatterHelper
     }
 
     // Extract parts of an Estate ID
-    public static function extractEstateIdParts($estateId)
-    {
-        if (preg_match('/^([E])([A-C])-([\d]+)$/', $estateId, $matches)) {
+    public static function extractEstateIdParts($estateId) {
+        // Define the regular expression pattern
+        $pattern = '/^E-([A-C])(\d+)$/';
+    
+        // Check if the ID matches the pattern
+        if (preg_match($pattern, $estateId, $matches)) {
+            // If matched, extract and return the details
+            $type = $matches[1];  // Type (A, B, or C)
+            $estateNumber = $matches[2];  // Estate Number (positive integer)
+    
             return [
-                'estate' => $matches[1],   // Always "E"
-                'type' => $matches[2],     // Estate Type A/B/C
-                'number' => $matches[3]    // Estate Number
+                'estate' => 'E',
+                'type' => $type,
+                'estate_number' => $estateNumber
             ];
+        } else {
+            // If the ID doesn't match the expected pattern
+            return null;
         }
-        return null; // Invalid format
     }
 
     // Determine if the ID is for a Lot or Estate
@@ -39,7 +48,7 @@ class FormatterHelper
             return 'lot';
         }
         // Check for Estate ID format
-        if (preg_match('/^([E])([A-C])-([\d]+)$/', $id)) {
+        if (preg_match('/^E-([A-C])(\d+)$/', $id)) {
             return 'estate';
         }
         // Return null if neither format matches
@@ -88,5 +97,30 @@ class FormatterHelper
     
         // If the payment option doesn't match any known type
         return "Unknown Payment Option";
+    }
+
+    public static function formatLotId($lotId) {
+        if (preg_match('/(\d+)([A-Z])(\d+)-(\d+)/', $lotId, $matches)) {
+            return "Phase {$matches[1]} Lawn {$matches[2]} Row {$matches[3]} - Lot {$matches[4]}";
+        }
+        return $lotId;
+    }
+
+    public static function formatEstateId($input) {
+        // Split the input string by '-'
+        list($estate, $lot) = explode('-', $input);
+    
+        // Replace 'E' with 'Estate' for the estate part
+        $estate = ($estate == 'E') ? 'Estate' : $estate;
+    
+        // Format the lot by adding a space between the letter and number
+        $lot = preg_replace('/([A-Za-z])(\d)/', '$1 #$2', $lot);
+    
+        // Combine the formatted estate and lot
+        return $estate . ' ' . $lot;
+    }
+
+    public static function formatDate($date) {
+        return date("F j, Y h:i:s A", strtotime($date));
     }
 }
