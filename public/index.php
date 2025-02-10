@@ -28,6 +28,7 @@ if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
 
 // Path to the front controller (this file)
 define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
+define("BASE_URL", "/ghmp-customer/public/");
 
 define("COMPONENTS_PATH", FCPATH . "../app/Views/components/");
 

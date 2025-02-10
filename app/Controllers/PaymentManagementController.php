@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Helpers\FormatterHelper;
 use App\Models\CashSaleModel;
+use App\Models\InstallmentModel;
 use App\Models\PaymentModel;
 use App\Models\SixMonthsModel;
 
@@ -33,6 +34,13 @@ class PaymentManagementController extends BaseController {
         $sixMonths = $sixMonthsModel->getSixMonths();
 
         return $this->response->setJSON($sixMonths);
+    }
+
+    public function getInstallmentDownPayments() {
+        $installmentsModel = new InstallmentModel();
+        $installmentDownPayments = $installmentsModel->getInstallmentDownPayments();
+        
+        return $this->response->setJSON($installmentDownPayments);
     }
 
     public function payCashSale() {

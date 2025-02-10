@@ -34,6 +34,7 @@ $routes->get("/api/available_lots", "ReserveLotController::getAvailableLots");
 $routes->get("/api/available_estates", "ReserveEstateController::getAvailableEstates");
 $routes->get("/api/cash_sales", "PaymentManagementController::getCashSales");
 $routes->get("/api/six_months", "PaymentManagementController::getSixMonths");
+$routes->get("api/installments/down_payments", "PaymentManagementController::getInstallmentDownPayments");
 
 $routes->post("/api/pay_cash_sale", "PaymentManagementController::payCashSale");
 $routes->post("/api/pay_six_months", "PaymentManagementController::paySixMonths");

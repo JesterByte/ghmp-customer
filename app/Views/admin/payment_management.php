@@ -13,7 +13,8 @@
         <ul class="dropdown-menu">
         <li><a role="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#payCashSale">Cash Sale</a></li>
         <li><a role="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#paySixMonths">6 Months</a></li>
-        <li><a class="dropdown-item" href="#">Installment</a></li>
+        <li><a role="button" class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#payDownPayment">Installment: Down Payment</a></li>
+        <li><a role="button" class="dropdown-item" href="#">Installment: Monthly Payment</a></li>
         </ul>
     </div>
 </div>
