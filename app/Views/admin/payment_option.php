@@ -84,7 +84,7 @@
 
 <script>
     function updateInstallmentDetails() {
-        let years = parseInt(document.getElementById('years').value);
+        let years = parseInt(document.getElementById('payment_option').value);
         let interestRates = {1: <?= (float) $pricing["one_year_interest_rate"] ?>, 2: <?= (float) $pricing["two_years_interest_rate"] ?>, 3: <?= (float) $pricing["three_years_interest_rate"] ?>, 4: <?= (float) $pricing["four_years_interest_rate"] ?>, 5: <?= (float) $pricing["five_years_interest_rate"] ?>};
         let interestRate = interestRates[years];
         let balance = <?= (int) $pricing["balance"] ?>;
@@ -96,9 +96,10 @@
         document.getElementById('interestRate').innerText = (interestRate * 100) + "%";
         document.getElementById('monthlyPayment').innerText = "₱" + formattedMonthlyPayment;
         document.getElementById('totalPayableAmount').innerText = "₱" + totalPayableAmount;
+
     }
 
-    document.getElementById('years').addEventListener('change', updateInstallmentDetails);
+    document.getElementById('payment_option').addEventListener('change', updateInstallmentDetails);
     updateInstallmentDetails(); // Initialize on page load
 
     function numberFormat(num, decimals = 2) {

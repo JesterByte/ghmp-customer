@@ -10,8 +10,8 @@
                 <form id="payDownPaymentForm">
                     <!-- Select Asset -->
                     <div class="mb-3">
-                        <label for="assetSelectInstallment" class="form-label">Select Asset</label>
-                        <select id="assetSelectInstallment" class="form-select" required>
+                        <label for="assetSelectDownPayment" class="form-label">Select Asset</label>
+                        <select id="assetSelectDownPayment" class="form-select" required>
                             <option value="" disabled selected>Select an asset</option>
                             <!-- Assets will be dynamically added here -->
                         </select>
@@ -41,27 +41,27 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    let assetSelectInstallment = document.getElementById("assetSelectInstallment");
+    let assetSelectDownPayment = document.getElementById("assetSelectDownPayment");
     let amountPayableInstallment = document.getElementById("amountPayableInstallment");
 
     fetch("<?= base_url("api/installments/down_payments") ?>")
         .then(response => response.json())
         .then(data => {
-            assetSelectInstallment.innerHTML = '<option value="" disabled selected>Select an asset</option>';
+            assetSelectDownPayment.innerHTML = '<option value="" disabled selected>Select an asset</option>';
 
             data.forEach(asset => {
                 let option = document.createElement("option");
                 option.value = asset.asset_id;
                 option.textContent = `${asset.asset_type.toUpperCase()} - ${asset.asset_id} (₱${parseFloat(asset.payment_amount).toLocaleString()})`;
                 option.dataset.amount = asset.payment_amount;
-                assetSelectInstallment.appendChild(option);
+                assetSelectDownPayment.appendChild(option);
             });
         })
         .catch(error => console.error("Error fetching assets:", error));
 
     // Update amount payable when selecting an asset
-    assetSelectInstallment.addEventListener("change", function () {
-        let selectedOption = assetSelectInstallment.options[assetSelectInstallment.selectedIndex];
+    assetSelectDownPayment.addEventListener("change", function () {
+        let selectedOption = assetSelectDownPayment.options[assetSelectDownPayment.selectedIndex];
         amountPayableInstallment.value = `₱${parseFloat(selectedOption.dataset.amount).toLocaleString()}`;
     });
 
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //     e.preventDefault();
 
     //     let formData = new FormData();
-    //     formData.append("asset_id", assetSelectInstallment.value);
+    //     formData.append("asset_id", assetSelectDownPayment.value);
     //     formData.append("payment_amount", amountPayableInstallment.value.replace("₱", "").replace(",", ""));
     //     formData.append("receipt", paymentReceiptInstallment.files[0]);
 

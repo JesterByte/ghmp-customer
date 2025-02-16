@@ -3,7 +3,7 @@
 <?= $this->section("content") ?>
     <div class="container mt-5">
         <h2 class="mb-4">Sign In</h2>
-        <form action="signin/submit" method="post">
+        <form action="<?= base_url("signin/submit") ?>" method="post">
             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
 
             <!-- Email -->

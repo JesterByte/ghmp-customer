@@ -24,8 +24,10 @@
             if (isset($table)) {
                 foreach ($table as $row) {
 
-                    if ($row["payment_option"] == "Pending") {
+                    if ($row["asset_type"] != "Pending" && $row["payment_option"] == "Pending") {
                         $paymentOption = $row["payment_option"] . " <a role='button' href='select_payment_option/{$row["encrypted_asset_id"]}/{$row["encrypted_asset_type"]}' class='btn btn-primary'>Choose</a>";
+                    } else if ($row["asset_type"] == "Pending" && $row["payment_option"] == "Pending" && $row["payment_option"] == "Pending") {
+                        $paymentOption = $row["payment_option"] . " (Please wait for asset type verification)";
                     } else {
                         $paymentOption = $row["payment_option"];
                     }
