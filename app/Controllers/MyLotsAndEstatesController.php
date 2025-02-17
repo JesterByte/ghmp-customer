@@ -23,6 +23,7 @@ class MyLotsAndEstatesController extends BaseController {
         foreach ($table as $key => $row) {
             $row["encrypted_asset_id"] = bin2hex($this->encrypter->encrypt($row["asset_id"]));
             $row["encrypted_asset_type"] = bin2hex($this->encrypter->encrypt($row["asset_type"]));
+            $row["payment_link"] = $this->createPaymongoLink($row["payment_amount"], $row["asset_id"], $row["payment_option"]);
             $table[$key] = $row;
         }
 

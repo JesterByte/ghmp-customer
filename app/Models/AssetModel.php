@@ -10,13 +10,15 @@ class AssetModel extends Model {
         // $db = \Config\Database::connect();
     
         // First query for lot_reservations
-        $builder1 = $this->db->table("lot_reservations")
-                      ->select("lot_id AS asset_id, reservee_id, lot_type AS asset_type, payment_option, reservation_status, 'lot' AS asset")
+        $builder1 = $this->db->table("lot_reservations AS lr")
+                      ->select("lr.lot_id AS asset_id, lr.reservee_id, lr.lot_type AS asset_type, lr.payment_option, lr.reservation_status, 'lot' AS asset, cs.payment_amount")
+                      ->join("cash_sales AS cs", "lr.lot_id = cs.lot_id")
                       ->where("reservee_id", $userId);
     
         // Second query for estate_reservations
-        $builder2 = $this->db->table("estate_reservations")
-                      ->select("estate_id AS asset_id, reservee_id, estate_type AS asset_type, payment_option, reservation_status, 'estate' AS asset")
+        $builder2 = $this->db->table("estate_reservations AS er")
+                      ->select("er.estate_id AS asset_id, er.reservee_id, er.estate_type AS asset_type, er.payment_option, er.reservation_status, 'estate' AS asset, ecs.payment_amount")
+                      ->join("estate_cash_sales AS ecs", "ecs.estate_id = er.estate_id")
                       ->where("reservee_id", $userId);
     
         // Get the compiled SELECT SQL queries

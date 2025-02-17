@@ -21,6 +21,8 @@
         <tbody>
             <?php
 
+use App\Helpers\FormatterHelper;
+
             if (isset($table)) {
                 foreach ($table as $row) {
 
@@ -32,12 +34,20 @@
                         $paymentOption = $row["payment_option"];
                     }
 
+                    if ($row["reservation_status"] == "Confirmed") {
+                        $action = '<a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
+                    } else {
+                        $action = "";
+                    }
+
                     echo "<tr>";
                     echo "<td>" . $row['asset_id'] . "</td>";
                     echo "<td>" . $row["asset_type"] . "</td>";
                     echo "<td>" . $paymentOption . "</td>";
                     echo "<td>" . $row["reservation_status"] . "</td>";
-                    echo "<td></td>";
+                    echo "<td>
+                        $action
+                    </td>";
                     echo "</tr>";
                 }
             }

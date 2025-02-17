@@ -1,0 +1,13 @@
+CRITICAL - 2025-02-17 14:10:49 --> ErrorException: Undefined array key "monthly_amortization_1_years"
+[Method: POST, Route: payment_option_submit]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 311.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(311): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "monthly_amortization_1_years"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 311)
+ 2 APPPATH\Controllers\MyLotsAndEstatesController.php(280): App\Controllers\MyLotsAndEstatesController->applyInstallment(Object(App\Models\LotReservationModel), '1C31-1', [...], 1, '2025-03-19')
+ 3 APPPATH\Controllers\MyLotsAndEstatesController.php(254): App\Controllers\MyLotsAndEstatesController->applyPaymentOption(Object(App\Models\LotReservationModel), '1C31-1', 'Installment: 1 Year', [...], '2025-03-19')
+ 4 APPPATH\Controllers\MyLotsAndEstatesController.php(228): App\Controllers\MyLotsAndEstatesController->processLotReservation('1C31-1', 'Standard', 'Installment: 1 Year', Object(CodeIgniter\Session\Session))
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->paymentOptionSubmit()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

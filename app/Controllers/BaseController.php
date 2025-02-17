@@ -9,6 +9,8 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
+use App\Helpers\FormatterHelper;
+
 /**
  * Class BaseController
  *
@@ -63,4 +65,61 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = service('session');
     }
 
+    public function createPaymongoLink($paymentAmount, $assetId, $paymentOption) {
+        $assetType = FormatterHelper::determineIdType($assetId);
+
+        switch ($assetType) {
+            case "lot":
+                $assetId = FormatterHelper::formatLotId($assetId);
+                break;
+            case "estate":
+                $assetId = FormatterHelper::formatEstateId($assetId);
+                break;
+        }
+
+        $paymentAmount = $paymentAmount * 100;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+        CURLOPT_URL => "https://api.paymongo.com/v1/links",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => json_encode([
+            'data' => [
+                'attributes' => [
+                        'amount' => $paymentAmount,
+                        'description' => 'Payment for ' . $assetId,
+                        'remarks' => $paymentOption . ' Reservation'
+                ]
+            ]
+        ]),
+        CURLOPT_HTTPHEADER => [
+            "accept: application/json",
+            "authorization: Basic c2tfdGVzdF9aVEEyU29wRUtmTEpIWlBaN1RjNFhLQ0s6",
+            "content-type: application/json"
+        ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            $data = json_decode($response, true);
+
+            if (isset($data["data"])) {
+                $checkoutUrl = $data["data"]["attributes"]["checkout_url"] ?? "N/A";
+                return $checkoutUrl;
+            }
+            // echo $response;
+        }
+    }
 }
