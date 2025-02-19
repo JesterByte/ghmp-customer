@@ -38,3 +38,4 @@ $routes->get("api/installments/down_payments", "PaymentManagementController::get
 
 $routes->post("/api/pay_cash_sale", "PaymentManagementController::payCashSale");
 $routes->post("/api/pay_six_months", "PaymentManagementController::paySixMonths");
+$routes->post("api/webhook", "WebhookController::index");

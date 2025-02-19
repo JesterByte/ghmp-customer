@@ -34,7 +34,7 @@ use App\Helpers\FormatterHelper;
                         $paymentOption = $row["payment_option"];
                     }
 
-                    if ($row["reservation_status"] == "Confirmed") {
+                    if ($row["reservation_status"] == "Confirmed" && $row["payment_option"] != "Pending") {
                         $action = '<a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
                     } else {
                         $action = "";

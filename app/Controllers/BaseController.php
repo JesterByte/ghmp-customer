@@ -94,7 +94,11 @@ abstract class BaseController extends Controller
                 'attributes' => [
                         'amount' => $paymentAmount,
                         'description' => 'Payment for ' . $assetId,
-                        'remarks' => $paymentOption . ' Reservation'
+                        'remarks' => $paymentOption . ' Reservation',
+                        "metadata" => [
+                            "asset_id" => $assetId,
+                            "payment_option" => $paymentOption
+                        ]
                 ]
             ]
         ]),
