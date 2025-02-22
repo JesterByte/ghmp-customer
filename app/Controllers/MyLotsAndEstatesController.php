@@ -23,7 +23,19 @@ class MyLotsAndEstatesController extends BaseController {
         foreach ($table as $key => $row) {
             $row["encrypted_asset_id"] = bin2hex($this->encrypter->encrypt($row["asset_id"]));
             $row["encrypted_asset_type"] = bin2hex($this->encrypter->encrypt($row["asset_type"]));
-            $row["payment_link"] = $this->createPaymongoLink($row["payment_amount"], $row["asset_id"], $row["payment_option"]);
+
+            if ($row["reservation_status"] == "Completed" || $row["reservation_status"] == "Pending") {
+                $row["payment_link"] = "#";
+            } else {
+                $row["payment_link"] = $this->createPaymongoLink($row["payment_amount"], $row["asset_id"], $row["payment_option"]);
+            }
+
+            if (isset($row["down_payment_status"]) && $row["down_payment_status"] == "Pending") {
+                $row["down_payment_link"] = $this->createPaymongoLink($row["down_payment"], $row["asset_id"], $row["payment_option"], true);
+            } else {
+                $row["down_payment_link"] = "#";
+            }
+
             $table[$key] = $row;
         }
 
@@ -308,10 +320,20 @@ class MyLotsAndEstatesController extends BaseController {
     }
     
     private function applyInstallment($reservationModel, $assetId, $pricing, $termYears, $downPaymentDueDate) {
+        $years = ["1" => "one", "2" => "two", "3" => "three", "4" => "four", "5" => "five"];
+
+        if ($termYears == "1") {
+            $termYearsKey = $years[$termYears] . "_year";
+        } else if ($termYears > "1") {
+            $termYearsKey = $years[$termYears] . "_years";
+        }
+
+        $termYears = $years[$termYears];
+
         $downPayment = $pricing["down_payment"];
-        $totalAmount = $this->getFinalBalance($pricing["monthly_amortization_" . $termYears . "_years"], $termYears);
-        $paymentAmount = $pricing["monthly_amortization_" . $termYears . "_years"];
-        $interestRate = $pricing[$termYears . "_years_interest_rate"];
+        $totalAmount = $this->getFinalBalance($pricing["monthly_amortization_" . $termYearsKey], $termYears);
+        $paymentAmount = $pricing["monthly_amortization_" . $termYearsKey];
+        $interestRate = $pricing[$termYearsKey . "_interest_rate"];
     
         $reservationModel->setInstallmentPayment($assetId, $termYears, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount, $interestRate);
     }
@@ -338,6 +360,6 @@ class MyLotsAndEstatesController extends BaseController {
     }
 
     private function getFinalBalance($monthlyPayment, $termYears) {
-        return $monthlyPayment * ($termYears * 12);
+        return $monthlyPayment * ((int) $termYears * 12);
     } 
 }

@@ -11,17 +11,16 @@
     <table id="table" class="table">
         <thead>
             <tr>
-                <th>Asset</th>
-                <th>Asset Type</th>
-                <th>Payment Option</th>
-                <th>Reservation Status</th>
-                <th>Action</th>
+                <th class="text-center">Asset</th>
+                <th class="text-center">Asset Type</th>
+                <th class="text-center">Payment Option</th>
+                <th class="text-center">Reservation Status</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
             <?php
-
-use App\Helpers\FormatterHelper;
+            use App\Helpers\FormatterHelper;
 
             if (isset($table)) {
                 foreach ($table as $row) {
@@ -35,17 +34,26 @@ use App\Helpers\FormatterHelper;
                     }
 
                     if ($row["reservation_status"] == "Confirmed" && $row["payment_option"] != "Pending") {
-                        $action = '<a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
+
+                        if ($row["down_payment_status"] == "Pending") {
+                            $action = '<div class="btn-group" role="group" aria-label="Basic example">
+                            <a target="_blank" href="' . $row["down_payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay Down ' . FormatterHelper::formatPrice($row["down_payment"]) . '</a>
+                            <a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-secondary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>
+                            </div>';
+                        } else {
+                            $action = '<a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
+                        }
+
                     } else {
                         $action = "";
                     }
 
                     echo "<tr>";
-                    echo "<td>" . $row['asset_id'] . "</td>";
-                    echo "<td>" . $row["asset_type"] . "</td>";
-                    echo "<td>" . $paymentOption . "</td>";
-                    echo "<td>" . $row["reservation_status"] . "</td>";
-                    echo "<td>
+                    echo "<td class='text-center'>" . $row['asset_id'] . "</td>";
+                    echo "<td class='text-center'>" . $row["asset_type"] . "</td>";
+                    echo "<td class='text-center'>" . $paymentOption . "</td>";
+                    echo "<td class='text-center'>" . $row["reservation_status"] . "</td>";
+                    echo "<td class='text-center'>
                         $action
                     </td>";
                     echo "</tr>";

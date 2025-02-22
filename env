@@ -20,9 +20,9 @@
 # APP
 #--------------------------------------------------------------------
 
-# app.baseURL = 'http://localhost/ghmp-customer/public/'
+app.baseURL = 'http://localhost/ghmp-customer/public/'
 # If you have trouble with `.`, you could also use `_`.
-# app_baseURL = 'http://192.168.254.198/ghmp-customer/public/'
+app_baseURL = 'http://localhost/ghmp-customer/public/'
 # app.forceGlobalSecureRequests = false
 # app.CSPEnabled = false
 
@@ -59,11 +59,13 @@
 # SESSION
 #--------------------------------------------------------------------
 
-# session.driver = 'CodeIgniter\Session\Handlers\FileHandler'
-# session.savePath = null
+sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
+sessionSavePath = 'writable/session'
 
 #--------------------------------------------------------------------
 # LOGGER
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
+
+PAYMONGO_WEBHOOK_SECRET = whsk_C7MvzaSKcgRHP7F2gaQrxQmN

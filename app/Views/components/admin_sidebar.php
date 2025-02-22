@@ -7,13 +7,13 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Dashboard", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "Dashboard", 'aria-current="page"') ?> href="dashboard">
+              <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Dashboard", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "Dashboard", 'aria-current="page"') ?> href="<?= base_url("dashboard") ?>">
                 <i class="bi bi-speedometer2"></i>
                 Dashboard
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "My Lots & Estates", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "My Lots & Estates", 'aria-current="page"') ?> href="my_lots_and_estates">
+              <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "My Lots & Estates", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "My Lots & Estates", 'aria-current="page"') ?> href="<?= base_url("my_lots_and_estates") ?>">
                 <i class="bi bi-bag<?= echo_if_route($pageTitle, "My Lots & Estates", "-fill") ?>"></i>                
                 My Lots & Estates
               </a>
@@ -25,8 +25,8 @@
                 </a>
                 <div class="collapse <?= page_in_List($pageTitle, $reserveList, "show") ?>" id="reserveSubmenu">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="reserve_lot" class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Reserve a Lot", "active text-bg-primary") ?>" ><i class="bi bi-caret-right<?= echo_if_route($pageTitle, "Reserve a Lot", "-fill") ?>"></i> Reserve a Lot</a></li>
-                        <li><a href="reserve_estate" class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Reserve an Estate", "active text-bg-primary") ?>"><i class="bi bi-caret-right<?= echo_if_route($pageTitle, "Reserve an Estate", "-fill") ?>"></i> Reserve an Estate</a></li>
+                        <li><a href="<?= base_url("reserve_lot") ?>" class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Reserve a Lot", "active text-bg-primary") ?>" ><i class="bi bi-caret-right<?= echo_if_route($pageTitle, "Reserve a Lot", "-fill") ?>"></i> Reserve a Lot</a></li>
+                        <li><a href="<?= base_url("reserve_estate") ?>" class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Reserve an Estate", "active text-bg-primary") ?>"><i class="bi bi-caret-right<?= echo_if_route($pageTitle, "Reserve an Estate", "-fill") ?>"></i> Reserve an Estate</a></li>
                     </ul>
                 </div>
             </li>
@@ -42,7 +42,7 @@
                 </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Payment Management", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "Payment Management", 'aria-current="page"') ?> href="payment_management">
+              <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Payment Management", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "Payment Management", 'aria-current="page"') ?> href="<?= base_url("payment_management") ?>">
                 <i class="bi bi-credit-card<?= echo_if_route($pageTitle, "Payment Management", "-fill") ?>"></i>                
                 Payment Management
               </a>
@@ -65,7 +65,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="signout">
+              <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url("signout") ?>">
                 <i class="bi bi-door-closed"></i>                
                 Sign out
               </a>

@@ -65,65 +65,84 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = service('session');
     }
 
-    public function createPaymongoLink($paymentAmount, $assetId, $paymentOption) {
+    public function createPaymongoLink($paymentAmount, $assetId, $paymentOption, $isDownPayment = false) {
+        $db = \Config\Database::connect();
+        
         $assetType = FormatterHelper::determineIdType($assetId);
-
+    
         switch ($assetType) {
             case "lot":
-                $assetId = FormatterHelper::formatLotId($assetId);
+                $formatteddAssetId = FormatterHelper::formatLotId($assetId);
+                $reservationTable = "lot_reservations";
+                $installmentTable = "installments";
+                $column = "lot_id";
                 break;
             case "estate":
-                $assetId = FormatterHelper::formatEstateId($assetId);
+                $formatteddAssetId = FormatterHelper::formatEstateId($assetId);
+                $reservationTable = "estate_reservations";
+                $installmentTable = "estate_installments";
+                $column = "estate_id";
                 break;
+            default:
+                return false; // Invalid asset type
         }
-
-        $paymentAmount = $paymentAmount * 100;
-
+    
+        $paymentAmount = $paymentAmount * 100; // Convert PHP to centavos
+    
         $curl = curl_init();
-
         curl_setopt_array($curl, [
-        CURLOPT_URL => "https://api.paymongo.com/v1/links",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => json_encode([
-            'data' => [
-                'attributes' => [
+            CURLOPT_URL => "https://api.paymongo.com/v1/links",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => json_encode([
+                'data' => [
+                    'attributes' => [
                         'amount' => $paymentAmount,
-                        'description' => 'Payment for ' . $assetId,
+                        'description' => 'Payment for ' . $formatteddAssetId,
                         'remarks' => $paymentOption . ' Reservation',
-                        "metadata" => [
-                            "asset_id" => $assetId,
-                            "payment_option" => $paymentOption
-                        ]
+                    ]
                 ]
-            ]
-        ]),
-        CURLOPT_HTTPHEADER => [
-            "accept: application/json",
-            "authorization: Basic c2tfdGVzdF9aVEEyU29wRUtmTEpIWlBaN1RjNFhLQ0s6",
-            "content-type: application/json"
-        ],
+            ]),
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Basic " . base64_encode("sk_test_ZTA2SopEKfLJHZPZ7Tc4XKCK"),
+                "Content-Type: application/json"
+            ],
         ]);
-
+    
         $response = curl_exec($curl);
-        $err = curl_error($curl);
-
         curl_close($curl);
+    
+        if (!$response) return false;
+    
+        $data = json_decode($response, true);
+        $checkoutUrl = $data["data"]["attributes"]["checkout_url"] ?? null;
+        $referenceNumber = $data["data"]["attributes"]["reference_number"] ?? null;
+    
+        if ($checkoutUrl && $referenceNumber) {
+            if (str_contains($paymentOption, "Installment")) {
+                switch ($isDownPayment) {
+                    case true:
+                        $referenceNumberColumn = "down_reference_number";
+                        break;
+                    case false:
+                        $referenceNumberColumn = "reference_number";
+                        break;
+                }
 
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            $data = json_decode($response, true);
-
-            if (isset($data["data"])) {
-                $checkoutUrl = $data["data"]["attributes"]["checkout_url"] ?? "N/A";
-                return $checkoutUrl;
+                $db->table($installmentTable)
+                ->where($column, $assetId)
+                ->set([$referenceNumberColumn => $referenceNumber])
+                ->update();
+            } else {
+                // Store the reference number in the reservation table
+                $db->table($reservationTable)
+                ->where($column, $assetId)
+                ->set(["reference_number" => $referenceNumber])
+                ->update();
             }
-            // echo $response;
+
         }
+    
+        return $checkoutUrl;
     }
 }
