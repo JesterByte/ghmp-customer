@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="<?= base_url("css/leaflet.css") ?>" />
 <script src="<?= base_url("js/leaflet.js") ?>"></script>
 
-<?= $this->include("modals/confirm_lot_reservation.php") ?>
+<?= $this->include("modals/confirm_lot_reservation") ?>
 
 <script>
     // Initialize the map

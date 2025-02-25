@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<?= base_url("css/leaflet.css") ?>" />
 <script src="<?= base_url("js/leaflet.js") ?>"></script>
 
-<?= $this->include("modals/confirm_estate_reservation") ?>
+<?= $this->include("modals/schedule_burial") ?>
 
 <script>
     // Initialize the map
@@ -21,14 +21,14 @@
     }).addTo(map);
 
     // Fetch lot data from the API
-    fetch("<?= base_url('api/available_estates') ?>")
+    fetch("<?= base_url('api/owned_assets') ?>")
         .then(response => response.json())
-        .then(estates => {
-            estates.forEach(estate => {
+        .then(assets => {
+            assets.forEach(asset => {
                 // Define rectangle bounds
                 var bounds = [
-                    [estate.latitude_start, estate.longitude_start], // Bottom-left corner
-                    [estate.latitude_end, estate.longitude_end]  // Top-right corner
+                    [asset.latitude_start, asset.longitude_start], // Bottom-left corner
+                    [asset.latitude_end, asset.longitude_end]  // Top-right corner
                 ];
 
                 // Draw rectangle
@@ -41,11 +41,9 @@
 
                 // Bind a popup with lot details and Reserve button
                 rectangle.bindPopup(`
-                    <b>Estate ID:</b> ${estate.formatted_estate_id}<br>
-                    <b>Area:</b> ${estate.sqm}SQM<br>
-                    <b>Number of Lots:</b> ${estate.number_of_lots}<br>
+                    <b>Asset ID:</b> ${asset.formatted_asset_id}<br>
                     <div class="text-center">
-                        <button class="btn btn-primary" onclick="showReserveModal('${estate.estate_id}')">Reserve</button>
+                        <button class="btn btn-primary" onclick="showReserveModal('${asset.asset_id}')">Schedule Burial</button>
                     </div>
                 `);
             });
@@ -53,9 +51,9 @@
         .catch(error => console.error("Error fetching lot data:", error));
 
     // Function to show the reserve confirmation modal
-    function showReserveModal(estateId) {
-        $('#reserveModal').modal('show');
-        $('#reserveEstateId').val(estateId);
+    function showReserveModal(assetId) {
+        $('#scheduleBurial').modal('show');
+        $('#assetId').val(assetId);
     }
 </script>
 

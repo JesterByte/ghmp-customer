@@ -70,5 +70,38 @@ class AssetModel extends Model {
     
         return $result;
     }
+
+    public function getOwnedAssets($userId) {
+        $builder1 = $this->db->table("lots")
+        ->select("
+        lot_id AS asset_id,
+        latitude_start,
+        latitude_end,  
+        longitude_start,
+        longitude_end")
+        ->where("owner_id", $userId)
+        ->where("owner_id IS NOT NULL");
+
+        $builder2 = $this->db->table("estates")
+        ->select("
+        estate_id AS asset_id,
+        latitude_start,
+        latitude_end,  
+        longitude_start,
+        longitude_end")
+        ->where("owner_id", $userId)
+        ->where("owner_id IS NOT NULL");
+
+        $sql1 = $builder1->getCompiledSelect();
+        $sql2 = $builder2->getCompiledSelect();
+
+        $finalQuery = "$sql1 UNION $sql2";
+
+        $query = $this->db->query($finalQuery);
+
+        $result = $query->getResultArray();
+
+        return !empty($result) ? $result : [];
+    }
     
 }

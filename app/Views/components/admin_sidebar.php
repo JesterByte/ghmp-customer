@@ -30,13 +30,14 @@
                     </ul>
                 </div>
             </li>
+            <?php $memorialServicesList = ["Schedule a Memorial Service", "My Memorial Services"]; ?>
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2" data-bs-toggle="collapse" href="#memorialServicesSubmenu" role="button" aria-expanded="false" aria-controls="memorialServicesSubmenu">
-                    <i class="bi bi-umbrella"></i> Memorial Services (Burial) <i class="bi bi-caret-down"></i>
+                <a class="nav-link d-flex align-items-center gap-2" data-bs-toggle="collapse" href="#memorialServicesSubmenu" role="button" aria-expanded="<?= page_in_List($pageTitle, $memorialServicesList, "true", "false") ?>" aria-controls="memorialServicesSubmenu">
+                    <i class="bi bi-umbrella<?= page_in_List($pageTitle, $memorialServicesList, "-fill") ?>"></i> Memorial Services (Burial) <i class="bi bi-caret-down<?= page_in_List($pageTitle, $memorialServicesList, "-fill") ?>"></i>
                 </a>
-                <div class="collapse" id="memorialServicesSubmenu">
+                <div class="collapse <?= page_in_List($pageTitle, $memorialServicesList, "show") ?>" id="memorialServicesSubmenu">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="nav-link d-flex align-items-center gap-2" ><i class="bi bi-caret-right"></i> Schedule a Memorial Service </a></li>
+                        <li><a href="<?= base_url("schedule_memorial_service") ?>" class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Schedule a Memorial Service", "active text-bg-primary") ?>"><i class="bi bi-caret-right<?= echo_if_route($pageTitle, "Schedule a Memorial Service", "-fill") ?>"></i> Schedule a Memorial Service </a></li>
                         <li><a href="#" class="nav-link d-flex align-items-center gap-2"><i class="bi bi-caret-right"></i> My Memorial Services </a></li>
                     </ul>
                 </div>
