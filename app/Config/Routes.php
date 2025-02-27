@@ -33,6 +33,7 @@ $routes->post("reserve/submitReservationEstate", "ReserveEstateController::submi
 $routes->post("/payment_option_submit", "MyLotsAndEstatesController::paymentOptionSubmit");
 
 $routes->get("/schedule_memorial_service", "ScheduleMemorialServiceController::index");
+$routes->get("/my_memorial_services", "MyMemorialServicesController::index");
 
 $routes->get("/api/available_lots", "ReserveLotController::getAvailableLots");
 $routes->get("/api/available_estates", "ReserveEstateController::getAvailableEstates");

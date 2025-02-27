@@ -28,4 +28,9 @@ class BurialReservationsModel extends Model {
 
         return $this->insert($data);
     }
+
+    public function getBurialReservations($userId) {
+        return $this->where('reservee_id', $userId)->findAll();
+    }
+    
 }

@@ -38,7 +38,7 @@
                 <div class="collapse <?= page_in_List($pageTitle, $memorialServicesList, "show") ?>" id="memorialServicesSubmenu">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         <li><a href="<?= base_url("schedule_memorial_service") ?>" class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Schedule a Memorial Service", "active text-bg-primary") ?>"><i class="bi bi-caret-right<?= echo_if_route($pageTitle, "Schedule a Memorial Service", "-fill") ?>"></i> Schedule a Memorial Service </a></li>
-                        <li><a href="#" class="nav-link d-flex align-items-center gap-2"><i class="bi bi-caret-right"></i> My Memorial Services </a></li>
+                        <li><a href="<?= base_url("my_memorial_services") ?>" class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "My Memorial Services", "active text-bg-primary") ?>"><i class="bi bi-caret-right<?= echo_if_route($pageTitle, "My Memorial Services", "-fill") ?>"></i> My Memorial Services </a></li>
                     </ul>
                 </div>
             </li>
