@@ -9,6 +9,14 @@ class MyMemorialServicesController extends BaseController {
         $burialReservationsModel = new BurialReservationsModel();
         $burialReservations = $burialReservationsModel->getBurialReservations(session()->get("user_id"));
 
+        foreach ($burialReservations as $row) {
+            if ($row["status"] === "Approved" && $row["payment_status"] === "Pending") {
+                $row["payment_link"] = $this->createPaymongoLinkBurial($row["payment_amount"], $row["asset_id"], $row["burial_type"]);
+            }
+
+            $burialReservations[] = $row;
+        }
+
         $data = [
             "pageTitle" => "My Memorial Services",
             "burialReservations" => $burialReservations

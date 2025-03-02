@@ -145,4 +145,91 @@ abstract class BaseController extends Controller
     
         return $checkoutUrl;
     }
+
+    public function createPaymongoLinkBurial($paymentAmount, $assetId, $burialType, $isDownPayment = false) {
+        $db = \Config\Database::connect();
+        
+        $assetType = FormatterHelper::determineIdType($assetId);
+    
+        switch ($assetType) {
+            case "lot":
+                $formatteddAssetId = FormatterHelper::formatLotId($assetId);
+                // $reservationTable = "lot_reservations";
+                // $installmentTable = "installments";
+                // $column = "lot_id";
+                break;
+            case "estate":
+                $formatteddAssetId = FormatterHelper::formatEstateId($assetId);
+                // $reservationTable = "estate_reservations";
+                // $installmentTable = "estate_installments";
+                // $column = "estate_id";
+                break;
+            default:
+                return false; // Invalid asset type
+        }
+    
+        $paymentAmount = $paymentAmount * 100; // Convert PHP to centavos
+    
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://api.paymongo.com/v1/links",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => json_encode([
+                'data' => [
+                    'attributes' => [
+                        'amount' => $paymentAmount,
+                        'description' => 'Payment for Burial in ' . $formatteddAssetId,
+                        'remarks' => $burialType . ' Burial',
+                    ]
+                ]
+            ]),
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Basic " . base64_encode("sk_test_ZTA2SopEKfLJHZPZ7Tc4XKCK"),
+                "Content-Type: application/json"
+            ],
+        ]);
+    
+        $response = curl_exec($curl);
+        curl_close($curl);
+    
+        if (!$response) return false;
+    
+        $data = json_decode($response, true);
+        $checkoutUrl = $data["data"]["attributes"]["checkout_url"] ?? null;
+        $referenceNumber = $data["data"]["attributes"]["reference_number"] ?? null;
+    
+        if ($checkoutUrl && $referenceNumber) {
+            // if (str_contains($paymentOption, "Installment")) {
+            //     switch ($isDownPayment) {
+            //         case true:
+            //             $referenceNumberColumn = "down_reference_number";
+            //             break;
+            //         case false:
+            //             $referenceNumberColumn = "reference_number";
+            //             break;
+            //     }
+
+            //     $db->table($installmentTable)
+            //     ->where($column, $assetId)
+            //     ->set([$referenceNumberColumn => $referenceNumber])
+            //     ->update();
+            // } else {
+            //     // Store the reference number in the reservation table
+            //     $db->table($reservationTable)
+            //     ->where($column, $assetId)
+            //     ->set(["reference_number" => $referenceNumber])
+            //     ->update();
+            // }
+
+            $db->table("burial_reservations")
+            ->where("asset_id", $assetId)
+            ->where("burial_type", $burialType)
+            ->set(["reference_number" => $referenceNumber])
+            ->update();
+        }
+    
+        return $checkoutUrl;
+    }
+
 }

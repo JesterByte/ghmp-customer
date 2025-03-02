@@ -21,6 +21,12 @@ class ScheduleMemorialServiceController extends BaseController {
         if (!empty($ownedAssets)) {
             foreach ($ownedAssets as $ownedAsset) {
                 $ownedAsset["formatted_asset_id"] = FormatterHelper::formatLotId($ownedAsset["asset_id"]);
+                $ownedAsset["asset_type"] = FormatterHelper::determineIdType($ownedAsset["asset_id"]);
+
+                // if ($ownedAsset["status"] === "Approved" && $ownedAsset["payment_status"] === "Pending") {
+                //     $ownedAsset["payment_link"] = $this->createPaymongoLink()
+                // }
+
                 $ownedAssets[] = $ownedAsset;
             }
         } else {
@@ -45,8 +51,12 @@ class ScheduleMemorialServiceController extends BaseController {
     
             // Save reservation in the database
             $burialReservationsModel = new BurialReservationsModel();
+
+            $paymentAmount = $burialReservationsModel->getBurialPricing(ucfirst($data["category"]) , $data["burial_type"])["price"];
+
             $inserted = $burialReservationsModel->setBurialReservation(
                 $data["asset_id"],
+                $data["burial_type"],
                 session()->get("user_id"), // Assuming the reservee_id is stored in session
                 $data["relationship"],
                 $data["first_name"],
@@ -56,6 +66,7 @@ class ScheduleMemorialServiceController extends BaseController {
                 $data["date_of_birth"],
                 $data["date_of_death"],
                 $data["obituary"],
+                $paymentAmount,
                 $data["date_time"]
             );
     
@@ -71,8 +82,4 @@ class ScheduleMemorialServiceController extends BaseController {
             'message' => 'Invalid request method'
         ]);
     }
-    
-    
-    
-    
 }

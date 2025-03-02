@@ -1,0 +1,453 @@
+CRITICAL - 2025-03-02 21:22:54 --> ParseError: syntax error, unexpected token "}"
+[Method: GET, Route: schedule_memorial_service]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 28.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\ScheduleMemorialServiceController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\ScheduleMemorialServiceController')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\ScheduleMemorialServiceController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 21:26:16 --> ErrorException: Undefined array key "status"
+[Method: GET, Route: api/owned_assets]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 26.
+ 1 APPPATH\Controllers\ScheduleMemorialServiceController.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 21:26:18 --> ErrorException: Undefined array key "status"
+[Method: GET, Route: api/owned_assets]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 26.
+ 1 APPPATH\Controllers\ScheduleMemorialServiceController.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 21:26:26 --> ErrorException: Undefined array key "status"
+[Method: GET, Route: api/owned_assets]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 26.
+ 1 APPPATH\Controllers\ScheduleMemorialServiceController.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 21:26:27 --> ErrorException: Undefined array key "status"
+[Method: GET, Route: api/owned_assets]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 26.
+ 1 APPPATH\Controllers\ScheduleMemorialServiceController.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 21:26:35 --> ErrorException: Undefined array key "status"
+[Method: GET, Route: api/owned_assets]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 26.
+ 1 APPPATH\Controllers\ScheduleMemorialServiceController.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 21:26:37 --> ErrorException: Undefined array key "status"
+[Method: GET, Route: api/owned_assets]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 26.
+ 1 APPPATH\Controllers\ScheduleMemorialServiceController.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 21:26:56 --> ErrorException: Undefined array key "status"
+[Method: GET, Route: api/owned_assets]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 26.
+ 1 APPPATH\Controllers\ScheduleMemorialServiceController.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 21:27:01 --> ErrorException: Undefined array key "status"
+[Method: GET, Route: api/owned_assets]
+in APPPATH\Controllers\ScheduleMemorialServiceController.php on line 26.
+ 1 APPPATH\Controllers\ScheduleMemorialServiceController.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ScheduleMemorialServiceController.php', 26)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-02 22:09:35 --> mysqli_sql_exception: Unknown column 'asset_id' in 'where clause' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\BaseController.php(231): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-03-02 22:09:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+[Method: GET, Route: my_memorial_services]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 2 APPPATH\Controllers\BaseController.php(231): CodeIgniter\Database\BaseBuilder->update()
+ 3 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:09:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'cduCqaV\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'cduCqaV\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 4 APPPATH\Controllers\BaseController.php(231): CodeIgniter\Database\BaseBuilder->update()
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:09:35 --> [Caused by] mysqli_sql_exception: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_pricing` SET `reference_number` = \'cduCqaV\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'cduCqaV\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'cduCqaV\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 5 APPPATH\Controllers\BaseController.php(231): CodeIgniter\Database\BaseBuilder->update()
+ 6 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-02 22:10:46 --> mysqli_sql_exception: Unknown column 'asset_id' in 'where clause' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\BaseController.php(231): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-03-02 22:10:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+[Method: GET, Route: my_memorial_services]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 2 APPPATH\Controllers\BaseController.php(231): CodeIgniter\Database\BaseBuilder->update()
+ 3 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:10:46 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'pEtxaXw\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'pEtxaXw\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 4 APPPATH\Controllers\BaseController.php(231): CodeIgniter\Database\BaseBuilder->update()
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:10:46 --> [Caused by] mysqli_sql_exception: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_pricing` SET `reference_number` = \'pEtxaXw\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'pEtxaXw\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'pEtxaXw\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 5 APPPATH\Controllers\BaseController.php(231): CodeIgniter\Database\BaseBuilder->update()
+ 6 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-02 22:11:39 --> mysqli_sql_exception: Unknown column 'asset_id' in 'where clause' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-03-02 22:11:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+[Method: GET, Route: my_memorial_services]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 2 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 3 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:11:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'VNFB1tZ\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'VNFB1tZ\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 4 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:11:39 --> [Caused by] mysqli_sql_exception: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_pricing` SET `reference_number` = \'VNFB1tZ\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'VNFB1tZ\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'VNFB1tZ\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 5 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 6 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:11:59 --> ErrorException: Undefined property: App\Controllers\MyMemorialServicesController::$db
+[Method: GET, Route: my_memorial_services]
+in APPPATH\Controllers\BaseController.php on line 225.
+ 1 APPPATH\Controllers\BaseController.php(225): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\MyMemorialServicesController::$db', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\BaseController.php', 225)
+ 2 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-02 22:12:08 --> mysqli_sql_exception: Unknown column 'asset_id' in 'where clause' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-03-02 22:12:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+[Method: GET, Route: my_memorial_services]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 2 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 3 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:12:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'B7nnAj1\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'B7nnAj1\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 4 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:12:08 --> [Caused by] mysqli_sql_exception: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_pricing` SET `reference_number` = \'B7nnAj1\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'B7nnAj1\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'B7nnAj1\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 5 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 6 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-02 22:12:46 --> mysqli_sql_exception: Unknown column 'asset_id' in 'where clause' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-03-02 22:12:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+[Method: GET, Route: my_memorial_services]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 2 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 3 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:12:46 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'6pJQBUo\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'6pJQBUo\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 4 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-02 22:12:46 --> [Caused by] mysqli_sql_exception: Unknown column 'asset_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `burial_pricing` SET `reference_number` = \'6pJQBUo\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `burial_pricing` SET `reference_number` = \'6pJQBUo\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `burial_pricing` SET `reference_number` = \'6pJQBUo\'
+WHERE `asset_id` = \'1C1-3\'
+AND `burial_type` = \'Standard\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `burial_pricing` SET `reference_number` = :reference_number:
+WHERE `asset_id` = :asset_id:
+AND `burial_type` = :burial_type:', [...], false)
+ 5 APPPATH\Controllers\BaseController.php(229): CodeIgniter\Database\BaseBuilder->update()
+ 6 APPPATH\Controllers\MyMemorialServicesController.php(14): App\Controllers\BaseController->createPaymongoLinkBurial(5000000.0, '1C1-3', 'Standard')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

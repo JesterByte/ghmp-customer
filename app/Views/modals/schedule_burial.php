@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <form action="#" method="post">
-                    <input type="hidden" name="" id="assetId">
+                    <input type="hidden" name="asset_id" id="assetId">
                     <div class="mb-3">
                         <p class="form-text">Personal Information</p>
                         <div class="form-floating">
@@ -65,21 +65,19 @@
                     </div>
                     <div class="mb-3">
                         <p class="form-text">Service Details</p>
+                        <input type="hidden" name="category" id="category">
                         <div class="form-floating mb-3">
+                            <select name="burial_type" id="burialType" class="form-select" required>
+                                <option value="" selected disabled>Select Burial Type</option>
+                            </select>
+                            <label for="burialType">Burial Type</label>
+                        </div>
+                        <div class="form-floating">
                             <input type="datetime-local" name="datetime" placeholder="Date & Time" required id="datetime" class="form-control">
                             <label for="datetime">Date & Time</label>
                         </div>
                     </div>
-                    <!-- <div class="form-floating mb-3">
-                        <input type="date" name="date" id="date" class="form-control" placeholder="Date" required>
-                        <label for="date">Date</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="time" name="time" id="time" class="form-control" placeholder="Time" required>
-                        <label for="time">Time</label>
-                    </div> -->
                 </form>
-                <input type="hidden" id="reserveEstateId">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -90,9 +88,51 @@
 </div>
 
 <script>
-    // Submit reservation via AJAX
+    document.addEventListener("DOMContentLoaded", function () {
+        const scheduleBurial = document.getElementById("scheduleBurial");
+
+        scheduleBurial.addEventListener("show.bs.modal", function() {
+            updateBurialType();
+
+        });
+    });
+
+    function updateBurialType() {
+        const category = document.getElementById("category").value;
+        const burialType = document.getElementById("burialType");
+
+        // Clear previous options
+        burialType.innerHTML = '<option value="" selected disabled>Select Burial Type</option>';
+
+        // Burial type options based on category
+        let options = [];
+        if (category === "lot") {
+            options = [
+                { value: "Standard", text: "Standard" },
+                { value: "Cremation", text: "Cremation" },
+                { value: "Bone Transfer", text: "Bone Transfer" }
+            ];
+        } else if (category === "estate") {
+            options = [
+                { value: "Standard", text: "Standard" },
+                { value: "Mausoleum", text: "Mausoleum" },
+                { value: "Bone Transfer", text: "Bone Transfer" }
+            ];
+        }
+
+        // Append new options
+        options.forEach(option => {
+            let opt = document.createElement("option");
+            opt.value = option.value;
+            opt.textContent = option.text;
+            burialType.appendChild(opt);
+        });
+    }
+
+    // Attach change event to category
+    document.getElementById("category").addEventListener("change", updateBurialType);
+
     function submitReservation() {
-        // Debug: Log data before sending
         console.log("Sending:", {
             asset_id: $('#assetId').val(),
             relationship: $("#relationship").val(),
@@ -103,44 +143,38 @@
             dateOfBirth: $("#dateOfBirth").val(),
             dateOfDeath: $("#dateOfDeath").val(),
             obituary: $("#obituary").val(),
+            category: $("#category").val(),
+            burial_type: $("#burialType").val(),
             date_time: $("#datetime").val()
         });
 
         fetch("<?= base_url('reserve/submitMemorialService') ?>", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 
-                asset_id: $("#assetId").val(),
-                relationship: $("#relationship").val(),
-                first_name: $("#firstName").val(),
-                middle_name: $("#middleName").val(),
-                last_name: $("#lastName").val(),
-                suffix: $("#suffix").val(),
-                date_of_birth: $("#dateOfBirth").val(),
-                date_of_death: $("#dateOfDeath").val(),
-                obituary: $("#obituary").val(),
-                date_time: $("#datetime").val()
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    asset_id: $("#assetId").val(),
+                    relationship: $("#relationship").val(),
+                    first_name: $("#firstName").val(),
+                    middle_name: $("#middleName").val(),
+                    last_name: $("#lastName").val(),
+                    suffix: $("#suffix").val(),
+                    date_of_birth: $("#dateOfBirth").val(),
+                    date_of_death: $("#dateOfDeath").val(),
+                    obituary: $("#obituary").val(),
+                    category: $("#category").val(),
+                    burial_type: $("#burialType").val(),
+                    date_time: $("#datetime").val()
+                })
             })
-        })
-        .then(response => response.text()) // Use text() to catch raw errors
-        .then(data => {
-            console.log("Raw Response:", data); // Log raw response
-
-            try {
-                let jsonData = JSON.parse(data);
-                console.log("Parsed JSON:", jsonData);
+            .then(response => response.json())
+            .then(jsonData => {
                 alert("Server Response: " + jsonData.message);
-            } catch (e) {
-                console.error("Error parsing JSON:", e, "Raw Response:", data);
-                alert("Server returned non-JSON data: " + data);
-            }
-        })
-        .catch(error => {
-            console.error("Fetch error:", error);
-            alert("Network error or server is unreachable.");
-        });
-
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+                alert("Network error or server is unreachable.");
+            });
     }
 </script>

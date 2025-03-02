@@ -28,22 +28,22 @@
                 // Define rectangle bounds
                 var bounds = [
                     [asset.latitude_start, asset.longitude_start], // Bottom-left corner
-                    [asset.latitude_end, asset.longitude_end]  // Top-right corner
+                    [asset.latitude_end, asset.longitude_end] // Top-right corner
                 ];
 
                 // Draw rectangle
                 var rectangle = L.rectangle(bounds, {
-                    color: "green",      // Border color
-                    weight: 2,           // Border thickness
+                    color: "green", // Border color
+                    weight: 2, // Border thickness
                     fillColor: "#00ff00", // Fill color
-                    fillOpacity: 0.4     // Transparency
+                    fillOpacity: 0.4 // Transparency
                 }).addTo(map);
 
                 // Bind a popup with lot details and Reserve button
                 rectangle.bindPopup(`
                     <b>Asset ID:</b> ${asset.formatted_asset_id}<br>
                     <div class="text-center">
-                        <button class="btn btn-primary" onclick="showReserveModal('${asset.asset_id}')">Schedule Burial</button>
+                        <button class="btn btn-primary" onclick="showReserveModal('${asset.asset_id}', '${asset.asset_type}')">Schedule Burial</button>
                     </div>
                 `);
             });
@@ -51,9 +51,60 @@
         .catch(error => console.error("Error fetching lot data:", error));
 
     // Function to show the reserve confirmation modal
-    function showReserveModal(assetId) {
+    function showReserveModal(assetId, category) {
         $('#scheduleBurial').modal('show');
         $('#assetId').val(assetId);
+        $("#category").val(category);
+
+        // Update burial type options based on category
+        updateBurialType(category);
+    }
+
+    function updateBurialType(category) {
+        const burialType = document.getElementById("burialType");
+
+        // Clear previous options
+        burialType.innerHTML = '<option value="" selected disabled>Select Burial Type</option>';
+
+        // Burial type options based on category
+        let options = [];
+        if (category === "lot") {
+            options = [{
+                    value: "Standard",
+                    text: "Standard"
+                },
+                {
+                    value: "Cremation",
+                    text: "Cremation"
+                },
+                {
+                    value: "Bone Transfer",
+                    text: "Bone Transfer"
+                }
+            ];
+        } else if (category === "estate") {
+            options = [{
+                    value: "Standard",
+                    text: "Standard Burial"
+                },
+                {
+                    value: "Mausoleum",
+                    text: "Mausoleum"
+                },
+                {
+                    value: "Bone Transfer",
+                    text: "Bone Transfer"
+                }
+            ];
+        }
+
+        // Append new options
+        options.forEach(option => {
+            let opt = document.createElement("option");
+            opt.value = option.value;
+            opt.textContent = option.text;
+            burialType.appendChild(opt);
+        });
     }
 </script>
 
