@@ -23,19 +23,23 @@
             use App\Helpers\FormatterHelper;
 
             if (isset($burialReservations)) {
-                foreach ($burialReservations as $burialReservation) {
-                    $middleName = !empty($burialReservation["middle_name"]) ? $burialReservation["middle_name"] : "";
-                    $suffix = !empty($burialReservation["suffix"]) ? ", " . $burialReservation["suffix"] : "";
-                    $interred = $burialReservation["first_name"] . " " . $middleName . " " . $burialReservation["last_name"] . $suffix;
-                    $dateTime = FormatterHelper::formatDate($burialReservation["date_time"]);
+                foreach ($burialReservations as $row) {
+                    $middleName = !empty($row["middle_name"]) ? $row["middle_name"] : "";
+                    $suffix = !empty($row["suffix"]) ? ", " . $row["suffix"] : "";
+                    $interred = $row["first_name"] . " " . $middleName . " " . $row["last_name"] . $suffix;
+                    $dateTime = FormatterHelper::formatDate($row["date_time"]);
+
+                    $paymentAmount = FormatterHelper::formatPrice($row["payment_amount"]);
+
+                    $action = '<a role="button" class="btn btn-primary" href="' . $row["payment_link"] . '"><i class="bi bi-credit-card-fill"></i> Pay ' . $paymentAmount . '</a>';
 
                     echo "<tr>";
-                    echo "<td class='text-center'>" . $burialReservation['asset_id'] . "</td>";
+                    echo "<td class='text-center'>" . $row['asset_id'] . "</td>";
                     echo "<td class='text-center'>" . $interred . "</td>";
                     echo "<td class='text-center'>" . $dateTime . "</td>";
-                    echo "<td class='text-center'>" . $burialReservation["status"] . "</td>";
+                    echo "<td class='text-center'>" . $row["status"] . "</td>";
                     echo "<td class='text-center'>
-                        
+                        $action
                     </td>";
                     echo "</tr>";
                 }

@@ -1,0 +1,82 @@
+CRITICAL - 2025-03-03 07:32:06 --> TypeError: Cannot access offset of type string on string
+[Method: GET, Route: my_memorial_services]
+in APPPATH\Views\admin\my_memorial_services.php on line 29.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/my_memorial_services', [], true)
+ 4 APPPATH\Controllers\MyMemorialServicesController.php(24): view('admin/my_memorial_services', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 07:34:44 --> ErrorException: Undefined array key "payment_link"
+[Method: GET, Route: my_memorial_services]
+in APPPATH\Views\admin\my_memorial_services.php on line 32.
+ 1 APPPATH\Views\admin\my_memorial_services.php(32): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "payment_link"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_memorial_services.php', 32)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_memorial_services.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/my_memorial_services', [], true)
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(22): view('admin/my_memorial_services', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 07:35:14 --> ErrorException: Undefined array key "payment_link"
+[Method: GET, Route: my_memorial_services]
+in APPPATH\Views\admin\my_memorial_services.php on line 32.
+ 1 APPPATH\Views\admin\my_memorial_services.php(32): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "payment_link"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_memorial_services.php', 32)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_memorial_services.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/my_memorial_services', [], true)
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(24): view('admin/my_memorial_services', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 07:35:53 --> ErrorException: Undefined array key "payment_link"
+[Method: GET, Route: my_memorial_services]
+in APPPATH\Views\admin\my_memorial_services.php on line 32.
+ 1 APPPATH\Views\admin\my_memorial_services.php(32): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "payment_link"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_memorial_services.php', 32)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_memorial_services.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/my_memorial_services', [], true)
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(24): view('admin/my_memorial_services', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 07:40:43 --> TypeError: Cannot access offset of type string on string
+[Method: GET, Route: my_memorial_services]
+in APPPATH\Views\admin\my_memorial_services.php on line 29.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/my_memorial_services', [], true)
+ 4 APPPATH\Controllers\MyMemorialServicesController.php(24): view('admin/my_memorial_services', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 07:43:45 --> ErrorException: Undefined array key "payment_link"
+[Method: GET, Route: my_memorial_services]
+in APPPATH\Views\admin\my_memorial_services.php on line 32.
+ 1 APPPATH\Views\admin\my_memorial_services.php(32): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "payment_link"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_memorial_services.php', 32)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_memorial_services.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/my_memorial_services', [], true)
+ 5 APPPATH\Controllers\MyMemorialServicesController.php(23): view('admin/my_memorial_services', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMemorialServicesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMemorialServicesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

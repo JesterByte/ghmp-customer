@@ -4,17 +4,17 @@ namespace App\Controllers;
 
 use App\Models\BurialReservationsModel;
 
-class MyMemorialServicesController extends BaseController {
-    public function index(): string {
+class MyMemorialServicesController extends BaseController
+{
+    public function index(): string
+    {
         $burialReservationsModel = new BurialReservationsModel();
         $burialReservations = $burialReservationsModel->getBurialReservations(session()->get("user_id"));
 
-        foreach ($burialReservations as $row) {
-            if ($row["status"] === "Approved" && $row["payment_status"] === "Pending") {
-                $row["payment_link"] = $this->createPaymongoLinkBurial($row["payment_amount"], $row["asset_id"], $row["burial_type"]);
+        foreach ($burialReservations as $key => $row) {
+            if ($row["status"] == "Approved" && $row["payment_status"] == "Pending") {
+                $burialReservations[$key]["payment_link"] = $this->createPaymongoLinkBurial($row["payment_amount"], $row["asset_id"], $row["burial_type"]);
             }
-
-            $burialReservations[] = $row;
         }
 
         $data = [
@@ -24,6 +24,4 @@ class MyMemorialServicesController extends BaseController {
         return view("admin/my_memorial_services", $data);
         // return view('brochure/home');
     }
-
-
 }
