@@ -42,7 +42,9 @@
                 // Bind a popup with lot details and Reserve button
                 rectangle.bindPopup(`
                     <b>Asset ID:</b> ${asset.formatted_asset_id}<br>
-                    <div class="text-center">
+                    <b>Occupancy:</b> ${asset.occupancy || "N/A"}<br>
+                    <b>Capacity:</b> ${asset.capacity || "N/A"}<br>
+                    <div class="text-center my-3">
                         <button class="btn btn-primary" onclick="showReserveModal('${asset.asset_id}', '${asset.asset_type}')">Schedule Burial</button>
                     </div>
                 `);

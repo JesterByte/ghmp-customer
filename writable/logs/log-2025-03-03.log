@@ -80,3 +80,297 @@ in APPPATH\Views\admin\my_memorial_services.php on line 32.
  9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-03 21:01:27 --> mysqli_sql_exception: The used SELECT statements have a different number of columns in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `lot_id`...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id`...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id`...')
+#3 C:\xampp\htdocs\ghmp-customer\app\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id`...')
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-03-03 21:01:27 --> CodeIgniter\Database\Exceptions\DatabaseException: The used SELECT statements have a different number of columns
+[Method: GET, Route: api/owned_assets]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 2 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 21:01:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: The used SELECT statements have a different number of columns
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 3 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 4 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 21:01:27 --> [Caused by] mysqli_sql_exception: The used SELECT statements have a different number of columns
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 4 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 5 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-03 21:01:29 --> mysqli_sql_exception: The used SELECT statements have a different number of columns in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `lot_id`...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id`...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id`...')
+#3 C:\xampp\htdocs\ghmp-customer\app\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id`...')
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-03-03 21:01:29 --> CodeIgniter\Database\Exceptions\DatabaseException: The used SELECT statements have a different number of columns
+[Method: GET, Route: api/owned_assets]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 2 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 21:01:29 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: The used SELECT statements have a different number of columns
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 3 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 4 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 21:01:29 --> [Caused by] mysqli_sql_exception: The used SELECT statements have a different number of columns
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 4 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 5 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-03 21:01:39 --> mysqli_sql_exception: The used SELECT statements have a different number of columns in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `lot_id`...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id`...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id`...')
+#3 C:\xampp\htdocs\ghmp-customer\app\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id`...')
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-03-03 21:01:39 --> CodeIgniter\Database\Exceptions\DatabaseException: The used SELECT statements have a different number of columns
+[Method: GET, Route: api/owned_assets]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 2 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 21:01:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: The used SELECT statements have a different number of columns
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 3 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 4 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-03 21:01:39 --> [Caused by] mysqli_sql_exception: The used SELECT statements have a different number of columns
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 4 APPPATH\Models\AssetModel.php(102): CodeIgniter\Database\BaseConnection->query('SELECT `lot_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`
+FROM `lots`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL UNION SELECT `estate_id` AS `asset_id`, `latitude_start`, `latitude_end`, `longitude_start`, `longitude_end`, `occupancy`, `capacity`
+FROM `estates`
+WHERE `owner_id` = \'1\'
+AND `owner_id` IS NOT NULL')
+ 5 APPPATH\Controllers\ScheduleMemorialServiceController.php(20): App\Models\AssetModel->getOwnedAssets('1')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ScheduleMemorialServiceController->getOwnedAssets()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ScheduleMemorialServiceController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

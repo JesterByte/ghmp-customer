@@ -45,3 +45,4 @@ $routes->get("/api/owned_assets", "ScheduleMemorialServiceController::getOwnedAs
 $routes->post("/api/pay_cash_sale", "PaymentManagementController::payCashSale");
 $routes->post("/api/pay_six_months", "PaymentManagementController::paySixMonths");
 $routes->post("/api/webhook", "WebhookController::index");
+$routes->post("/api/webhook_burial", "BurialWebhookController::index");

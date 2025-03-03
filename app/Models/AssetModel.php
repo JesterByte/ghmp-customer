@@ -78,7 +78,9 @@ class AssetModel extends Model {
         latitude_start,
         latitude_end,  
         longitude_start,
-        longitude_end")
+        longitude_end,
+        NULL AS occupancy,
+        NULL AS capacity")
         ->where("owner_id", $userId)
         ->where("owner_id IS NOT NULL");
 
@@ -88,7 +90,9 @@ class AssetModel extends Model {
         latitude_start,
         latitude_end,  
         longitude_start,
-        longitude_end")
+        longitude_end,
+        occupancy,
+        capacity")
         ->where("owner_id", $userId)
         ->where("owner_id IS NOT NULL");
 
