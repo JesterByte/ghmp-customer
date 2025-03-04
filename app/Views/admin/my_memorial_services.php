@@ -31,7 +31,11 @@
 
                     $paymentAmount = FormatterHelper::formatPrice($row["payment_amount"]);
 
-                    $action = '<a role="button" class="btn btn-primary" href="' . $row["payment_link"] . '"><i class="bi bi-credit-card-fill"></i> Pay ' . $paymentAmount . '</a>';
+                    if ($row["status"] == "Approved" && $row["payment_status"] == "Pending") {
+                        $action = '<a role="button" class="btn btn-primary" href="' . $row["payment_link"] . '"><i class="bi bi-credit-card-fill"></i> Pay ' . $paymentAmount . '</a>';
+                    } else {
+                        $action = "";
+                    }
 
                     echo "<tr>";
                     echo "<td class='text-center'>" . $row['asset_id'] . "</td>";

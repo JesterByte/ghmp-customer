@@ -25,6 +25,7 @@ class Database extends Config
      * @var array<string, mixed>
      */
 
+    // Local Database Configuration
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
@@ -51,6 +52,8 @@ class Database extends Config
             'time'     => 'H:i:s',
         ],
     ];
+
+    // Hostinger Database Configuration
     // public array $default = [
     //     'DSN'          => '',
     //     'hostname'     => 'localhost',

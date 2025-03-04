@@ -7,7 +7,7 @@ use CodeIgniter\RESTful\ResourceController;
 
 class BurialWebhookController extends ResourceController {
     public function index() {
-        $paymongo_secret = "whsk_C7MvzaSKcgRHP7F2gaQrxQmN"; // Use .env for security
+        $paymongo_secret = "whsk_xBqoQ1X6J2rwEzxYZpTpq9V6"; // Use .env for security
     
         $rawPayload = file_get_contents("php://input");
         $headers = getallheaders();
@@ -80,56 +80,56 @@ class BurialWebhookController extends ResourceController {
         $db = \Config\Database::connect();
         
         // Find reservation in either table
-        $reservation = $db->table("lot_reservations")
-            ->select("reference_number, lot_id AS asset_id, 'lot' AS asset_type, payment_option")
-            ->where("reference_number", $referenceNumber)
-            ->get()
-            ->getRow();
+        // $reservation = $db->table("lot_reservations")
+        //     ->select("reference_number, lot_id AS asset_id, 'lot' AS asset_type, payment_option")
+        //     ->where("reference_number", $referenceNumber)
+        //     ->get()
+        //     ->getRow();
         
-        if (!$reservation) {
-            $reservation = $db->table("estate_reservations")
-                ->select("reference_number, estate_id AS asset_id, 'estate' AS asset_type, payment_option")
-                ->where("reference_number", $referenceNumber)
-                ->get()
-                ->getRow();
-        }
+        // if (!$reservation) {
+        //     $reservation = $db->table("estate_reservations")
+        //         ->select("reference_number, estate_id AS asset_id, 'estate' AS asset_type, payment_option")
+        //         ->where("reference_number", $referenceNumber)
+        //         ->get()
+        //         ->getRow();
+        // }
         
-        if (!$reservation) {
-            log_message('error', "No reservation found for Reference Number: $referenceNumber");
-            return $this->failNotFound("Reservation not found.");
-        }
+        // if (!$reservation) {
+        //     log_message('error', "No reservation found for Reference Number: $referenceNumber");
+        //     return $this->failNotFound("Reservation not found.");
+        // }
 
         // Determine table prefixes
-        $prefix = ($reservation->asset_type === "estate") ? "estate_" : "";
+        // $prefix = ($reservation->asset_type === "estate") ? "estate_" : "";
         
         // Identify correct payment option table
-        switch ($reservation->payment_option) {
-            case "Cash Sale":
-                $paymentOptionTable = $prefix . "cash_sales";
-                break;
-            case "6 Months":
-                $paymentOptionTable = $prefix . "six_months";
-                break;
-            case (strpos($reservation->payment_option, "Installment") !== false):
-                $paymentOptionTable = $prefix . "installments";
-                break;
-            default:
-                log_message('error', "Unknown payment option for Reference Number: $referenceNumber");
-                return $this->fail('Invalid payment option.');
-        }
+        // switch ($reservation->payment_option) {
+        //     case "Cash Sale":
+        //         $paymentOptionTable = $prefix . "cash_sales";
+        //         break;
+        //     case "6 Months":
+        //         $paymentOptionTable = $prefix . "six_months";
+        //         break;
+        //     case (strpos($reservation->payment_option, "Installment") !== false):
+        //         $paymentOptionTable = $prefix . "installments";
+        //         break;
+        //     default:
+        //         log_message('error', "Unknown payment option for Reference Number: $referenceNumber");
+        //         return $this->fail('Invalid payment option.');
+        // }
 
         if ($status === "paid") {
             // Update Reservation Status
-            $db->table(($reservation->asset_type === "lot" ? "lot_reservations" : "estate_reservations"))
+            $db->table(("burial_reservations"))
                 ->where("reference_number", $referenceNumber)
-                ->set(["reservation_status" => "Completed"])
+                ->set(["payment_status" => "Paid"])
                 ->update();
 
             // Update Payment Status
-            $db->table($paymentOptionTable)
-                ->where("{$reservation->asset_type}_id", $reservation->asset_id)
-                ->set(["payment_status" => "Paid", "payment_date" => date("Y-m-d H:i:s")])
-                ->update();
+            // $db->table($paymentOptionTable)
+            //     ->where("{$reservation->asset_type}_id", $reservation->asset_id)
+            //     ->set(["payment_status" => "Paid", "payment_date" => date("Y-m-d H:i:s")])
+            //     ->update();
 
             log_message('info', "Reservation and Payment updated successfully for Reference Number: $referenceNumber");
 
