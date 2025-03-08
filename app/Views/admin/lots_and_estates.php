@@ -20,6 +20,7 @@
         </thead>
         <tbody>
             <?php
+
             use App\Helpers\FormatterHelper;
 
             if (isset($table)) {
@@ -36,14 +37,10 @@
                     if ($row["reservation_status"] == "Confirmed" && $row["payment_option"] != "Pending") {
 
                         if ($row["down_payment_status"] == "Pending") {
-                            $action = '<div class="btn-group" role="group" aria-label="Basic example">
-                            <a target="_blank" href="' . $row["down_payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay Down ' . FormatterHelper::formatPrice($row["down_payment"]) . '</a>
-                            <a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-secondary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>
-                            </div>';
+                            $action = '<a target="_blank" href="' . $row["down_payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay Down ' . FormatterHelper::formatPrice($row["down_payment"]) . '</a>';
                         } else {
                             $action = '<a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
                         }
-
                     } else {
                         $action = "";
                     }

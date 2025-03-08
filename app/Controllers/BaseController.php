@@ -25,7 +25,8 @@ abstract class BaseController extends Controller
 {
     protected $encrypter;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->encrypter = \Config\Services::encrypter();
         date_default_timezone_set("Asia/Manila");
     }
@@ -65,11 +66,12 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = service('session');
     }
 
-    public function createPaymongoLink($paymentAmount, $assetId, $paymentOption, $isDownPayment = false) {
+    public function createPaymongoLink($paymentAmount, $assetId, $paymentOption, $isDownPayment = false)
+    {
         $db = \Config\Database::connect();
-        
+
         $assetType = FormatterHelper::determineIdType($assetId);
-    
+
         switch ($assetType) {
             case "lot":
                 $formatteddAssetId = FormatterHelper::formatLotId($assetId);
@@ -86,9 +88,9 @@ abstract class BaseController extends Controller
             default:
                 return false; // Invalid asset type
         }
-    
+
         $paymentAmount = $paymentAmount * 100; // Convert PHP to centavos
-    
+
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_URL => "https://api.paymongo.com/v1/links",
@@ -108,16 +110,16 @@ abstract class BaseController extends Controller
                 "Content-Type: application/json"
             ],
         ]);
-    
+
         $response = curl_exec($curl);
         curl_close($curl);
-    
+
         if (!$response) return false;
-    
+
         $data = json_decode($response, true);
         $checkoutUrl = $data["data"]["attributes"]["checkout_url"] ?? null;
         $referenceNumber = $data["data"]["attributes"]["reference_number"] ?? null;
-    
+
         if ($checkoutUrl && $referenceNumber) {
             if (str_contains($paymentOption, "Installment")) {
                 switch ($isDownPayment) {
@@ -130,27 +132,27 @@ abstract class BaseController extends Controller
                 }
 
                 $db->table($installmentTable)
-                ->where($column, $assetId)
-                ->set([$referenceNumberColumn => $referenceNumber])
-                ->update();
+                    ->where($column, $assetId)
+                    ->set([$referenceNumberColumn => $referenceNumber])
+                    ->update();
             } else {
                 // Store the reference number in the reservation table
                 $db->table($reservationTable)
-                ->where($column, $assetId)
-                ->set(["reference_number" => $referenceNumber])
-                ->update();
+                    ->where($column, $assetId)
+                    ->set(["reference_number" => $referenceNumber])
+                    ->update();
             }
-
         }
-    
+
         return $checkoutUrl;
     }
 
-    public function createPaymongoLinkBurial($paymentAmount, $assetId, $burialType, $isDownPayment = false) {
+    public function createPaymongoLinkBurial($paymentAmount, $assetId, $burialType, $isDownPayment = false)
+    {
         $db = \Config\Database::connect();
-        
+
         $assetType = FormatterHelper::determineIdType($assetId);
-    
+
         switch ($assetType) {
             case "lot":
                 $formatteddAssetId = FormatterHelper::formatLotId($assetId);
@@ -167,9 +169,9 @@ abstract class BaseController extends Controller
             default:
                 return false; // Invalid asset type
         }
-    
+
         $paymentAmount = $paymentAmount * 100; // Convert PHP to centavos
-    
+
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_URL => "https://api.paymongo.com/v1/links",
@@ -189,16 +191,16 @@ abstract class BaseController extends Controller
                 "Content-Type: application/json"
             ],
         ]);
-    
+
         $response = curl_exec($curl);
         curl_close($curl);
-    
+
         if (!$response) return false;
-    
+
         $data = json_decode($response, true);
         $checkoutUrl = $data["data"]["attributes"]["checkout_url"] ?? null;
         $referenceNumber = $data["data"]["attributes"]["reference_number"] ?? null;
-    
+
         if ($checkoutUrl && $referenceNumber) {
             // if (str_contains($paymentOption, "Installment")) {
             //     switch ($isDownPayment) {
@@ -223,13 +225,12 @@ abstract class BaseController extends Controller
             // }
 
             $db->table("burial_reservations")
-            ->where("asset_id", $assetId)
-            ->where("burial_type", $burialType)
-            ->set(["reference_number" => $referenceNumber])
-            ->update();
+                ->where("asset_id", $assetId)
+                ->where("burial_type", $burialType)
+                ->set(["reference_number" => $referenceNumber])
+                ->update();
         }
-    
+
         return $checkoutUrl;
     }
-
 }

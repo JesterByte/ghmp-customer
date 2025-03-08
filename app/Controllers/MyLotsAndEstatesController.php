@@ -24,7 +24,7 @@ class MyLotsAndEstatesController extends BaseController {
             $row["encrypted_asset_id"] = bin2hex($this->encrypter->encrypt($row["asset_id"]));
             $row["encrypted_asset_type"] = bin2hex($this->encrypter->encrypt($row["asset_type"]));
 
-            if ($row["reservation_status"] == "Completed" || $row["reservation_status"] == "Pending") {
+            if ($row["reservation_status"] == "Completed" || $row["reservation_status"] == "Pending" || (isset($row["down_payment_status"]) && $row["down_payment_status"] == "Pending")) {
                 $row["payment_link"] = "#";
             } else {
                 $row["payment_link"] = $this->createPaymongoLink($row["payment_amount"], $row["asset_id"], $row["payment_option"]);
