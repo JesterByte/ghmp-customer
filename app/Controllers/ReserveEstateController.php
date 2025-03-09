@@ -7,8 +7,16 @@ use App\Models\EstateModel;
 use App\Models\EstateReservationModel;
 use App\Models\PricingModel;
 
-class ReserveEstateController extends BaseController {
-    public function index() {
+class ReserveEstateController extends BaseController
+{
+    public function index()
+    {
+        $session = session();
+
+        if (!$session->get("user_id")) {
+            return redirect()->to(base_url("signin")); // Redirect to signin if not logged in
+        }
+
         $data = [
             "pageTitle" => "Reserve an Estate",
         ];
@@ -17,7 +25,8 @@ class ReserveEstateController extends BaseController {
         return view("admin/reserve_estate", $data);
     }
 
-    public function getAvailableEstates() {
+    public function getAvailableEstates()
+    {
         $estateModel = new EstateModel();
         $availableEstates = $estateModel->getAvailableEstates();
 
@@ -39,7 +48,8 @@ class ReserveEstateController extends BaseController {
     }
 
     // In ReserveController.php
-    public function submitReservation() {
+    public function submitReservation()
+    {
         $session = session();
         // $estateId = $this->request->getJSON('estate_id');  // Get the estate ID from the AJAX request
         $estateId = $this->request->getJSON()->estate_id;
@@ -67,5 +77,4 @@ class ReserveEstateController extends BaseController {
 
         return $this->response->setJSON(['success' => true, 'message' => 'Estate reserved successfully']);
     }
-
 }

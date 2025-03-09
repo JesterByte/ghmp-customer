@@ -6,8 +6,14 @@ use App\Models\BurialReservationsModel;
 
 class MyMemorialServicesController extends BaseController
 {
-    public function index(): string
+    public function index()
     {
+        $session = session();
+
+        if (!$session->get("user_id")) {
+            return redirect()->to(base_url("signin")); // Redirect to signin if not logged in
+        }
+
         $burialReservationsModel = new BurialReservationsModel();
         $burialReservations = $burialReservationsModel->getBurialReservations(session()->get("user_id"));
 

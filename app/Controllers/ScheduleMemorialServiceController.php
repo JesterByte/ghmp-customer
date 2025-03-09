@@ -6,14 +6,23 @@ use App\Helpers\FormatterHelper;
 use App\Models\AssetModel;
 use App\Models\BurialReservationsModel;
 
-class ScheduleMemorialServiceController extends BaseController {
-    public function index(): string {
+class ScheduleMemorialServiceController extends BaseController
+{
+    public function index()
+    {
+        $session = session();
+
+        if (!$session->get("user_id")) {
+            return redirect()->to(base_url("signin")); // Redirect to signin if not logged in
+        }
+
         $data = ["pageTitle" => "Schedule a Memorial Service"];
         return view("admin/schedule_memorial_service", $data);
         // return view('brochure/home');
     }
 
-    public function getOwnedAssets() {
+    public function getOwnedAssets()
+    {
         $session = session();
 
         $assetModel = new AssetModel();
@@ -32,15 +41,16 @@ class ScheduleMemorialServiceController extends BaseController {
         } else {
             $ownedAssets = [];
         }
-        
+
         return $this->response->setJSON($ownedAssets);
     }
 
-    public function submitMemorialService() {
+    public function submitMemorialService()
+    {
         if ($this->request->getMethod() === "POST") {
             // Decode JSON request
             $data = $this->request->getJSON(true);
-    
+
             // Validate received data
             if (empty($data)) {
                 return $this->response->setJSON([
@@ -48,11 +58,11 @@ class ScheduleMemorialServiceController extends BaseController {
                     'message' => 'No data received'
                 ]);
             }
-    
+
             // Save reservation in the database
             $burialReservationsModel = new BurialReservationsModel();
 
-            $paymentAmount = $burialReservationsModel->getBurialPricing(ucfirst($data["category"]) , $data["burial_type"])["price"];
+            $paymentAmount = $burialReservationsModel->getBurialPricing(ucfirst($data["category"]), $data["burial_type"])["price"];
 
             $inserted = $burialReservationsModel->setBurialReservation(
                 $data["asset_id"],
@@ -69,14 +79,14 @@ class ScheduleMemorialServiceController extends BaseController {
                 $paymentAmount,
                 $data["date_time"]
             );
-    
+
             // Return response based on insertion result
             return $this->response->setJSON([
                 'success' => (bool) $inserted,
                 'message' => $inserted ? 'Burial service reserved successfully!' : 'Failed to reserve burial service.'
             ]);
         }
-    
+
         return $this->response->setJSON([
             'success' => false,
             'message' => 'Invalid request method'

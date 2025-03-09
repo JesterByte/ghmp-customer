@@ -8,8 +8,16 @@ use App\Models\InstallmentModel;
 use App\Models\PaymentModel;
 use App\Models\SixMonthsModel;
 
-class PaymentManagementController extends BaseController {
-    public function index(): string {
+class PaymentManagementController extends BaseController
+{
+    public function index()
+    {
+        $session = session();
+
+        if (!$session->get("user_id")) {
+            return redirect()->to(base_url("signin")); // Redirect to signin if not logged in
+        }
+
         $paymentModel = new PaymentModel();
         $payments = $paymentModel->getAllPayments();
 
@@ -21,7 +29,8 @@ class PaymentManagementController extends BaseController {
         return view("admin/payment_management", $data);
     }
 
-    public function getCashSales() {
+    public function getCashSales()
+    {
         $cashSaleModel = new CashSaleModel();
 
         $cashSales = $cashSaleModel->getCashSales();
@@ -29,21 +38,24 @@ class PaymentManagementController extends BaseController {
         return $this->response->setJSON($cashSales);
     }
 
-    public function getSixMonths() {
+    public function getSixMonths()
+    {
         $sixMonthsModel = new SixMonthsModel();
         $sixMonths = $sixMonthsModel->getSixMonths();
 
         return $this->response->setJSON($sixMonths);
     }
 
-    public function getInstallmentDownPayments() {
+    public function getInstallmentDownPayments()
+    {
         $installmentsModel = new InstallmentModel();
         $installmentDownPayments = $installmentsModel->getInstallmentDownPayments();
-        
+
         return $this->response->setJSON($installmentDownPayments);
     }
 
-    public function payCashSale() {
+    public function payCashSale()
+    {
         $assetId = $this->request->getPost("asset_id");
         $paymentAmount = $this->request->getPost("payment_amount");
         $receipt = $this->request->getFile("receipt");
@@ -74,12 +86,13 @@ class PaymentManagementController extends BaseController {
         $receiptPath = "uploads/receipts/" . $newName;
 
         $cashSaleModel = new CashSaleModel();
-        $result = $cashSaleModel->setCashSalePayment( $assetIdType, $table, $assetId, $assetIdKey, $paymentAmount, $receiptPath);
+        $result = $cashSaleModel->setCashSalePayment($assetIdType, $table, $assetId, $assetIdKey, $paymentAmount, $receiptPath);
 
         return $this->response->setJSON($result);
     }
 
-    public function paySixMonths() {
+    public function paySixMonths()
+    {
         $assetId = $this->request->getPost("asset_id");
         $paymentAmount = $this->request->getPost("payment_amount");
         $receipt = $this->request->getFile("receipt");
@@ -110,7 +123,7 @@ class PaymentManagementController extends BaseController {
         $receiptPath = "uploads/receipts/" . $newName;
 
         $sixMonthsModel = new SixMonthsModel();
-        $result = $sixMonthsModel->setSixMonthsPayment( $assetIdType, $table, $assetId, $assetIdKey, $paymentAmount, $receiptPath);
+        $result = $sixMonthsModel->setSixMonthsPayment($assetIdType, $table, $assetId, $assetIdKey, $paymentAmount, $receiptPath);
 
         return $this->response->setJSON($result);
     }
