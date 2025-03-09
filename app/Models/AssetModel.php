@@ -4,14 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AssetModel extends Model {
-    public function getAssetsById($userId) {
+class AssetModel extends Model
+{
+    public function getAssetsById($userId)
+    {
         // Connect to the database
         // $db = \Config\Database::connect();
-    
+
         // First query for lot_reservations
         $builder1 = $this->db->table("lot_reservations")
-        ->select("
+            ->select("
         lot_reservations.lot_id AS asset_id, 
         lot_reservations.reservee_id, 
         lot_reservations.lot_type AS asset_type, 
@@ -27,10 +29,10 @@ class AssetModel extends Model {
             WHEN installments.monthly_payment IS NOT NULL THEN 'installments'
             ELSE 'none'
         END AS payment_type")
-        ->where("lot_reservations.reservee_id", $userId)
-        ->join("cash_sales", "cash_sales.lot_id = lot_reservations.lot_id", "left")
-        ->join("six_months", "six_months.lot_id = lot_reservations.lot_id", "left")
-        ->join("installments", "installments.lot_id = lot_reservations.lot_id", "left");
+            ->where("lot_reservations.reservee_id", $userId)
+            ->join("cash_sales", "cash_sales.lot_id = lot_reservations.lot_id", "left")
+            ->join("six_months", "six_months.lot_id = lot_reservations.lot_id", "left")
+            ->join("installments", "installments.lot_id = lot_reservations.lot_id", "left");
 
         // Second query for estate_reservations (joins estate_cash_sales)
         $builder2 = $this->db->table("estate_reservations")
@@ -54,26 +56,27 @@ class AssetModel extends Model {
             ->join("estate_cash_sales", "estate_cash_sales.estate_id = estate_reservations.estate_id", "left")
             ->join("estate_six_months", "estate_six_months.estate_id = estate_reservations.estate_id", "left")
             ->join("estate_installments", "estate_installments.estate_id = estate_reservations.estate_id", "left");
-    
+
         // Get the compiled SELECT SQL queries
         $sql1 = $builder1->getCompiledSelect();
         $sql2 = $builder2->getCompiledSelect();
-    
+
         // Combine the queries using UNION
         $finalQuery = "$sql1 UNION $sql2";
-    
+
         // Execute the final query
         $query = $this->db->query($finalQuery);
-    
+
         // Fetch the results as an array
         $result = $query->getResultArray();
-    
+
         return $result;
     }
 
-    public function getOwnedAssets($userId) {
+    public function getOwnedAssets($userId)
+    {
         $builder1 = $this->db->table("lots")
-        ->select("
+            ->select("
         lot_id AS asset_id,
         latitude_start,
         latitude_end,  
@@ -81,11 +84,11 @@ class AssetModel extends Model {
         longitude_end,
         NULL AS occupancy,
         NULL AS capacity")
-        ->where("owner_id", $userId)
-        ->where("owner_id IS NOT NULL");
+            ->where("owner_id", $userId)
+            ->where("owner_id IS NOT NULL", null, false);
 
         $builder2 = $this->db->table("estates")
-        ->select("
+            ->select("
         estate_id AS asset_id,
         latitude_start,
         latitude_end,  
@@ -93,8 +96,9 @@ class AssetModel extends Model {
         longitude_end,
         occupancy,
         capacity")
-        ->where("owner_id", $userId)
-        ->where("owner_id IS NOT NULL");
+            ->where("owner_id", $userId)
+            ->where("owner_id IS NOT NULL", null, false)
+            ->where("occupancy < capacity", null, false);
 
         $sql1 = $builder1->getCompiledSelect();
         $sql2 = $builder2->getCompiledSelect();
@@ -107,5 +111,4 @@ class AssetModel extends Model {
 
         return !empty($result) ? $result : [];
     }
-    
 }

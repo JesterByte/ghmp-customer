@@ -31,6 +31,9 @@
                     [asset.latitude_end, asset.longitude_end] // Top-right corner
                 ];
 
+                var occupancy = asset.occupancy || "0";
+                var capacity = asset.capacity || "1";
+
                 // Draw rectangle
                 var rectangle = L.rectangle(bounds, {
                     color: "green", // Border color
@@ -42,8 +45,7 @@
                 // Bind a popup with lot details and Reserve button
                 rectangle.bindPopup(`
                     <b>Asset ID:</b> ${asset.formatted_asset_id}<br>
-                    <b>Occupancy:</b> ${asset.occupancy || "N/A"}<br>
-                    <b>Capacity:</b> ${asset.capacity || "N/A"}<br>
+                    <b>Capacity:</b> ${occupancy}/${capacity}<br>
                     <div class="text-center my-3">
                         <button class="btn btn-primary" onclick="showReserveModal('${asset.asset_id}', '${asset.asset_type}')">Schedule Burial</button>
                     </div>

@@ -19,32 +19,5 @@
 </div>
 
 <script>
-    // Submit reservation via AJAX
-    function submitReservation() {
-        var lotId = $('#reserveLotId').val(); // Get the lot ID from the hidden input
 
-        // Make an AJAX request to reserve the lot
-        fetch("<?= base_url('reserve/submitReservation') ?>", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ lot_id: lotId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Lot reserved successfully!');
-                $('#reserveModal').modal('hide');
-                // Optionally, you can reload the map or update the UI
-                window.location.reload();  // Reload the page to update the available lots
-            } else {
-                alert('Reservation failed. Please try again.');
-            }
-        })
-        .catch(error => {
-            console.error('Error during reservation:', error);
-            alert('An error occurred. Please try again.');
-        });
-    }
 </script>

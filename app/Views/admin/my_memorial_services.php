@@ -33,6 +33,8 @@
 
                     if ($row["status"] == "Approved" && $row["payment_status"] == "Pending") {
                         $action = '<a role="button" class="btn btn-primary" href="' . $row["payment_link"] . '"><i class="bi bi-credit-card-fill"></i> Pay ' . $paymentAmount . '</a>';
+                    } else if ($row["status"] == "Approved" && $row["payment_status"] == "Paid") {
+                        $action = '<button type="button" class="btn btn-success" disabled><i class="bi bi-check-circle-fill"></i> Paid</button';
                     } else {
                         $action = "";
                     }

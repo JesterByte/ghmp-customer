@@ -240,7 +240,10 @@ class WebhookController extends ResourceController
 
         $db->table($table)
             ->where($assetIdColumn, $assetId)
-            ->set(["owner_id" => $reserveeId])
+            ->set([
+                "owner_id" => $reserveeId, 
+                "status" => "Sold"
+            ])
             ->update();
 
         if ($db->affectedRows() === 0) {
