@@ -24,6 +24,7 @@
         if (toastData) {
             toastData = JSON.parse(toastData);
             showToast(toastData.icon, toastData.message, toastData.title);
+            showToast("<i class='bi bi-check-lg text-success'></i>", "Go to My Lots & Estates", "My Lots & Estates Updated", 5000, "<?= base_url("/my_lots_and_estates") ?>");
             localStorage.removeItem("toastMessage"); // Clear it after showing
         }
     });
@@ -94,19 +95,19 @@
                 if (data.success) {
                     // Store toast message before refreshing
                     localStorage.setItem("toastMessage", JSON.stringify({
-                        icon: "<i class='bi bi-check-lg'></i>",
+                        icon: "<i class='bi bi-check-lg text-success'></i>",
                         message: "Lot reserved successfully!",
-                        title: "Operation Success"
+                        title: "Operation Completed"
                     }));
 
                     location.reload(); // Refresh the page
                 } else {
-                    showToast("<i class='bi bi-x-lg'></i>", "Lot reservation has failed.", "Operation Failed");
+                    showToast("<i class='bi bi-x-lg text-danger'></i>", "Lot reservation has failed.", "Operation Failed");
                 }
             })
             .catch(error => {
                 console.error('Error during reservation:', error);
-                showToast("<i class='bi bi-x-lg'></i>", "An error has occurred.", "Operation Failed");
+                showToast("<i class='bi bi-x-lg text-danger'></i>", "An error has occurred.", "Operation Failed");
             });
     }
 

@@ -77,28 +77,30 @@ class AssetModel extends Model
     {
         $builder1 = $this->db->table("lots")
             ->select("
-        lot_id AS asset_id,
-        latitude_start,
-        latitude_end,  
-        longitude_start,
-        longitude_end,
-        NULL AS occupancy,
-        NULL AS capacity")
+            lot_id AS asset_id,
+            latitude_start,
+            latitude_end,  
+            longitude_start,
+            longitude_end,
+            NULL AS occupancy,
+            NULL AS capacity")
             ->where("owner_id", $userId)
-            ->where("owner_id IS NOT NULL", null, false);
+            ->where("owner_id IS NOT NULL", null, false)
+            ->where("NOT EXISTS (SELECT 1 FROM burial_reservations br WHERE br.asset_id = lots.lot_id AND br.status != 'Cancelled')", null, false);
 
         $builder2 = $this->db->table("estates")
             ->select("
-        estate_id AS asset_id,
-        latitude_start,
-        latitude_end,  
-        longitude_start,
-        longitude_end,
-        occupancy,
-        capacity")
+            estate_id AS asset_id,
+            latitude_start,
+            latitude_end,  
+            longitude_start,
+            longitude_end,
+            occupancy,
+            capacity")
             ->where("owner_id", $userId)
             ->where("owner_id IS NOT NULL", null, false)
-            ->where("occupancy < capacity", null, false);
+            ->where("occupancy < capacity", null, false)
+            ->where("NOT EXISTS (SELECT 1 FROM burial_reservations br WHERE br.asset_id = estates.estate_id AND br.status != 'Cancelled')", null, false);
 
         $sql1 = $builder1->getCompiledSelect();
         $sql2 = $builder2->getCompiledSelect();
@@ -111,4 +113,44 @@ class AssetModel extends Model
 
         return !empty($result) ? $result : [];
     }
+
+
+    // public function getOwnedAssets($userId)
+    // {
+    //     $builder1 = $this->db->table("lots")
+    //         ->select("
+    //     lot_id AS asset_id,
+    //     latitude_start,
+    //     latitude_end,  
+    //     longitude_start,
+    //     longitude_end,
+    //     NULL AS occupancy,
+    //     NULL AS capacity")
+    //         ->where("owner_id", $userId)
+    //         ->where("owner_id IS NOT NULL", null, false);
+
+    //     $builder2 = $this->db->table("estates")
+    //         ->select("
+    //     estate_id AS asset_id,
+    //     latitude_start,
+    //     latitude_end,  
+    //     longitude_start,
+    //     longitude_end,
+    //     occupancy,
+    //     capacity")
+    //         ->where("owner_id", $userId)
+    //         ->where("owner_id IS NOT NULL", null, false)
+    //         ->where("occupancy < capacity", null, false);
+
+    //     $sql1 = $builder1->getCompiledSelect();
+    //     $sql2 = $builder2->getCompiledSelect();
+
+    //     $finalQuery = "$sql1 UNION $sql2";
+
+    //     $query = $this->db->query($finalQuery);
+
+    //     $result = $query->getResultArray();
+
+    //     return !empty($result) ? $result : [];
+    // }
 }

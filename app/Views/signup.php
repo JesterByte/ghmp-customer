@@ -2,7 +2,7 @@
 
 <?= $this->section("content") ?>
     <div class="container mt-5">
-        <h2 class="mb-4">Sign Up</h2>
+        <h2 class="mb-4"><?= $pageTitle ?></h2>
         <form action="<?= base_url('signup/submit') ?>" method="post">
             <!-- Full Name -->
             <div class="mb-3">

@@ -1,21 +1,21 @@
 <?= $this->extend("components/brochure_template"); ?>
 
 <?= $this->section("content") ?>
-    <div class="container mt-5">
-        <h2 class="mb-4">Sign In</h2>
-        <form action="<?= base_url("signin/submit") ?>" method="post">
+    <div class="container-sm mt-5">
+        <h2 class="mb-4"><?= $pageTitle ?></h2>
+        <form class="needs-validation" novalidate  action="<?= base_url("signin/submit") ?>" method="post">
             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
 
             <!-- Email -->
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+                <label for="email">Email Address</label>
             </div>
 
             <!-- Password -->
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <label for="password">Password</label>
             </div>
 
             <!-- Submit Button -->

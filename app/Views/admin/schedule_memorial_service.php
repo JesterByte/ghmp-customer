@@ -12,7 +12,7 @@
 
 <script>
     // Initialize the map
-    var map = L.map("map").setView([14.871318, 120.976566], 18); // Set default coordinates and zoom level
+    var map = L.map("map").setView([14.871318, 120.976566], 18);
 
     // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -25,24 +25,21 @@
         .then(response => response.json())
         .then(assets => {
             assets.forEach(asset => {
-                // Define rectangle bounds
                 var bounds = [
-                    [asset.latitude_start, asset.longitude_start], // Bottom-left corner
-                    [asset.latitude_end, asset.longitude_end] // Top-right corner
+                    [asset.latitude_start, asset.longitude_start],
+                    [asset.latitude_end, asset.longitude_end]
                 ];
 
                 var occupancy = asset.occupancy || "0";
                 var capacity = asset.capacity || "1";
 
-                // Draw rectangle
                 var rectangle = L.rectangle(bounds, {
-                    color: "green", // Border color
-                    weight: 2, // Border thickness
-                    fillColor: "#00ff00", // Fill color
-                    fillOpacity: 0.4 // Transparency
+                    color: "green",
+                    weight: 2,
+                    fillColor: "#00ff00",
+                    fillOpacity: 0.4
                 }).addTo(map);
 
-                // Bind a popup with lot details and Reserve button
                 rectangle.bindPopup(`
                     <b>Asset ID:</b> ${asset.formatted_asset_id}<br>
                     <b>Capacity:</b> ${occupancy}/${capacity}<br>
@@ -54,62 +51,100 @@
         })
         .catch(error => console.error("Error fetching lot data:", error));
 
-    // Function to show the reserve confirmation modal
     function showReserveModal(assetId, category) {
         $('#scheduleBurial').modal('show');
         $('#assetId').val(assetId);
         $("#category").val(category);
-
-        // Update burial type options based on category
         updateBurialType(category);
     }
 
-    function updateBurialType(category) {
-        const burialType = document.getElementById("burialType");
-
-        // Clear previous options
-        burialType.innerHTML = '<option value="" selected disabled>Select Burial Type</option>';
-
-        // Burial type options based on category
-        let options = [];
-        if (category === "lot") {
-            options = [{
-                    value: "Standard",
-                    text: "Standard"
+    function submitReservation() {
+        fetch("<?= base_url('reserve/submitMemorialService') ?>", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                {
-                    value: "Cremation",
-                    text: "Cremation"
-                },
-                {
-                    value: "Bone Transfer",
-                    text: "Bone Transfer"
+                body: JSON.stringify({
+                    asset_id: $("#assetId").val(),
+                    relationship: $("#relationship").val(),
+                    first_name: $("#firstName").val(),
+                    middle_name: $("#middleName").val(),
+                    last_name: $("#lastName").val(),
+                    suffix: $("#suffix").val(),
+                    date_of_birth: $("#dateOfBirth").val(),
+                    date_of_death: $("#dateOfDeath").val(),
+                    obituary: $("#obituary").val(),
+                    category: $("#category").val(),
+                    burial_type: $("#burialType").val(),
+                    date_time: $("#datetime").val()
+                })
+            })
+            .then(response => response.json())
+            .then(jsonData => {
+                if (jsonData.success) {
+                    localStorage.setItem("toastMessage", JSON.stringify({
+                        icon: "<i class='bi bi-check-lg'></i>",
+                        message: "Memorial service scheduled successfully!",
+                        title: "Operation Completed"
+                    }));
+                    location.reload();
+                } else {
+                    showToast("<i class='bi bi-x-lg'></i>", "Scheduling failed.", "Operation Failed");
                 }
-            ];
-        } else if (category === "estate") {
-            options = [{
-                    value: "Standard",
-                    text: "Standard Burial"
-                },
-                {
-                    value: "Mausoleum",
-                    text: "Mausoleum"
-                },
-                {
-                    value: "Bone Transfer",
-                    text: "Bone Transfer"
-                }
-            ];
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+                showToast("<i class='bi bi-x-lg'></i>", "Network error or server is unreachable.", "Operation Failed");
+            });
+    }
+
+    function showToast(htmlIcon, message, title = 'Notification', delay = 5000) {
+        if (!this.toastContainer) {
+            this.toastContainer = document.createElement('div');
+            this.toastContainer.className = 'toast-container position-fixed top-0 end-0 p-3';
+            document.body.appendChild(this.toastContainer);
         }
 
-        // Append new options
-        options.forEach(option => {
-            let opt = document.createElement("option");
-            opt.value = option.value;
-            opt.textContent = option.text;
-            burialType.appendChild(opt);
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+
+        const toastHeader = document.createElement('div');
+        toastHeader.className = 'toast-header';
+        toastHeader.innerHTML = `
+            ${htmlIcon}
+            <strong class="me-auto">${title}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        `;
+
+        const toastBody = document.createElement('div');
+        toastBody.className = 'toast-body';
+        toastBody.textContent = message;
+
+        toast.appendChild(toastHeader);
+        toast.appendChild(toastBody);
+        this.toastContainer.appendChild(toast);
+
+        const bootstrapToast = new bootstrap.Toast(toast, {
+            delay: delay
+        });
+        bootstrapToast.show();
+
+        toast.addEventListener('hidden.bs.toast', () => {
+            toast.remove();
         });
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var toastData = localStorage.getItem("toastMessage");
+        if (toastData) {
+            toastData = JSON.parse(toastData);
+            showToast(toastData.icon, toastData.message, toastData.title);
+            localStorage.removeItem("toastMessage");
+        }
+    });
 </script>
 
 <?= $this->endSection(); ?>

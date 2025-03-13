@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
     <link href="<?= base_url("css/bootstrap.min.css") ?>" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="<?= base_url("css/brochure_head.css") ?>" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<?= base_url("css/carousel.css") ?>" rel="stylesheet">

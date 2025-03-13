@@ -25,19 +25,27 @@ class SigninController extends BaseController {
 
         if ($user) {
             if (password_verify($password, $user["password_hashed"]) || $password == $user["password_hashed"]) {
+                $middleName = !empty($user["middle_name"]) ? " " . $user["middle_name"] . " " : " ";
+                $suffixName = !empty($user["suffix_name"]) ? ", " . $user["suffix_name"] : "";
+
+                $userFullName = $user["first_name"] . $middleName . $user["last_name"] . $suffixName;
+
                 $session->set([
                     "user_id" => $user["id"],
+                    "user_full_name" => $userFullName,
                     "email" => $user["email_address"],
                     "isLoggedIn" => true
                 ]);
                 return redirect()->to( base_url("dashboard"));
             } else {
-                $session->setFlashdata("error", "Invalid password.");
+                $session->setFlashdata("error", "Invalid email address or password. Please try again.");
+                return redirect()->to(base_url("signin"));
             }
         } else {
-            $session->setFlashdata("error", "User not found.");
+            $session->setFlashdata("error", "Invalid email address or password. Please try again.");
+            return redirect()->to(base_url("signin"));
         }
 
-        return redirect()->to( base_url("home"));
+        // return redirect()->to( base_url("home"));
     }
 }

@@ -132,49 +132,49 @@
     // Attach change event to category
     document.getElementById("category").addEventListener("change", updateBurialType);
 
-    function submitReservation() {
-        console.log("Sending:", {
-            asset_id: $('#assetId').val(),
-            relationship: $("#relationship").val(),
-            first_name: $("#firstName").val(),
-            middle_name: $("#middleName").val(),
-            last_name: $("#lastName").val(),
-            suffix: $("#suffix").val(),
-            dateOfBirth: $("#dateOfBirth").val(),
-            dateOfDeath: $("#dateOfDeath").val(),
-            obituary: $("#obituary").val(),
-            category: $("#category").val(),
-            burial_type: $("#burialType").val(),
-            date_time: $("#datetime").val()
-        });
+    // function submitReservation() {
+    //     console.log("Sending:", {
+    //         asset_id: $('#assetId').val(),
+    //         relationship: $("#relationship").val(),
+    //         first_name: $("#firstName").val(),
+    //         middle_name: $("#middleName").val(),
+    //         last_name: $("#lastName").val(),
+    //         suffix: $("#suffix").val(),
+    //         dateOfBirth: $("#dateOfBirth").val(),
+    //         dateOfDeath: $("#dateOfDeath").val(),
+    //         obituary: $("#obituary").val(),
+    //         category: $("#category").val(),
+    //         burial_type: $("#burialType").val(),
+    //         date_time: $("#datetime").val()
+    //     });
 
-        fetch("<?= base_url('reserve/submitMemorialService') ?>", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    asset_id: $("#assetId").val(),
-                    relationship: $("#relationship").val(),
-                    first_name: $("#firstName").val(),
-                    middle_name: $("#middleName").val(),
-                    last_name: $("#lastName").val(),
-                    suffix: $("#suffix").val(),
-                    date_of_birth: $("#dateOfBirth").val(),
-                    date_of_death: $("#dateOfDeath").val(),
-                    obituary: $("#obituary").val(),
-                    category: $("#category").val(),
-                    burial_type: $("#burialType").val(),
-                    date_time: $("#datetime").val()
-                })
-            })
-            .then(response => response.json())
-            .then(jsonData => {
-                alert("Server Response: " + jsonData.message);
-            })
-            .catch(error => {
-                console.error("Fetch error:", error);
-                alert("Network error or server is unreachable.");
-            });
-    }
+    //     fetch("<?= base_url('reserve/submitMemorialService') ?>", {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 asset_id: $("#assetId").val(),
+    //                 relationship: $("#relationship").val(),
+    //                 first_name: $("#firstName").val(),
+    //                 middle_name: $("#middleName").val(),
+    //                 last_name: $("#lastName").val(),
+    //                 suffix: $("#suffix").val(),
+    //                 date_of_birth: $("#dateOfBirth").val(),
+    //                 date_of_death: $("#dateOfDeath").val(),
+    //                 obituary: $("#obituary").val(),
+    //                 category: $("#category").val(),
+    //                 burial_type: $("#burialType").val(),
+    //                 date_time: $("#datetime").val()
+    //             })
+    //         })
+    //         .then(response => response.json())
+    //         .then(jsonData => {
+    //             alert("Server Response: " + jsonData.message);
+    //         })
+    //         .catch(error => {
+    //             console.error("Fetch error:", error);
+    //             alert("Network error or server is unreachable.");
+    //         });
+    // }
 </script>

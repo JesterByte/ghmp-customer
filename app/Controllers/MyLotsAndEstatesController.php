@@ -239,12 +239,26 @@ class MyLotsAndEstatesController extends BaseController {
         // Process for Lot Reservation
         if (in_array($reservationType, $lotTypes)) {
             $this->processLotReservation($assetId, $reservationType, $paymentOption, $session);
+
+            $session->setFlashdata("flash_message", [
+                "icon" => '<i class="bi bi-check-lg text-success"></i>',
+                "title" => "Operation Completed",
+                "message" => "Payment option has been set successfully!",
+            ]);
+
             return redirect()->to(base_url("my_lots_and_estates"));
         }
     
         // Process for Estate Reservation
         if (in_array($reservationType, $estateTypes)) {
             $this->processEstateReservation($assetId, $paymentOption, $session);
+
+            $session->setFlashdata("flash_message", [
+                "icon" => '<i class="bi bi-check-lg text-success"></i>',
+                "title" => "Operation Completed",
+                "message" => "Payment option has been set successfully!",
+            ]);
+            
             return redirect()->to(base_url("my_lots_and_estates"));
         }
     }
