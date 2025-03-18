@@ -62,7 +62,7 @@
 
                     rectangle.bindPopup(`
                         <b>Lot ID:</b> ${lot.formatted_lot_id}<br>
-                        <div class="text-center">
+                        <div class="text-center my-3">
                             <button class="btn btn-primary" onclick="showReserveModal('${lot.lot_id}')">Reserve</button>
                         </div>
                     `);

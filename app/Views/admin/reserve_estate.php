@@ -63,7 +63,7 @@
                         <b>Estate ID:</b> ${estate.formatted_estate_id}<br>
                         <b>Area:</b> ${estate.sqm}SQM<br>
                         <b>Number of Lots:</b> ${estate.number_of_lots}<br>
-                        <div class="text-center">
+                        <div class="text-center my-3">
                             <button class="btn btn-primary" onclick="showReserveModal('${estate.estate_id}')">Reserve</button>
                         </div>
                     `);

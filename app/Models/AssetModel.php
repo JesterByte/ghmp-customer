@@ -86,7 +86,8 @@ class AssetModel extends Model
             NULL AS capacity")
             ->where("owner_id", $userId)
             ->where("owner_id IS NOT NULL", null, false)
-            ->where("NOT EXISTS (SELECT 1 FROM burial_reservations br WHERE br.asset_id = lots.lot_id AND br.status != 'Cancelled')", null, false);
+            ->where("status", "Sold")
+            ->where("owner_id IS NOT NULL", null, false);
 
         $builder2 = $this->db->table("estates")
             ->select("
@@ -98,9 +99,10 @@ class AssetModel extends Model
             occupancy,
             capacity")
             ->where("owner_id", $userId)
+            ->where("status", "Sold")
             ->where("owner_id IS NOT NULL", null, false)
             ->where("occupancy < capacity", null, false)
-            ->where("NOT EXISTS (SELECT 1 FROM burial_reservations br WHERE br.asset_id = estates.estate_id AND br.status != 'Cancelled')", null, false);
+            ->where("NOT EXISTS (SELECT 1 FROM burial_reservations WHERE asset_id = estate_id AND status != 'Cancelled')", null, false);
 
         $sql1 = $builder1->getCompiledSelect();
         $sql2 = $builder2->getCompiledSelect();

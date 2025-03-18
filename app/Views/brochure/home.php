@@ -16,7 +16,7 @@
           <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
         </div>
         <div class="container">
-          <div class="carousel-caption text-start">
+          <div class="carousel-caption text-start text-white">
             <h1>Example headline.</h1>
             <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
             <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
@@ -31,7 +31,7 @@
           <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
         </div>
         <div class="container">
-          <div class="carousel-caption">
+          <div class="carousel-caption text-white">
             <h1>Another example headline.</h1>
             <p>Some representative placeholder content for the second slide of the carousel.</p>
             <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
@@ -46,7 +46,7 @@
           <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
         </div>
         <div class="container">
-          <div class="carousel-caption text-end">
+          <div class="carousel-caption text-end text-white">
             <h1>One more for good measure.</h1>
             <p>Some representative placeholder content for the third slide of this carousel.</p>
             <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>

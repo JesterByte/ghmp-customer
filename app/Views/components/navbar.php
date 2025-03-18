@@ -21,9 +21,9 @@
           <li class="nav-item">
             <a class="nav-link <?= echo_if_route($pageTitle, "Contact", "active") ?>" <?= echo_if_route($pageTitle, "Contact", 'aria-current="page"') ?> href="contact">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </li> -->
         </ul>
         <!-- Replacing the search bar with Sign Up and Sign In buttons -->
         <div class="d-flex">
