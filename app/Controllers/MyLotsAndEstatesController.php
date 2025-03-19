@@ -43,7 +43,7 @@ class MyLotsAndEstatesController extends BaseController {
             "pageTitle" => "My Lots & Estates",
             "table" => $table 
         ];
-        return view("admin/lots_and_estates", $data);
+        return view("admin/my_lots_and_estates", $data);
     }
 
     public function selectPaymentOption($assetId, $assetType) {
