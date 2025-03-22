@@ -1,0 +1,14 @@
+CRITICAL - 2025-03-19 09:46:54 --> ErrorException: Undefined variable $assetType
+[Method: GET, Route: my_lots_and_estates]
+in APPPATH\Views\admin\my_lots_and_estates.php on line 39.
+ 1 APPPATH\Views\admin\my_lots_and_estates.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $assetType', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_lots_and_estates.php', 39)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_lots_and_estates.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/my_lots_and_estates', [], true)
+ 5 APPPATH\Controllers\MyLotsAndEstatesController.php(46): view('admin/my_lots_and_estates', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

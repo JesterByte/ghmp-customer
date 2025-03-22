@@ -58,7 +58,7 @@ class Database extends Config
     //     'DSN'          => '',
     //     'hostname'     => 'localhost',
     //     'username'     => 'u714551035_ghmp',
-    //     'password'     => '2+BW/d|SYy',
+    //     'password'     => 'P~t5GTVnuaZ',
     //     'database'     => 'u714551035_ghmp_db',
     //     'DBDriver'     => 'MySQLi',
     //     'DBPrefix'     => '',

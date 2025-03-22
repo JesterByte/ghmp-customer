@@ -143,9 +143,13 @@ class WebhookController extends ResourceController
                 }
 
                 $installment = $db->table($paymentOptionTable)
+<<<<<<< HEAD
                     ->select("id, {$assetIdColumn} AS asset_id, down_reference_number, reference_number, monthly_payment")
                     // ->where($assetIdColumn, $reservation->$assetIdColumn)
                     ->where($assetIdColumn, $reservation->asset_id)
+=======
+                    ->where($assetIdColumn, $reservation->$assetIdColumn)
+>>>>>>> 7b8bd6a70298f624031607e543ed7832a7527cf4
                     ->where("down_reference_number", $referenceNumber)
                     ->orWhere("reference_number", $referenceNumber)
                     ->get()
@@ -201,7 +205,11 @@ class WebhookController extends ResourceController
                     ->set(["payment_status" => "Paid", "payment_date" => date("Y-m-d H:i:s")])
                     ->update();
 
+<<<<<<< HEAD
                 $this->assignAssetOwnership($reservation->reservee_id, $reservation->asset_id);
+=======
+                $this->assignAssetOwnership($reservation->reservee_id, $reservation->asset_type);
+>>>>>>> 7b8bd6a70298f624031607e543ed7832a7527cf4
             }
 
             log_message('info', "Reservation and Payment updated successfully for Reference Number: $referenceNumber");

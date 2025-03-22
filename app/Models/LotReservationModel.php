@@ -12,13 +12,28 @@ class LotReservationModel extends Model {
     protected $allowedFields  = ['id', 'lot_id', 'reservee_id', 'lot_type', 'payment_option', 'reservation_status']; // Define the allowed fields
 
     public function updateLotPaymentOption($lotId, $reserveeId, $paymentOption, $reservationStatus) {
-        return $this->db->table($this->table)
-        ->where("lot_id", $lotId)
-        ->where("reservee_id", $reserveeId)
-        ->update([
-            "payment_option" => $paymentOption,
-            "reservation_status" => $reservationStatus
-        ]);
+        // Step 1: Find the latest reservation based on `created_at`
+        $latestReservation = $this->db->table($this->table)
+            ->where("lot_id", $lotId)
+            ->where("reservee_id", $reserveeId)
+            ->where("reservation_status", "Confirmed")
+            ->orderBy("created_at", "DESC") // Order by `created_at` in descending order
+            ->limit(1) // Limit to the latest record
+            ->get()
+            ->getRow();
+    
+        // Step 2: If a reservation is found, update it
+        if ($latestReservation) {
+            return $this->db->table($this->table)
+                ->where("id", $latestReservation->id) // Use the ID of the latest reservation
+                ->update([
+                    "payment_option" => $paymentOption,
+                    "reservation_status" => $reservationStatus
+                ]);
+        }
+    
+        // Step 3: If no reservation is found, return false or handle accordingly
+        return false;
     }
 
     public function setCashSalePayment($lotId, $paymentAmount) {
