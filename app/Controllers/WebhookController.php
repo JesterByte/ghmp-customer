@@ -50,7 +50,6 @@ class WebhookController extends ResourceController
         log_message('error', "Computed Signature: $expectedSignature");
         log_message('error', "Received Signature: $signatureHash");
 
-
         $data = json_decode($rawPayload, true);
         log_message("error", "Webhook Received: " . print_r($data, true));
 
@@ -83,7 +82,7 @@ class WebhookController extends ResourceController
 
         // Find reservation in either table
         $reservation = $db->table("lot_reservations")
-            ->select("reference_number, lot_id AS asset_id, 'lot' AS asset_type, payment_option, reservation_status")
+            ->select("reference_number, reservee_id, lot_id AS asset_id, 'lot' AS asset_type, payment_option, reservation_status")
             ->where("reference_number", $referenceNumber)
             ->get()
             ->getRow();
@@ -92,7 +91,7 @@ class WebhookController extends ResourceController
 
         if (!$reservation) {
             $reservation = $db->table("estate_reservations")
-                ->select("reference_number, estate_id AS asset_id, 'estate' AS asset_type, payment_option, reservation_status")
+                ->select("reference_number, reservee_id, estate_id AS asset_id, 'estate' AS asset_type, payment_option, reservation_status")
                 ->where("reference_number", $referenceNumber)
                 ->get()
                 ->getRow();
@@ -120,6 +119,10 @@ class WebhookController extends ResourceController
                 $paymentOptionTable = $prefix . "installments";
                 $installmentPaymentsTable = $prefix . "installment_payments";
                 break;
+            // case "Installment":
+            //     $paymentOptionTable = $prefix . "installments";
+            //     $installmentPaymentsTable = $prefix . "installment_payments";
+            //     break;
             default:
                 log_message('error', "Unknown payment option for Reference Number: $referenceNumber");
                 return $this->fail('Invalid payment option.');
@@ -138,6 +141,8 @@ class WebhookController extends ResourceController
 
                 $installment = $db->table($paymentOptionTable)
                     ->where($assetIdColumn, $reservation->$assetIdColumn)
+                    ->where("down_reference_number", $referenceNumber)
+                    ->orWhere("reference_number", $referenceNumber)
                     ->get()
                     ->getRow();
 
@@ -188,6 +193,8 @@ class WebhookController extends ResourceController
                     ->where("{$reservation->asset_type}_id", $reservation->asset_id)
                     ->set(["payment_status" => "Paid", "payment_date" => date("Y-m-d H:i:s")])
                     ->update();
+
+                $this->assignAssetOwnership($reservation->reservee_id, $reservation->asset_type);
             }
 
             log_message('info', "Reservation and Payment updated successfully for Reference Number: $referenceNumber");

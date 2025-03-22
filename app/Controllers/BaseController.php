@@ -135,6 +135,12 @@ abstract class BaseController extends Controller
                     ->where($column, $assetId)
                     ->set([$referenceNumberColumn => $referenceNumber])
                     ->update();
+
+                // Store the reference number in the reservation table
+                $db->table($reservationTable)
+                    ->where($column, $assetId)
+                    ->set(["reference_number" => $referenceNumber])
+                    ->update();
             } else {
                 // Store the reference number in the reservation table
                 $db->table($reservationTable)
