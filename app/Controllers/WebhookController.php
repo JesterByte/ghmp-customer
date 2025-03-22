@@ -50,7 +50,6 @@ class WebhookController extends ResourceController
         log_message('error', "Computed Signature: $expectedSignature");
         log_message('error', "Received Signature: $signatureHash");
 
-
         $data = json_decode($rawPayload, true);
         log_message("error", "Webhook Received: " . print_r($data, true));
 
@@ -83,7 +82,7 @@ class WebhookController extends ResourceController
 
         // Find reservation in either table
         $reservation = $db->table("lot_reservations")
-            ->select("reference_number, lot_id AS asset_id, 'lot' AS asset_type, payment_option, reservation_status")
+            ->select("reference_number, reservee_id, lot_id AS asset_id, 'lot' AS asset_type, payment_option, reservation_status")
             ->where("reference_number", $referenceNumber)
             ->get()
             ->getRow();
@@ -92,7 +91,7 @@ class WebhookController extends ResourceController
 
         if (!$reservation) {
             $reservation = $db->table("estate_reservations")
-                ->select("reference_number, estate_id AS asset_id, 'estate' AS asset_type, payment_option, reservation_status")
+                ->select("reference_number, reservee_id, estate_id AS asset_id, 'estate' AS asset_type, payment_option, reservation_status")
                 ->where("reference_number", $referenceNumber)
                 ->get()
                 ->getRow();
@@ -119,7 +118,13 @@ class WebhookController extends ResourceController
             case (strpos($reservation->payment_option, "Installment") !== false):
                 $paymentOptionTable = $prefix . "installments";
                 $installmentPaymentsTable = $prefix . "installment_payments";
+
+                log_message('error', "Payment option:" . $reservation->payment_option);
                 break;
+            // case "Installment":
+            //     $paymentOptionTable = $prefix . "installments";
+            //     $installmentPaymentsTable = $prefix . "installment_payments";
+            //     break;
             default:
                 log_message('error', "Unknown payment option for Reference Number: $referenceNumber");
                 return $this->fail('Invalid payment option.');
@@ -127,6 +132,7 @@ class WebhookController extends ResourceController
 
         if ($status === "paid") {
             if (str_contains($reservation->payment_option, "Installment")) {
+                log_message('error', "Payment is paid and is Installment");
                 switch ($assetType) {
                     case "lot":
                         $assetIdColumn = "lot_id";
@@ -137,43 +143,49 @@ class WebhookController extends ResourceController
                 }
 
                 $installment = $db->table($paymentOptionTable)
-                    ->where($assetIdColumn, $reservation->$assetIdColumn)
+                    ->select("id, {$assetIdColumn} AS asset_id, down_reference_number, reference_number, monthly_payment")
+                    // ->where($assetIdColumn, $reservation->$assetIdColumn)
+                    ->where($assetIdColumn, $reservation->asset_id)
+                    ->where("down_reference_number", $referenceNumber)
+                    ->orWhere("reference_number", $referenceNumber)
                     ->get()
                     ->getRow();
 
                 if ($installment->down_reference_number === $referenceNumber) {
                     // Update Down Payment Status
                     $db->table($paymentOptionTable)
-                        ->where($reservation->asset_type, $reservation->asset_id)
-                        ->set(["down_payment_status" => "Paid", "down_payment_date" => date("Y-m-d H:i:s")])
+                        ->where($assetIdColumn, $reservation->asset_id)
+                        ->set([
+                            "down_payment_status" => "Paid",
+                            "down_payment_date" => date("Y-m-d H:i:s"),
+                            "payment_status" => "Ongoing"
+                        ])
                         ->update();
                 } else if ($installment->reference_number === $referenceNumber) {
-                    $isCompleteInstallment = $this->isCompleteInstallment($installment->id);
+                    // Update Installment Status
+                    $db->table($paymentOptionTable)
+                        ->where($assetIdColumn, $reservation->asset_id)
+                        // ->set(["next_due_date" => date("Y-m-d H:i:s", strtotime("+1 month"))])
+                        ->set("next_due_date", date("Y-m-d H:i:s", strtotime("+1 month")))
+                        ->update();
 
-                    if (!$isCompleteInstallment) {
-                        // Update Installment Status
-                        $db->table($paymentOptionTable)
-                            ->where($reservation->asset_type, $reservation->asset_id)
-                            ->set(["next_due_date" => date("Y-m-d H:i:s", strtotime("+1 month"))])
-                            ->update();
+                    $data = [
+                        "installment_id" => $installment->id,
+                        "payment_amount" => $installment->monthly_payment,
+                        "payment_date" => date("Y-m-d H:i:s"),
+                        "payment_status" => "Paid"
+                    ];
 
-                        $data = [
-                            "installment_id" => $installment->id,
-                            "payment_amount" => $installment->monthly_payment,
-                            "payment_date" => date("Y-m-d H:i:s"),
-                            "payment_status" => "Paid"
-                        ];
+                    $db->table($installmentPaymentsTable)->insert($data);
+                    $isCompleteInstallment = $this->isCompleteInstallment($installment->id, $installment->asset_id);
 
-                        $db->table($installmentPaymentsTable)->insert($data);
-
-                        $isCompleteInstallment = $this->isCompleteInstallment($installment->id);
-
-                        switch ($isCompleteInstallment) {
-                            case true:
-                                return $this->respond(["message" => "Payment successful, reservation completed."]);
-                            case false:
-                                return $this->respond(["message" => "Payment successful, reservation updated."]);
-                        }
+                    switch ($isCompleteInstallment) {
+                        case true:
+                            $this->assignAssetOwnership($reservation->reservee_id, $reservation->asset_id);
+                            $this->completeInstallment($installment->id, $installment->asset_id);
+                            return $this->respond(["message" => "Payment successful, reservation completed."]);
+                        case false:
+                            return $this->respond(["message" => "Payment successful, reservation updated."]);
                     }
                 }
             } else {
@@ -188,6 +200,8 @@ class WebhookController extends ResourceController
                     ->where("{$reservation->asset_type}_id", $reservation->asset_id)
                     ->set(["payment_status" => "Paid", "payment_date" => date("Y-m-d H:i:s")])
                     ->update();
+
+                $this->assignAssetOwnership($reservation->reservee_id, $reservation->asset_id);
             }
 
             log_message('info', "Reservation and Payment updated successfully for Reference Number: $referenceNumber");
@@ -196,18 +210,29 @@ class WebhookController extends ResourceController
         return $this->fail("Payment status is not 'paid'.");
     }
 
-    private function isCompleteInstallment($installmentId): bool
+    private function isCompleteInstallment($installmentId, $assetId): bool
     {
         $db = \Config\Database::connect();
 
-        $totalPaid = $db->table("installment_payments")
+        $assetType = FormatterHelper::determineIdType($assetId);
+
+        switch ($assetType) {
+            case "lot":
+                $prefix = "";
+                break;
+            case "estate":
+                $prefix = "estate_";
+                break;
+        }
+
+        $totalPaid = $db->table($prefix . "installment_payments")
             ->selectSum("payment_amount")
             ->where("installment_id", $installmentId)
             ->get()
             ->getRow()
             ->payment_amount;
 
-        $installment = $db->table("installments")
+        $installment = $db->table($prefix . "installments")
             ->select("total_amount")
             ->where("id", $installmentId)
             ->get()
@@ -219,6 +244,52 @@ class WebhookController extends ResourceController
         }
 
         return $totalPaid >= $installment->total_amount;
+    }
+
+    private function completeInstallment($installmentId, $assetId)
+    {
+        $db = \Config\Database::connect();
+
+        $assetType = FormatterHelper::determineIdType($assetId);
+
+        switch ($assetType) {
+            case "lot":
+                $table = "lots";
+                $assetIdColumn = "lot_id";
+                $prefix = "";
+                $reservationsTable = "lot_reservations";
+                break;
+            case "estate":
+                $table = "estates";
+                $assetIdColumn = "estate_id";
+                $prefix = "estate_";
+                $reservationsTable = "estate_reservations";
+                break;
+        }
+
+        $setInstallment = $db->table($prefix . "installments")
+            ->where("id", $installmentId)
+            ->where($assetIdColumn, $assetId)
+            ->set([
+                "payment_status" => "Completed"
+            ])
+            ->update();
+
+        if ($setInstallment) {
+            $setReservationsTable = $db->table($reservationsTable)
+                ->where($assetIdColumn, $assetId)
+                ->set([
+                    "reservation_status" => "Completed"
+                ])
+                ->update();
+        }
+
+        switch ($setReservationsTable) {
+            case true:
+                return true;
+            case false:
+                return false;
+        }
     }
 
     private function assignAssetOwnership($reserveeId, $assetId)
@@ -241,7 +312,7 @@ class WebhookController extends ResourceController
         $db->table($table)
             ->where($assetIdColumn, $assetId)
             ->set([
-                "owner_id" => $reserveeId, 
+                "owner_id" => $reserveeId,
                 "status" => "Sold"
             ])
             ->update();

@@ -345,7 +345,8 @@ class MyLotsAndEstatesController extends BaseController {
         $termYears = $years[$termYears];
 
         $downPayment = $pricing["down_payment"];
-        $totalAmount = $this->getFinalBalance($pricing["monthly_amortization_" . $termYearsKey], $termYears);
+        // $totalAmount = $this->getFinalBalance($pricing["monthly_amortization_" . $termYearsKey], $termYears);
+        $totalAmount = $pricing["balance"];
         $paymentAmount = $pricing["monthly_amortization_" . $termYearsKey];
         $interestRate = $pricing[$termYearsKey . "_interest_rate"];
     
