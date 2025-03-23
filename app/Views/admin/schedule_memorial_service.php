@@ -12,7 +12,7 @@
 
 <script>
     // Initialize the map
-    var map = L.map("map").setView([14.871318, 120.976566], 18);
+    var map = L.map("map").setView([14.871318, 120.976566], 19);
 
     // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -59,6 +59,22 @@
     }
 
     function submitReservation() {
+        const form = document.querySelector("#scheduleBurial .needs-validation");
+
+        // Check if the form is valid
+        if (form.checkValidity() === false) {
+            // Trigger Bootstrap's form validation
+            form.classList.add("was-validated");
+            return; // Stop further execution if the form is invalid
+        }
+
+        // Determine the relationship value
+        let relationship = $("#relationship").val();
+        if (relationship === "Other") {
+            // Use the value from the other_relationship field
+            relationship = $("#otherRelationship").val();
+        }
+
         fetch("<?= base_url('reserve/submitMemorialService') ?>", {
                 method: 'POST',
                 headers: {
@@ -66,7 +82,7 @@
                 },
                 body: JSON.stringify({
                     asset_id: $("#assetId").val(),
-                    relationship: $("#relationship").val(),
+                    relationship: relationship,
                     first_name: $("#firstName").val(),
                     middle_name: $("#middleName").val(),
                     last_name: $("#lastName").val(),
@@ -83,18 +99,18 @@
             .then(jsonData => {
                 if (jsonData.success) {
                     localStorage.setItem("toastMessage", JSON.stringify({
-                        icon: "<i class='bi bi-check-lg'></i>",
+                        icon: "<i class='bi bi-check-lg text-success'></i>",
                         message: "Memorial service scheduled successfully!",
                         title: "Operation Completed"
                     }));
                     location.reload();
                 } else {
-                    showToast("<i class='bi bi-x-lg'></i>", "Scheduling failed.", "Operation Failed");
+                    showToast("<i class='bi bi-x-lg text-danger'></i>", "Scheduling failed.", "Operation Failed");
                 }
             })
             .catch(error => {
                 console.error("Fetch error:", error);
-                showToast("<i class='bi bi-x-lg'></i>", "Network error or server is unreachable.", "Operation Failed");
+                showToast("<i class='bi bi-x-lg text-danger'></i>", "Network error or server is unreachable.", "Operation Failed");
             });
     }
 

@@ -16,8 +16,8 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'http://localhost/ghmp-customer/public/';
-    // public string $baseURL = 'http://group1.cs42a.com/ghmp-customer/public/';
+    // public string $baseURL = 'http://localhost/ghmp-customer/public/';
+    public string $baseURL = 'http://group1.cs42a.com/ghmp-customer/public/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.

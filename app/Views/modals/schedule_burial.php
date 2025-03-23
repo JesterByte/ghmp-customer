@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="#" method="post" class="needs-validation" novalidate>
                     <input type="hidden" name="asset_id" id="assetId">
                     <div class="mb-3">
                         <p class="form-text">Personal Information</p>
@@ -21,6 +21,13 @@
                                 <option value="Other">Other</option>
                             </select>
                             <label for="relationship">Relationship to the Deceased</label>
+                        </div>
+                        <!-- Placeholder for dynamic input field -->
+                        <div id="otherRelationshipInput" class="mt-3" style="display: none;">
+                            <div class="form-floating">
+                                <input type="text" name="other_relationship" placeholder="Please specify" id="otherRelationship" class="form-control">
+                                <label for="otherRelationship">Please specify</label>
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -88,7 +95,44 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
+        const dateOfBirth = document.getElementById("dateOfBirth");
+        const dateOfDeath = document.getElementById("dateOfDeath");
+        const datetime = document.getElementById("datetime");
+
+        // Disable future dates for birth date and death date
+        const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+        dateOfBirth.setAttribute("max", today);
+        dateOfDeath.setAttribute("max", today);
+
+        // Disable past dates for burial date & time
+        datetime.setAttribute("min", new Date().toISOString().slice(0, 16)); // Set min to current date and time
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const relationshipSelect = document.getElementById("relationship");
+        const otherRelationshipInput = document.getElementById("otherRelationshipInput");
+        const otherRelationshipField = document.getElementById("otherRelationship");
+
+        // Event listener for relationship dropdown change
+        relationshipSelect.addEventListener("change", function() {
+            if (relationshipSelect.value === "Other") {
+                // Show the input field and make it required
+                otherRelationshipInput.style.display = "block";
+                otherRelationshipField.setAttribute("required", true);
+            } else {
+                // Hide the input field and remove the required attribute
+                otherRelationshipInput.style.display = "none";
+                otherRelationshipField.removeAttribute("required");
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
         const scheduleBurial = document.getElementById("scheduleBurial");
 
         scheduleBurial.addEventListener("show.bs.modal", function() {
@@ -107,16 +151,32 @@
         // Burial type options based on category
         let options = [];
         if (category === "lot") {
-            options = [
-                { value: "Standard", text: "Standard" },
-                { value: "Cremation", text: "Cremation" },
-                { value: "Bone Transfer", text: "Bone Transfer" }
+            options = [{
+                    value: "Standard",
+                    text: "Standard"
+                },
+                {
+                    value: "Cremation",
+                    text: "Cremation"
+                },
+                {
+                    value: "Bone Transfer",
+                    text: "Bone Transfer"
+                }
             ];
         } else if (category === "estate") {
-            options = [
-                { value: "Standard", text: "Standard" },
-                { value: "Mausoleum", text: "Mausoleum" },
-                { value: "Bone Transfer", text: "Bone Transfer" }
+            options = [{
+                    value: "Standard",
+                    text: "Standard"
+                },
+                {
+                    value: "Mausoleum",
+                    text: "Mausoleum"
+                },
+                {
+                    value: "Bone Transfer",
+                    text: "Bone Transfer"
+                }
             ];
         }
 
@@ -131,50 +191,4 @@
 
     // Attach change event to category
     document.getElementById("category").addEventListener("change", updateBurialType);
-
-    // function submitReservation() {
-    //     console.log("Sending:", {
-    //         asset_id: $('#assetId').val(),
-    //         relationship: $("#relationship").val(),
-    //         first_name: $("#firstName").val(),
-    //         middle_name: $("#middleName").val(),
-    //         last_name: $("#lastName").val(),
-    //         suffix: $("#suffix").val(),
-    //         dateOfBirth: $("#dateOfBirth").val(),
-    //         dateOfDeath: $("#dateOfDeath").val(),
-    //         obituary: $("#obituary").val(),
-    //         category: $("#category").val(),
-    //         burial_type: $("#burialType").val(),
-    //         date_time: $("#datetime").val()
-    //     });
-
-    //     fetch("<?= base_url('reserve/submitMemorialService') ?>", {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 asset_id: $("#assetId").val(),
-    //                 relationship: $("#relationship").val(),
-    //                 first_name: $("#firstName").val(),
-    //                 middle_name: $("#middleName").val(),
-    //                 last_name: $("#lastName").val(),
-    //                 suffix: $("#suffix").val(),
-    //                 date_of_birth: $("#dateOfBirth").val(),
-    //                 date_of_death: $("#dateOfDeath").val(),
-    //                 obituary: $("#obituary").val(),
-    //                 category: $("#category").val(),
-    //                 burial_type: $("#burialType").val(),
-    //                 date_time: $("#datetime").val()
-    //             })
-    //         })
-    //         .then(response => response.json())
-    //         .then(jsonData => {
-    //             alert("Server Response: " + jsonData.message);
-    //         })
-    //         .catch(error => {
-    //             console.error("Fetch error:", error);
-    //             alert("Network error or server is unreachable.");
-    //         });
-    // }
 </script>

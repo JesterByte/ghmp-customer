@@ -1,5 +1,6 @@
-<?php 
-    use App\Helpers\FormatterHelper;
+<?php
+
+use App\Helpers\FormatterHelper;
 
 ?>
 <?= $this->extend("layouts/admin") ?>
@@ -26,7 +27,7 @@
                     <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">
                     <input type="hidden" value="cash_sale" name="payment_option">
-                    <button class="btn btn-primary w-100 mt-3" type="submit">Choose this option</button>
+                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-option="Cash Sale" data-amount="<?= FormatterHelper::formatPrice($pricing["cash_sale"]) ?>" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>" data-payment-option="cash_sale">Choose this option</button>
                 </form>
                 <!-- <a class="btn btn-primary w-100 mt-3" role="button" href="payment_option/cash_sale">Choose this option</a> -->
             </div>
@@ -45,7 +46,7 @@
                     <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">
                     <input type="hidden" value="six_months" name="payment_option">
-                    <button class="btn btn-primary w-100 mt-3" type="submit">Choose this option</button>
+                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-option="6 Months Plan" data-amount="<?= FormatterHelper::formatPrice($pricing["six_months"]) ?>" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>" data-payment-option="six_months">Choose this option</button>
                 </form>
                 <!-- <a class="btn btn-primary w-100 mt-3" role="button" href="payment_option/six_months">Choose this option</a> -->
             </div>
@@ -75,7 +76,31 @@
                     <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">
 
-                    <button class="btn btn-primary w-100 mt-3" type="submit">Choose this option</button>
+                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-option="Installment Plan" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>">Choose this option</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="reviewModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Review Payment Option</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p><b>Selected Option:</b> <span id="selectedOption"></span></p>
+                <p><b>Total Payable Amount:</b> <span id="reviewPayableAmount"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="confirmationForm" action="<?= base_url("payment_option_submit") ?>" method="post">
+                    <input type="hidden" id="confirmAssetId" name="asset_id">
+                    <input type="hidden" id="confirmReservationType" name="reservation_type">
+                    <input type="hidden" id="confirmPaymentOption" name="payment_option">
+                    <button type="submit" class="btn btn-primary">Confirm</button>
                 </form>
             </div>
         </div>
@@ -83,9 +108,36 @@
 </div>
 
 <script>
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('review-button')) {
+            const option = event.target.dataset.option;
+            const amount = event.target.dataset.amount || document.getElementById('totalPayableAmount').innerText;
+            const assetId = event.target.dataset.assetId;
+            const reservationType = event.target.dataset.reservationType;
+            const paymentOption = event.target.dataset.paymentOption || document.getElementById('payment_option').value;
+
+            document.getElementById('selectedOption').innerText = option;
+            document.getElementById('reviewPayableAmount').innerText = numberFormat(amount);
+            document.getElementById('confirmAssetId').value = assetId;
+            document.getElementById('confirmReservationType').value = reservationType;
+            document.getElementById('confirmPaymentOption').value = paymentOption;
+
+            const modal = new bootstrap.Modal(document.getElementById('reviewModal'));
+            modal.show();
+        }
+    });
+</script>
+
+<script>
     function updateInstallmentDetails() {
         let years = parseInt(document.getElementById('payment_option').value);
-        let interestRates = {1: <?= (float) $pricing["one_year_interest_rate"] ?>, 2: <?= (float) $pricing["two_years_interest_rate"] ?>, 3: <?= (float) $pricing["three_years_interest_rate"] ?>, 4: <?= (float) $pricing["four_years_interest_rate"] ?>, 5: <?= (float) $pricing["five_years_interest_rate"] ?>};
+        let interestRates = {
+            1: <?= (float) $pricing["one_year_interest_rate"] ?>,
+            2: <?= (float) $pricing["two_years_interest_rate"] ?>,
+            3: <?= (float) $pricing["three_years_interest_rate"] ?>,
+            4: <?= (float) $pricing["four_years_interest_rate"] ?>,
+            5: <?= (float) $pricing["five_years_interest_rate"] ?>
+        };
         let interestRate = interestRates[years];
         let balance = <?= (int) $pricing["balance"] ?>;
         let totalAmount = balance + (balance * interestRate);
@@ -103,7 +155,10 @@
     updateInstallmentDetails(); // Initialize on page load
 
     function numberFormat(num, decimals = 2) {
-        return num.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+        return num.toLocaleString(undefined, {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+        });
     }
 </script>
 
