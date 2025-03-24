@@ -21,6 +21,7 @@ class MyLotsAndEstatesController extends BaseController {
         $table = $assetModel->getAssetsById($session->get("user_id"));
 
         foreach ($table as $key => $row) {
+            $row["encrypted_reservation_id"] = bin2hex($this->encrypter->encrypt($row["reservation_id"]));
             $row["encrypted_asset_id"] = bin2hex($this->encrypter->encrypt($row["asset_id"]));
             $row["encrypted_asset_type"] = bin2hex($this->encrypter->encrypt($row["asset_type"]));
 
@@ -46,7 +47,8 @@ class MyLotsAndEstatesController extends BaseController {
         return view("admin/my_lots_and_estates", $data);
     }
 
-    public function selectPaymentOption($assetId, $assetType) {
+    public function selectPaymentOption($reservationId, $assetId, $assetType) {
+        $decryptedReservationId = $this->encrypter->decrypt(hex2bin($reservationId));
         $decryptedAssetId = $this->encrypter->decrypt(hex2bin($assetId));
         $decryptedAssetType = $this->encrypter->decrypt(hex2bin($assetType));
 
@@ -73,6 +75,8 @@ class MyLotsAndEstatesController extends BaseController {
         $data = [
             "pageTitle" => "Select Payment Option",
             "pricing" => $pricing,
+            "reservationId" => $decryptedReservationId,
+            "encryptedReservationId" => $reservationId,
             "assetId" => $decryptedAssetId,
             "encryptedAssetId" => $assetId,
             "assetType" => $assetType,
@@ -90,6 +94,7 @@ class MyLotsAndEstatesController extends BaseController {
         }
     
         $session = session();
+        $reservationId = $this->decryptAssetId($this->request->getPost("reservation_id"));
         $assetId = $this->decryptAssetId($this->request->getPost("asset_id"));
         $reservationType = $this->decryptAssetId($this->request->getPost("reservation_type"));
         $paymentOption = FormatterHelper::formatPaymentOption($this->request->getPost("payment_option"));
@@ -99,7 +104,7 @@ class MyLotsAndEstatesController extends BaseController {
     
         // Process for Lot Reservation
         if (in_array($reservationType, $lotTypes)) {
-            $this->processLotReservation($assetId, $reservationType, $paymentOption, $session);
+            $this->processLotReservation($reservationId, $assetId, $reservationType, $paymentOption, $session);
 
             $session->setFlashdata("flash_message", [
                 "icon" => '<i class="bi bi-check-lg text-success"></i>',
@@ -112,7 +117,7 @@ class MyLotsAndEstatesController extends BaseController {
     
         // Process for Estate Reservation
         if (in_array($reservationType, $estateTypes)) {
-            $this->processEstateReservation($assetId, $paymentOption, $session);
+            $this->processEstateReservation($reservationId, $assetId, $paymentOption, $session);
 
             $session->setFlashdata("flash_message", [
                 "icon" => '<i class="bi bi-check-lg text-success"></i>',
@@ -128,7 +133,7 @@ class MyLotsAndEstatesController extends BaseController {
         return $this->encrypter->decrypt(hex2bin($encryptedId));
     }
     
-    private function processLotReservation($assetId, $reservationType, $paymentOption, $session) {
+    private function processLotReservation($reservationId, $assetId, $reservationType, $paymentOption, $session) {
         $lotIdParts = FormatterHelper::extractLotIdParts($assetId);
         $phase = "Phase " . $lotIdParts["phase"];
         
@@ -136,13 +141,13 @@ class MyLotsAndEstatesController extends BaseController {
         $pricing = $pricingModel->getPhasePricing($phase, $reservationType);
     
         $lotReservationModel = new LotReservationModel();
-        $lotReservationModel->updateLotPaymentOption($assetId, $session->get("user_id"), $paymentOption, "Confirmed");
+        $lotReservationModel->updateLotPaymentOption($reservationId, $assetId, $session->get("user_id"), $paymentOption, "Confirmed");
         $downPaymentDueDate = $this->generateDownPaymentDueDate();
     
-        $this->applyPaymentOption($lotReservationModel, $assetId, $paymentOption, $pricing, $downPaymentDueDate);
+        $this->applyPaymentOption($lotReservationModel, $reservationId, $assetId, $paymentOption, $pricing, $downPaymentDueDate);
     }
     
-    private function processEstateReservation($assetId, $paymentOption, $session) {
+    private function processEstateReservation($reservationId, $assetId, $paymentOption, $session) {
         $estateIdParts = FormatterHelper::extractEstateIdParts($assetId);
         $estateType = "Estate " . $estateIdParts['type'];
         
@@ -150,51 +155,51 @@ class MyLotsAndEstatesController extends BaseController {
         $pricing = $pricingModel->getEstatePricing($estateType);
     
         $estateReservationModel = new EstateReservationModel();
-        $estateReservationModel->updateEstatePaymentOption($assetId, $session->get("user_id"), $paymentOption, "Confirmed");
+        $estateReservationModel->updateEstatePaymentOption($reservationId, $assetId, $session->get("user_id"), $paymentOption, "Confirmed");
         $downPaymentDueDate = $this->generateDownPaymentDueDate();
     
-        $this->applyPaymentOption($estateReservationModel, $assetId, $paymentOption, $pricing, $downPaymentDueDate);
+        $this->applyPaymentOption($estateReservationModel, $reservationId, $assetId, $paymentOption, $pricing, $downPaymentDueDate);
     }
     
-    private function applyPaymentOption($reservationModel, $assetId, $paymentOption, $pricing, $downPaymentDueDate) {
+    private function applyPaymentOption($reservationModel, $reservationId, $assetId, $paymentOption, $pricing, $downPaymentDueDate) {
         switch ($paymentOption) {
             case "Cash Sale":
-                $this->applyCashSale($reservationModel, $assetId, $pricing);
+                $this->applyCashSale($reservationModel, $reservationId, $assetId, $pricing);
                 break;
             case "6 Months":
-                $this->applySixMonths($reservationModel, $assetId, $pricing);
+                $this->applySixMonths($reservationModel, $reservationId, $assetId, $pricing);
                 break;
             case "Installment: 1 Year":
-                $this->applyInstallment($reservationModel, $assetId, $pricing, 1, $downPaymentDueDate);
+                $this->applyInstallment($reservationModel, $reservationId, $assetId, $pricing, 1, $downPaymentDueDate);
                 break;
             case "Installment: 2 Years":
-                $this->applyInstallment($reservationModel, $assetId, $pricing, 2, $downPaymentDueDate);
+                $this->applyInstallment($reservationModel, $reservationId, $assetId, $pricing, 2, $downPaymentDueDate);
                 break;
             case "Installment: 3 Years":
-                $this->applyInstallment($reservationModel, $assetId, $pricing, 3, $downPaymentDueDate);
+                $this->applyInstallment($reservationModel, $reservationId, $assetId, $pricing, 3, $downPaymentDueDate);
                 break;
             case "Installment: 4 Years":
-                $this->applyInstallment($reservationModel, $assetId, $pricing, 4, $downPaymentDueDate);
+                $this->applyInstallment($reservationModel, $reservationId, $assetId, $pricing, 4, $downPaymentDueDate);
                 break;
             case "Installment: 5 Years":
-                $this->applyInstallment($reservationModel, $assetId, $pricing, 5, $downPaymentDueDate);
+                $this->applyInstallment($reservationModel, $reservationId, $assetId, $pricing, 5, $downPaymentDueDate);
                 break;
         }
     }
     
-    private function applyCashSale($reservationModel, $assetId, $pricing) {
-        $reservationModel->setCashSalePayment($assetId, $pricing["cash_sale"]);
+    private function applyCashSale($reservationModel, $reservationId, $assetId, $pricing) {
+        $cashSaleId = $reservationModel->setCashSalePayment($reservationId, $assetId, $pricing["cash_sale"]);
         $dueDate = $this->generateCashSaleDueDate();
-        $reservationModel->setCashSaleDueDate($assetId, $dueDate);
+        $reservationModel->setCashSaleDueDate($cashSaleId, $assetId, $dueDate);
     }
     
-    private function applySixMonths($reservationModel, $assetId, $pricing) {
-        $reservationModel->setSixMonthsPayment($assetId, $pricing["cash_sale"]);
+    private function applySixMonths($reservationModel, $reservationId, $assetId, $pricing) {
+        $sixMonthsId = $reservationModel->setSixMonthsPayment($reservationId, $assetId, $pricing["cash_sale"]);
         $dueDate = $this->generateSixMonthsDueDate();
-        $reservationModel->setSixMonthsDueDate($assetId, $dueDate);
+        $reservationModel->setSixMonthsDueDate($sixMonthsId, $assetId, $dueDate);
     }
     
-    private function applyInstallment($reservationModel, $assetId, $pricing, $termYears, $downPaymentDueDate) {
+    private function applyInstallment($reservationModel, $reservationId, $assetId, $pricing, $termYears, $downPaymentDueDate) {
         $years = ["1" => "one", "2" => "two", "3" => "three", "4" => "four", "5" => "five"];
 
         if ($termYears == "1") {
@@ -211,7 +216,7 @@ class MyLotsAndEstatesController extends BaseController {
         $paymentAmount = $pricing["monthly_amortization_" . $termYearsKey];
         $interestRate = $pricing[$termYearsKey . "_interest_rate"];
     
-        $reservationModel->setInstallmentPayment($assetId, $termYears, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount, $interestRate);
+        $reservationModel->setInstallmentPayment($reservationId, $assetId, $termYears, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount, $interestRate);
     }
 
     private function generateCashSaleDueDate() {

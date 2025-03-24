@@ -24,7 +24,7 @@ $routes->post("/ownership_transfer/verify_otp", "OwnershipTransferController::ve
 
 $routes->get("/dashboard", "AdminController::index");
 $routes->get("/my_lots_and_estates", "MyLotsAndEstatesController::index");
-$routes->get("/select_payment_option/(:any)/(:any)", "MyLotsAndEstatesController::selectPaymentOption/$1/$2");
+$routes->get("/select_payment_option/(:any)/(:any)/(:any)", "MyLotsAndEstatesController::selectPaymentOption/$1/$2/$3");
 
 $routes->get("/reserve_lot", "ReserveLotController::index");
 $routes->get("/reserve_estate", "ReserveEstateController::index");

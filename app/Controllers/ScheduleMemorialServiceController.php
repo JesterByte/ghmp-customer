@@ -59,6 +59,11 @@ class ScheduleMemorialServiceController extends BaseController
                 ]);
             }
 
+            $firstName = FormatterHelper::cleanName($data["first_name"]);
+            $middleName = !empty($data["middle_name"]) ? FormatterHelper::cleanName($data["middle_name"]) : "";
+            $lastName = FormatterHelper::cleanName($data["last_name"]);
+            $obituary = trim($data["obituary"]);
+
             // Save reservation in the database
             $burialReservationsModel = new BurialReservationsModel();
 
@@ -69,13 +74,13 @@ class ScheduleMemorialServiceController extends BaseController
                 $data["burial_type"],
                 session()->get("user_id"), // Assuming the reservee_id is stored in session
                 $data["relationship"],
-                $data["first_name"],
-                $data["middle_name"] ?? null,
-                $data["last_name"],
+                $firstName,
+                $middleName ?? null,
+                $lastName,
                 $data["suffix"] ?? null,
                 $data["date_of_birth"],
                 $data["date_of_death"],
-                $data["obituary"],
+                $obituary,
                 $paymentAmount,
                 $data["date_time"]
             );

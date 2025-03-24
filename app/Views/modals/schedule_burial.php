@@ -101,12 +101,21 @@
         const datetime = document.getElementById("datetime");
 
         // Disable future dates for birth date and death date
-        const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+        const today = new Date().toISOString().split("T")[0];
         dateOfBirth.setAttribute("max", today);
         dateOfDeath.setAttribute("max", today);
 
         // Disable past dates for burial date & time
-        datetime.setAttribute("min", new Date().toISOString().slice(0, 16)); // Set min to current date and time
+        datetime.setAttribute("min", new Date().toISOString().slice(0, 16));
+
+        // Update the max attribute of the death date based on the birth date
+        dateOfBirth.addEventListener("change", function() {
+            if (dateOfBirth.value) {
+                dateOfDeath.setAttribute("min", dateOfBirth.value);
+            } else {
+                dateOfDeath.removeAttribute("min");
+            }
+        });
     });
 </script>
 

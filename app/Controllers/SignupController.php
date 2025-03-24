@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Helpers\FormatterHelper;
 use App\Models\BeneficiaryModel;
 use App\Models\CustomerModel;
 
@@ -14,16 +15,16 @@ class SignupController extends BaseController {
     public function submit() {
 
         $session = session();
-        $firstName = $this->request->getPost("first_name");
-        $middleName = $this->request->getPost("middle_name");
-        $lastName = $this->request->getPost("last_name");
+        $firstName = FormatterHelper::cleanName($this->request->getPost("first_name"));
+        $middleName = !empty($this->request->getPost("middle_name")) ? FormatterHelper::cleanName($this->request->getPost("middle_name")) : "";
+        $lastName = FormatterHelper::cleanName($this->request->getPost("last_name"));
         $suffixName = $this->request->getPost("suffix");
 
         $contactNumber = $this->request->getPost("contact_number");
-        $email = $this->request->getPost("email");
+        $email = FormatterHelper::cleanEmail($this->request->getPost("email"));
 
-        $password = $this->request->getPost("password");
-        $confirmPassword = $this->request->getPost("confirm_password");
+        $password = trim($this->request->getPost("password"));
+        $confirmPassword = trim($this->request->getPost("confirm_password"));
 
         if ($password !== $confirmPassword) {
             return redirect()->to(base_url("signup"));
@@ -31,13 +32,13 @@ class SignupController extends BaseController {
 
         $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
 
-        $beneficiaryRelationship = $this->request->getPost("beneficiary_relationship");
-        $beneficiaryFirstName = $this->request->getPost("beneficiary_first_name");
-        $beneficiaryMiddleName = $this->request->getPost("beneficiary_middle_name");
-        $beneficiaryLastName = $this->request->getPost("beneficiary_last_name");
+        $beneficiaryRelationship = FormatterHelper::cleanName($this->request->getPost("beneficiary_relationship"));
+        $beneficiaryFirstName = FormatterHelper::cleanName($this->request->getPost("beneficiary_first_name"));
+        $beneficiaryMiddleName = FormatterHelper::cleanName($this->request->getPost("beneficiary_middle_name"));
+        $beneficiaryLastName = FormatterHelper::cleanName($this->request->getPost("beneficiary_last_name"));
         $beneficiarySuffixName = $this->request->getPost("beneficiary_suffix");
         $beneficiaryContactNumber = $this->request->getPost("beneficiary_contact_number");
-        $beneficiaryEmail = $this->request->getPost("beneficiary_email");
+        $beneficiaryEmail = FormatterHelper::cleanEmail($this->request->getPost("beneficiary_email"));
 
         $data = [
             "first_name" => $firstName,

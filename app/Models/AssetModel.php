@@ -12,50 +12,52 @@ class AssetModel extends Model
         // $db = \Config\Database::connect();
 
         // First query for lot_reservations
-        $builder1 = $this->db->table("lot_reservations")
+        $builder1 = $this->db->table("lot_reservations AS lr")
             ->select("
-        lot_reservations.lot_id AS asset_id, 
-        lot_reservations.reservee_id, 
-        lot_reservations.lot_type AS asset_type, 
-        lot_reservations.payment_option, 
-        lot_reservations.reservation_status, 
+        lr.id AS reservation_id,
+        lr.lot_id AS asset_id, 
+        lr.reservee_id, 
+        lr.lot_type AS asset_type, 
+        lr.payment_option, 
+        lr.reservation_status, 
         'lot' AS asset, 
-        COALESCE(installments.down_payment, 0) AS down_payment,
-        installments.down_payment_status AS down_payment_status,
-        COALESCE(cash_sales.payment_amount, six_months.payment_amount, installments.monthly_payment, 0) AS payment_amount,
+        COALESCE(i.down_payment, 0) AS down_payment,
+        i.down_payment_status AS down_payment_status,
+        COALESCE(cs.payment_amount, sm.payment_amount, i.monthly_payment, 0) AS payment_amount,
         CASE
-            WHEN cash_sales.payment_amount IS NOT NULL THEN 'cash_sale'
-            WHEN six_months.payment_amount IS NOT NULL THEN 'six_months'
-            WHEN installments.monthly_payment IS NOT NULL THEN 'installments'
+            WHEN cs.payment_amount IS NOT NULL THEN 'cash_sale'
+            WHEN sm.payment_amount IS NOT NULL THEN 'six_months'
+            WHEN i.monthly_payment IS NOT NULL THEN 'installments'
             ELSE 'none'
         END AS payment_type")
-            ->where("lot_reservations.reservee_id", $userId)
-            ->join("cash_sales", "cash_sales.lot_id = lot_reservations.lot_id", "left")
-            ->join("six_months", "six_months.lot_id = lot_reservations.lot_id", "left")
-            ->join("installments", "installments.lot_id = lot_reservations.lot_id", "left");
+            ->where("lr.reservee_id", $userId)
+            ->join("cash_sales AS cs", "cs.lot_id = lr.lot_id", "left")
+            ->join("six_months AS sm", "sm.lot_id = lr.lot_id", "left")
+            ->join("installments AS i", "i.lot_id = lr.lot_id", "left");
 
         // Second query for estate_reservations (joins estate_cash_sales)
-        $builder2 = $this->db->table("estate_reservations")
+        $builder2 = $this->db->table("estate_reservations AS er")
             ->select("
-            estate_reservations.estate_id AS asset_id, 
-            estate_reservations.reservee_id, 
-            estate_reservations.estate_type AS asset_type, 
-            estate_reservations.payment_option, 
-            estate_reservations.reservation_status, 
+            er.id AS reservation_id,
+            er.estate_id AS asset_id, 
+            er.reservee_id, 
+            er.estate_type AS asset_type, 
+            er.payment_option, 
+            er.reservation_status, 
             'estate' AS asset, 
-            COALESCE(estate_installments.down_payment, 0) AS down_payment,
-            estate_installments.down_payment_status AS down_payment_status,
-            COALESCE(estate_cash_sales.payment_amount, estate_six_months.payment_amount, estate_installments.monthly_payment, 0) AS payment_amount,
+            COALESCE(ei.down_payment, 0) AS down_payment,
+            ei.down_payment_status AS down_payment_status,
+            COALESCE(ecs.payment_amount, esm.payment_amount, ei.monthly_payment, 0) AS payment_amount,
             CASE
-                WHEN estate_cash_sales.payment_amount IS NOT NULL THEN 'estate_cash_sale'
-                WHEN estate_six_months.payment_amount IS NOT NULL THEN 'estate_six_months'
-                WHEN estate_installments.monthly_payment IS NOT NULL THEN 'estate_installments'
+                WHEN ecs.payment_amount IS NOT NULL THEN 'estate_cash_sale'
+                WHEN esm.payment_amount IS NOT NULL THEN 'estate_six_months'
+                WHEN ei.monthly_payment IS NOT NULL THEN 'estate_installments'
                 ELSE 'none'
             END AS payment_type")
-            ->where("estate_reservations.reservee_id", $userId)
-            ->join("estate_cash_sales", "estate_cash_sales.estate_id = estate_reservations.estate_id", "left")
-            ->join("estate_six_months", "estate_six_months.estate_id = estate_reservations.estate_id", "left")
-            ->join("estate_installments", "estate_installments.estate_id = estate_reservations.estate_id", "left");
+            ->where("er.reservee_id", $userId)
+            ->join("estate_cash_sales AS ecs", "ecs.estate_id = er.estate_id", "left")
+            ->join("estate_six_months AS esm", "esm.estate_id = er.estate_id", "left")
+            ->join("estate_installments AS ei", "ei.estate_id = er.estate_id", "left");
 
         // Get the compiled SELECT SQL queries
         $sql1 = $builder1->getCompiledSelect();

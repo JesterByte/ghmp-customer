@@ -24,10 +24,11 @@ use App\Helpers\FormatterHelper;
                 <p><b>Payment Deadline:</b> <?= FormatterHelper::sevenDaysFromNow() ?></p>
                 <!-- <button class="btn btn-primary w-100 mt-3">Choose this option</button> -->
                 <form action="<?= base_url("payment_option_submit") ?>" method="post">
+                    <input type="hidden" value="<?= $encryptedReservationId ?>" name="reservation_id">
                     <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">
                     <input type="hidden" value="cash_sale" name="payment_option">
-                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-option="Cash Sale" data-amount="<?= FormatterHelper::formatPrice($pricing["cash_sale"]) ?>" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>" data-payment-option="cash_sale">Choose this option</button>
+                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-reservation-id="<?= $encryptedReservationId ?>" data-option="Cash Sale" data-amount="<?= FormatterHelper::formatPrice($pricing["cash_sale"]) ?>" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>" data-payment-option="cash_sale">Choose this option</button>
                 </form>
                 <!-- <a class="btn btn-primary w-100 mt-3" role="button" href="payment_option/cash_sale">Choose this option</a> -->
             </div>
@@ -43,10 +44,11 @@ use App\Helpers\FormatterHelper;
                 <p><b>Payment Deadline:</b> <?= FormatterHelper::sixMonthsFromNow() ?></p>
                 <!-- <button class="btn btn-primary w-100 mt-3">Choose this option</button> -->
                 <form action="<?= base_url("payment_option_submit") ?>" method="post">
+                    <input type="hidden" value="<?= $encryptedReservationId ?>" name="reservation_id">
                     <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">
                     <input type="hidden" value="six_months" name="payment_option">
-                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-option="6 Months Plan" data-amount="<?= FormatterHelper::formatPrice($pricing["six_months"]) ?>" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>" data-payment-option="six_months">Choose this option</button>
+                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-reservation-id="<?= $encryptedReservationId ?>" data-option="6 Months Plan" data-amount="<?= FormatterHelper::formatPrice($pricing["six_months"]) ?>" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>" data-payment-option="six_months">Choose this option</button>
                 </form>
                 <!-- <a class="btn btn-primary w-100 mt-3" role="button" href="payment_option/six_months">Choose this option</a> -->
             </div>
@@ -73,10 +75,11 @@ use App\Helpers\FormatterHelper;
                     <p><b>Monthly Payment:</b> <span id="monthlyPayment"></span></p>
                     <p><b>Total Payable Amount:</b> <span id="totalPayableAmount"></span></p>
 
+                    <input type="hidden" value="<?= $encryptedReservationId ?>" name="reservation_id">
                     <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">
 
-                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-option="Installment Plan" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>">Choose this option</button>
+                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-reservation-id="<?= $encryptedReservationId ?>" data-option="Installment Plan" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>">Choose this option</button>
                 </form>
             </div>
         </div>
@@ -97,6 +100,7 @@ use App\Helpers\FormatterHelper;
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <form id="confirmationForm" action="<?= base_url("payment_option_submit") ?>" method="post">
+                    <input type="hidden" id="confirmReservationId" name="reservation_id">
                     <input type="hidden" id="confirmAssetId" name="asset_id">
                     <input type="hidden" id="confirmReservationType" name="reservation_type">
                     <input type="hidden" id="confirmPaymentOption" name="payment_option">
@@ -112,12 +116,14 @@ use App\Helpers\FormatterHelper;
         if (event.target.classList.contains('review-button')) {
             const option = event.target.dataset.option;
             const amount = event.target.dataset.amount || document.getElementById('totalPayableAmount').innerText;
+            const reservationId = event.target.dataset.reservationId;
             const assetId = event.target.dataset.assetId;
             const reservationType = event.target.dataset.reservationType;
             const paymentOption = event.target.dataset.paymentOption || document.getElementById('payment_option').value;
 
             document.getElementById('selectedOption').innerText = option;
             document.getElementById('reviewPayableAmount').innerText = numberFormat(amount);
+            document.getElementById("confirmReservationId").value = reservationId;
             document.getElementById('confirmAssetId').value = assetId;
             document.getElementById('confirmReservationType').value = reservationType;
             document.getElementById('confirmPaymentOption').value = paymentOption;

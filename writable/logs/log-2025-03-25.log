@@ -1,0 +1,122 @@
+ERROR - 2025-03-25 00:30:26 --> mysqli_sql_exception: Unknown column 'reference_number' in 'field list' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `lot_res...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `lot_res...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `lot_res...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `lot_res...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\BaseController.php(149): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyLotsAndEstatesController.php(30): App\Controllers\BaseController->createPaymongoLink(7698802.0, '1C1-3', 'Cash Sale')
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-03-25 00:30:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'reference_number' in 'field list'
+[Method: GET, Route: my_lots_and_estates]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `lot_reservations` SET `reference_number` = :reference_number:
+WHERE `lot_id` = :lot_id:', [...], false)
+ 2 APPPATH\Controllers\BaseController.php(149): CodeIgniter\Database\BaseBuilder->update()
+ 3 APPPATH\Controllers\MyLotsAndEstatesController.php(30): App\Controllers\BaseController->createPaymongoLink(7698802.0, '1C1-3', 'Cash Sale')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-25 00:30:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'reference_number' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `lot_reservations` SET `reference_number` = \'3Z9t4NH\'
+WHERE `lot_id` = \'1C1-3\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `lot_reservations` SET `reference_number` = \'3Z9t4NH\'
+WHERE `lot_id` = \'1C1-3\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `lot_reservations` SET `reference_number` = :reference_number:
+WHERE `lot_id` = :lot_id:', [...], false)
+ 4 APPPATH\Controllers\BaseController.php(149): CodeIgniter\Database\BaseBuilder->update()
+ 5 APPPATH\Controllers\MyLotsAndEstatesController.php(30): App\Controllers\BaseController->createPaymongoLink(7698802.0, '1C1-3', 'Cash Sale')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-25 00:30:26 --> [Caused by] mysqli_sql_exception: Unknown column 'reference_number' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `lot_reservations` SET `reference_number` = \'3Z9t4NH\'
+WHERE `lot_id` = \'1C1-3\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `lot_reservations` SET `reference_number` = \'3Z9t4NH\'
+WHERE `lot_id` = \'1C1-3\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `lot_reservations` SET `reference_number` = \'3Z9t4NH\'
+WHERE `lot_id` = \'1C1-3\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `lot_reservations` SET `reference_number` = :reference_number:
+WHERE `lot_id` = :lot_id:', [...], false)
+ 5 APPPATH\Controllers\BaseController.php(149): CodeIgniter\Database\BaseBuilder->update()
+ 6 APPPATH\Controllers\MyLotsAndEstatesController.php(30): App\Controllers\BaseController->createPaymongoLink(7698802.0, '1C1-3', 'Cash Sale')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-25 00:54:29 --> ErrorException: Undefined array key "id"
+[Method: GET, Route: my_lots_and_estates]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 24.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 24)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-25 00:54:32 --> ErrorException: Undefined array key "id"
+[Method: GET, Route: my_lots_and_estates]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 24.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 24)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-25 00:58:30 --> ErrorException: Undefined array key "id"
+[Method: GET, Route: my_lots_and_estates]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 24.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 24)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-25 00:58:31 --> ErrorException: Undefined array key "id"
+[Method: GET, Route: my_lots_and_estates]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 24.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 24)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-25 00:58:33 --> ErrorException: Undefined array key "id"
+[Method: GET, Route: my_lots_and_estates]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 24.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 24)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-25 01:02:43 --> ErrorException: Undefined array key "id"
+[Method: GET, Route: my_lots_and_estates]
+in APPPATH\Controllers\MyLotsAndEstatesController.php on line 24.
+ 1 APPPATH\Controllers\MyLotsAndEstatesController.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\MyLotsAndEstatesController.php', 24)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

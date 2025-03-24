@@ -18,8 +18,8 @@ class SigninController extends BaseController
     public function submit()
     {
         $session = session();
-        $email = $this->request->getPost("email");
-        $password = $this->request->getPost("password");
+        $email = FormatterHelper::cleanEmail($this->request->getPost("email"));
+        $password = trim($this->request->getPost("password"));
 
         if (empty($email) || empty($password)) {
             $session->setFlashdata("error", "Email and Password are required.");

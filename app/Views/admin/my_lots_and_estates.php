@@ -28,11 +28,9 @@
                     $reservationType = FormatterHelper::determineIdType($row["asset_id"]);
 
                     if ($row["asset_type"] != "Pending" && $row["payment_option"] == "Pending" && $row["reservation_status"] == "Confirmed") {
-                        $paymentOption = $row["payment_option"] . " <a role='button' href='select_payment_option/{$row["encrypted_asset_id"]}/{$row["encrypted_asset_type"]}' class='btn btn-primary'>Choose</a>";
-
+                        $paymentOption = $row["payment_option"] . " <a role='button' href='select_payment_option/{$row["encrypted_reservation_id"]}/{$row["encrypted_asset_id"]}/{$row["encrypted_asset_type"]}' class='btn btn-primary'>Choose</a>";
                     } else if ($row["asset_type"] == "Pending" && $row["payment_option"] == "Pending" && $row["reservation_status"] == "Pending") {
                         $paymentOption = $row["payment_option"] . " (Please wait for asset type verification)";
-                        
                     } else {
                         $paymentOption = $row["payment_option"];
                     }
@@ -51,6 +49,8 @@
                         } else {
                             $action = '<a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
                         }
+                    } else if ($row["reservation_status"] == "Completed") {
+                        $action = '<button type="button" class="btn btn-success" disabled><i class="bi bi-check-circle-fill"></i> Paid</button';
                     } else {
                         $action = "";
                     }

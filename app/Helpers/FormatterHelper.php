@@ -127,4 +127,12 @@ class FormatterHelper
     public static function formatDate($date) {
         return date("F j, Y h:i:s A", strtotime($date));
     }
+
+    public static function cleanName($name) {
+        return trim(ucwords(strtolower($name)));
+    }
+
+    public static function cleanEmail($email){
+        return trim(strtolower($email));
+    }
 }
