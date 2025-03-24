@@ -20,9 +20,9 @@
 # APP
 #--------------------------------------------------------------------
 
-app.baseURL = 'http://localhost/ghmp-customer/public/'
+# app.baseURL = 'http://localhost/ghmp-customer/public/'
 # If you have trouble with `.`, you could also use `_`.
-app_baseURL = 'http://localhost/ghmp-customer/public/'
+# app_baseURL = 'http://localhost/ghmp-customer/public/'
 # app.forceGlobalSecureRequests = false
 # app.CSPEnabled = false
 
@@ -68,4 +68,4 @@ sessionSavePath = 'writable/session'
 
 # logger.threshold = 4
 
-PAYMONGO_WEBHOOK_SECRET = whsk_C7MvzaSKcgRHP7F2gaQrxQmN
+# PAYMONGO_WEBHOOK_SECRET = whsk_C7MvzaSKcgRHP7F2gaQrxQmN

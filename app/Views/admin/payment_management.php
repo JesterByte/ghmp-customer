@@ -5,7 +5,7 @@
 
 <?= $this->section("content") ?>
 
-<div class="text-end">
+<!-- <div class="text-end">
     <div class="btn-group" role="group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-credit-card-fill"></i> Pay
@@ -17,7 +17,7 @@
         <li><a role="button" class="dropdown-item" href="#">Installment: Monthly Payment</a></li>
         </ul>
     </div>
-</div>
+</div> -->
 
 <div class="table-responsive">
     <table class="table" id="table">

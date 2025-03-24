@@ -10,16 +10,16 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link <?= echo_if_route($pageTitle, "Home", "active") ?>" <?= echo_if_route($pageTitle, "Home", 'aria-current="page"') ?> href="home">Home</a>
+            <a class="nav-link <?= echo_if_route($pageTitle, "Home", "active") ?>" <?= echo_if_route($pageTitle, "Home", 'aria-current="page"') ?> href="<?= base_url("home") ?>">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <?= echo_if_route($pageTitle, "Lots & Estates", "active") ?>" <?= echo_if_route($pageTitle, "Lots & Estates", 'aria-current="page"') ?> href="locator">Lots & Estates</a>
+            <a class="nav-link <?= echo_if_route($pageTitle, "Lots & Estates", "active") ?>" <?= echo_if_route($pageTitle, "Lots & Estates", 'aria-current="page"') ?> href="<?= base_url("locator") ?>">Lots & Estates</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <?= echo_if_route($pageTitle, "About", "active") ?>" <?= echo_if_route($pageTitle, "About", 'aria-current="page"') ?> href="about">About</a>
+            <a class="nav-link <?= echo_if_route($pageTitle, "About", "active") ?>" <?= echo_if_route($pageTitle, "About", 'aria-current="page"') ?> href="<?= base_url("about") ?>">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <?= echo_if_route($pageTitle, "Contact", "active") ?>" <?= echo_if_route($pageTitle, "Contact", 'aria-current="page"') ?> href="contact">Contact</a>
+            <a class="nav-link <?= echo_if_route($pageTitle, "Contact", "active") ?>" <?= echo_if_route($pageTitle, "Contact", 'aria-current="page"') ?> href="<?= base_url("contact") ?>">Contact</a>
           </li>
             <!-- <li class="nav-item">
               <a class="nav-link disabled" aria-disabled="true">Disabled</a>
@@ -27,8 +27,8 @@
         </ul>
         <!-- Replacing the search bar with Sign Up and Sign In buttons -->
         <div class="d-flex">
-          <a href="signup" class="btn btn-outline-light me-2 <?= echo_if_route($pageTitle, "Sign Up", "active") ?>" <?= echo_if_route($pageTitle, "Sign Up", 'aria-current="page"') ?>>Sign Up</a>
-          <a href="signin" class="btn btn-outline-light <?= echo_if_route($pageTitle, "Sign In", "active") ?>" <?= echo_if_route($pageTitle, "Sign In", 'aria-current="page"') ?>>Sign In</a>
+          <a href="<?= base_url("signup") ?>" class="btn btn-outline-light me-2 <?= echo_if_route($pageTitle, "Sign Up", "active") ?>" <?= echo_if_route($pageTitle, "Sign Up", 'aria-current="page"') ?>>Sign Up</a>
+          <a href="<?= base_url("signin") ?>" class="btn btn-outline-light <?= echo_if_route($pageTitle, "Sign In", "active") ?>" <?= echo_if_route($pageTitle, "Sign In", 'aria-current="page"') ?>>Sign In</a>
         </div>
       </div>
     </div>

@@ -4,6 +4,10 @@ namespace App\Helpers;
 
 class FormatterHelper
 {
+    public static $checkIcon = '<i class="bi bi-check-lg text-success"></i>';
+    public static $xIcon = '<i class="bi bi-x-lg text-danger"></i>';
+    public static $warningIcon = '<i class="bi bi-exclamation-lg text-warning"></i>';
+
     // Extract parts of a Lot ID
     public static function extractLotIdParts($lotId)
     {

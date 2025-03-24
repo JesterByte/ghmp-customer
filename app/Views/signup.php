@@ -2,7 +2,7 @@
 
 <?= $this->section("content") ?>
 <div class="container mt-5">
-    <h2 class="mb-4"><?= $pageTitle ?></h2>
+    <h2 class="mb-4 text-center"><?= $pageTitle ?></h2>
 
     <form class="needs-validation row" novalidate action="<?= base_url('signup/submit') ?>" method="post" id="signupForm">
         <div class="col-lg-6">

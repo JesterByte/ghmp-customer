@@ -16,6 +16,11 @@ $routes->get("/signin", "SigninController::index");
 $routes->get("/signout", "SignoutController::signout");
 
 $routes->post("/signin/submit", "SigninController::submit");
+$routes->post("/signup/submit", "SignupController::submit");
+
+$routes->get("/ownership_transfer/request", "OwnershipTransferController::index");
+$routes->post("/ownership_transfer/submit", "OwnershipTransferController::submitRequest");
+$routes->post("/ownership_transfer/verify_otp", "OwnershipTransferController::verifyOtp");
 
 $routes->get("/dashboard", "AdminController::index");
 $routes->get("/my_lots_and_estates", "MyLotsAndEstatesController::index");

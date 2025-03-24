@@ -1,0 +1,572 @@
+CRITICAL - 2025-03-24 11:18:18 --> ErrorException: Array to string conversion
+[Method: GET, Route: ownership_transfer/request]
+in APPPATH\Controllers\OwnershipTransferController.php on line 17.
+ 1 APPPATH\Controllers\OwnershipTransferController.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\OwnershipTransferController.php', 17)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-24 11:33:53 --> mysqli_sql_exception: Unknown column 'updated_at' in 'field list' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ow...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ow...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ow...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ow...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\ghmp-customer\system\BaseModel.php(839): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\ghmp-customer\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\ghmp-customer\system\BaseModel.php(750): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\ghmp-customer\app\Controllers\OwnershipTransferController.php(37): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->submitRequest()
+#10 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+#11 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-03-24 11:33:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+[Method: POST, Route: ownership_transfer/submit]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ownership_transfer_requests` (`user_id`, `new_owner_email`, `otp_code`, `otp_expires_at`, `created_at`, `updated_at`) VALUES (:user_id:, :new_owner_email:, :otp_code:, :otp_expires_at:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\OwnershipTransferController.php(37): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->submitRequest()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-24 11:33:53 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ownership_transfer_requests` (`user_id`, `new_owner_email`, `otp_code`, `otp_expires_at`, `created_at`, `updated_at`) VALUES (\'1\', \'ejjose94@gmail.com\', 409425, \'2025-03-24 11:43:53\', \'2025-03-24 11:33:53\', \'2025-03-24 11:33:53\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ownership_transfer_requests` (`user_id`, `new_owner_email`, `otp_code`, `otp_expires_at`, `created_at`, `updated_at`) VALUES (\'1\', \'ejjose94@gmail.com\', 409425, \'2025-03-24 11:43:53\', \'2025-03-24 11:33:53\', \'2025-03-24 11:33:53\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ownership_transfer_requests` (`user_id`, `new_owner_email`, `otp_code`, `otp_expires_at`, `created_at`, `updated_at`) VALUES (:user_id:, :new_owner_email:, :otp_code:, :otp_expires_at:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\OwnershipTransferController.php(37): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->submitRequest()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-24 11:33:53 --> [Caused by] mysqli_sql_exception: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ownership_transfer_requests` (`user_id`, `new_owner_email`, `otp_code`, `otp_expires_at`, `created_at`, `updated_at`) VALUES (\'1\', \'ejjose94@gmail.com\', 409425, \'2025-03-24 11:43:53\', \'2025-03-24 11:33:53\', \'2025-03-24 11:33:53\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ownership_transfer_requests` (`user_id`, `new_owner_email`, `otp_code`, `otp_expires_at`, `created_at`, `updated_at`) VALUES (\'1\', \'ejjose94@gmail.com\', 409425, \'2025-03-24 11:43:53\', \'2025-03-24 11:33:53\', \'2025-03-24 11:33:53\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ownership_transfer_requests` (`user_id`, `new_owner_email`, `otp_code`, `otp_expires_at`, `created_at`, `updated_at`) VALUES (\'1\', \'ejjose94@gmail.com\', 409425, \'2025-03-24 11:43:53\', \'2025-03-24 11:33:53\', \'2025-03-24 11:33:53\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ownership_transfer_requests` (`user_id`, `new_owner_email`, `otp_code`, `otp_expires_at`, `created_at`, `updated_at`) VALUES (:user_id:, :new_owner_email:, :otp_code:, :otp_expires_at:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\OwnershipTransferController.php(37): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->submitRequest()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-24 11:37:44 --> ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()
+[Method: POST, Route: ownership_transfer/submit]
+in APPPATH\Controllers\OwnershipTransferController.php on line 45.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\OwnershipTransferController.php', 45)
+ 2 APPPATH\Controllers\OwnershipTransferController.php(45): mail('ejjose94@gmail.com', 'Ownership Transfer OTP', 'Your OTP Code is: 341138')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->submitRequest()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-24 19:30:58 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\ghmp-customer\system\Email\Email.php:1764
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1764)
+#1 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1764): mail('ejjose94@gmail....', '=?UTF-8?Q?Owner...', 'This is a multi...', 'Date: Mon, 24 M...', '-f ejjose94@gma...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1696): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1591): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\OwnershipTransferController.php(102): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->submitRequest()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2025-03-24 19:30:58 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2025-03-24 19:30:58 --> 
+ERROR - 2025-03-24 19:30:58 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Mon, 24 Mar 2025 19:30:56 +0800
+From: &quot;Green Haven Memorial Park&quot; &lt;ejjose94@gmail.com&gt;
+Return-Path: &lt;ejjose94@gmail.com&gt;
+Reply-To: &lt;ejjose94@gmail.com&gt;
+User-Agent: CodeIgniter
+X-Sender: ejjose94@gmail.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;67e142707d7bf8.09699203@gmail.com&gt;
+Mime-Version: 1.0
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_67e142707d7d85.40460419&quot;
+=?UTF-8?Q?Ownership=20Transfer=20OTP?=
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_67e142707d7d85.40460419
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Green Haven Memorial Park
+
+ Dear Beneficiary,
+ We received a request to transfer account ownership. To proceed, please use
+the OTP code below:
+
+ 695303
+
+ Note: This code will expire in 10 minutes. If you did not request this,
+please ignore this email.
+ Thank you for trusting Green Haven Memorial Park.
+ This is an automated message. Please do not reply to this email.
+
+
+--B_ALT_67e142707d7d85.40460419
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=0A        &lt;div style=3D&#039;font-family: Arial, sans-serif; border: 1px solid =
+#ccc; padding: 20px; max-width: 500px; margin: auto;&#039;&gt;=0A            &lt;h2 st=
+yle=3D&#039;color: #2a9d8f; text-align: center;&#039;&gt;Green Haven Memorial Park&lt;/h2&gt;=
+=0A            &lt;hr style=3D&#039;border: none; border-top: 2px solid #2a9d8f; ma=
+rgin-bottom: 20px;&#039; /&gt;=0A            &lt;p&gt;Dear Beneficiary,&lt;/p&gt;=0A           =
+ &lt;p&gt;We received a request to transfer account ownership. To proceed, please=
+ use the OTP code below:&lt;/p&gt;=0A            &lt;div style=3D&#039;background-color: =
+#f4f4f4; padding: 15px; margin: 10px 0; text-align: center; border-radius: =
+5px; font-size: 18px; font-weight: bold; color: #333;&#039;&gt;=0A                6=
+95303=0A            &lt;/div&gt;=0A            &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This cod=
+e will expire in &lt;strong&gt;10 minutes&lt;/strong&gt;. If you did not request this, =
+please ignore this email.&lt;/p&gt;=0A            &lt;p&gt;Thank you for trusting Green=
+ Haven Memorial Park.&lt;/p&gt;=0A            &lt;p style=3D&#039;color: #888; font-size:=
+ 12px;&#039;&gt;This is an automated message. Please do not reply to this email.&lt;/p=
+&gt;=0A        &lt;/div&gt;
+
+--B_ALT_67e142707d7d85.40460419--</pre>
+ERROR - 2025-03-24 19:31:41 --> Email: sendWithMail throwed ErrorException: mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\ghmp-customer\system\Email\Email.php:1764
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mail(): Failed ...', 'C:\\xampp\\htdocs...', 1764)
+#1 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1764): mail('ejjose94@gmail....', '=?UTF-8?Q?Owner...', 'This is a multi...', 'Date: Mon, 24 M...', '-f ejjose94@gma...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1696): CodeIgniter\Email\Email->sendWithMail()
+#3 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1591): CodeIgniter\Email\Email->spoolEmail()
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\OwnershipTransferController.php(102): CodeIgniter\Email\Email->send()
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->submitRequest()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+ERROR - 2025-03-24 19:31:41 --> Email: Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.
+ERROR - 2025-03-24 19:31:41 --> 
+ERROR - 2025-03-24 19:31:41 --> Unable to send email using PHP mail(). Your server might not be configured to send mail using this method.<br><pre>Date: Mon, 24 Mar 2025 19:31:39 +0800
+From: &quot;Green Haven Memorial Park&quot; &lt;ejjose94@gmail.com&gt;
+Return-Path: &lt;ejjose94@gmail.com&gt;
+Reply-To: &lt;ejjose94@gmail.com&gt;
+User-Agent: CodeIgniter
+X-Sender: ejjose94@gmail.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;67e1429b81e3b1.79691982@gmail.com&gt;
+Mime-Version: 1.0
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_67e1429b81e492.92766292&quot;
+=?UTF-8?Q?Ownership=20Transfer=20OTP?=
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_67e1429b81e492.92766292
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Green Haven Memorial Park
+
+ Dear Beneficiary,
+ We received a request to transfer account ownership. To proceed, please use
+the OTP code below:
+
+ 348884
+
+ Note: This code will expire in 10 minutes. If you did not request this,
+please ignore this email.
+ Thank you for trusting Green Haven Memorial Park.
+ This is an automated message. Please do not reply to this email.
+
+
+--B_ALT_67e1429b81e492.92766292
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=0A        &lt;div style=3D&#039;font-family: Arial, sans-serif; border: 1px solid =
+#ccc; padding: 20px; max-width: 500px; margin: auto;&#039;&gt;=0A            &lt;h2 st=
+yle=3D&#039;color: #2a9d8f; text-align: center;&#039;&gt;Green Haven Memorial Park&lt;/h2&gt;=
+=0A            &lt;hr style=3D&#039;border: none; border-top: 2px solid #2a9d8f; ma=
+rgin-bottom: 20px;&#039; /&gt;=0A            &lt;p&gt;Dear Beneficiary,&lt;/p&gt;=0A           =
+ &lt;p&gt;We received a request to transfer account ownership. To proceed, please=
+ use the OTP code below:&lt;/p&gt;=0A            &lt;div style=3D&#039;background-color: =
+#f4f4f4; padding: 15px; margin: 10px 0; text-align: center; border-radius: =
+5px; font-size: 18px; font-weight: bold; color: #333;&#039;&gt;=0A                3=
+48884=0A            &lt;/div&gt;=0A            &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This cod=
+e will expire in &lt;strong&gt;10 minutes&lt;/strong&gt;. If you did not request this, =
+please ignore this email.&lt;/p&gt;=0A            &lt;p&gt;Thank you for trusting Green=
+ Haven Memorial Park.&lt;/p&gt;=0A            &lt;p style=3D&#039;color: #888; font-size:=
+ 12px;&#039;&gt;This is an automated message. Please do not reply to this email.&lt;/p=
+&gt;=0A        &lt;/div&gt;
+
+--B_ALT_67e1429b81e492.92766292--</pre>
+ERROR - 2025-03-24 19:33:43 --> Email: sendWithSmtp throwed ErrorException: fsockopen(): php_network_getaddresses: getaddrinfo for stmp.gmail.com failed: No such host is known.  in C:\xampp\htdocs\ghmp-customer\system\Email\Email.php:1898
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'fsockopen(): ph...', 'C:\\xampp\\htdocs...', 1898)
+#1 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1898): fsockopen('stmp.gmail.com', 587, NULL, NULL, 5)
+#2 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1811): CodeIgniter\Email\Email->SMTPConnect()
+#3 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1696): CodeIgniter\Email\Email->sendWithSmtp()
+#4 C:\xampp\htdocs\ghmp-customer\system\Email\Email.php(1591): CodeIgniter\Email\Email->spoolEmail()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\OwnershipTransferController.php(102): CodeIgniter\Email\Email->send()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->submitRequest()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-03-24 19:33:43 --> Email: Unable to send email using SMTP. Your server might not be configured to send mail using this method.
+ERROR - 2025-03-24 19:33:43 --> 
+ERROR - 2025-03-24 19:33:43 --> Unable to send email using SMTP. Your server might not be configured to send mail using this method.<br><pre>Date: Mon, 24 Mar 2025 19:33:43 +0800
+From: &quot;Green Haven Memorial Park&quot; &lt;ejjose94@gmail.com&gt;
+Return-Path: &lt;ejjose94@gmail.com&gt;
+To: ejjose94@gmail.com
+Subject: =?UTF-8?Q?Ownership=20Transfer=20OTP?=
+Reply-To: &lt;ejjose94@gmail.com&gt;
+User-Agent: CodeIgniter
+X-Sender: ejjose94@gmail.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;67e1431746c577.22365564@gmail.com&gt;
+Mime-Version: 1.0
+
+
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_67e1431746c699.71850287&quot;
+
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_67e1431746c699.71850287
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Green Haven Memorial Park
+
+ Dear Beneficiary,
+ We received a request to transfer account ownership. To proceed, please use
+the OTP code below:
+
+ 382761
+
+ Note: This code will expire in 10 minutes. If you did not request this,
+please ignore this email.
+ Thank you for trusting Green Haven Memorial Park.
+ This is an automated message. Please do not reply to this email.
+
+
+--B_ALT_67e1431746c699.71850287
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=0A        &lt;div style=3D&#039;font-family: Arial, sans-serif; border: 1px solid =
+#ccc; padding: 20px; max-width: 500px; margin: auto;&#039;&gt;=0A            &lt;h2 st=
+yle=3D&#039;color: #2a9d8f; text-align: center;&#039;&gt;Green Haven Memorial Park&lt;/h2&gt;=
+=0A            &lt;hr style=3D&#039;border: none; border-top: 2px solid #2a9d8f; ma=
+rgin-bottom: 20px;&#039; /&gt;=0A            &lt;p&gt;Dear Beneficiary,&lt;/p&gt;=0A           =
+ &lt;p&gt;We received a request to transfer account ownership. To proceed, please=
+ use the OTP code below:&lt;/p&gt;=0A            &lt;div style=3D&#039;background-color: =
+#f4f4f4; padding: 15px; margin: 10px 0; text-align: center; border-radius: =
+5px; font-size: 18px; font-weight: bold; color: #333;&#039;&gt;=0A                3=
+82761=0A            &lt;/div&gt;=0A            &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This cod=
+e will expire in &lt;strong&gt;10 minutes&lt;/strong&gt;. If you did not request this, =
+please ignore this email.&lt;/p&gt;=0A            &lt;p&gt;Thank you for trusting Green=
+ Haven Memorial Park.&lt;/p&gt;=0A            &lt;p style=3D&#039;color: #888; font-size:=
+ 12px;&#039;&gt;This is an automated message. Please do not reply to this email.&lt;/p=
+&gt;=0A        &lt;/div&gt;
+
+--B_ALT_67e1431746c699.71850287--</pre>
+CRITICAL - 2025-03-24 20:28:32 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+[Method: POST, Route: ownership_transfer/verify_otp]
+in SYSTEMPATH\BaseModel.php on line 1010.
+ 1 SYSTEMPATH\BaseModel.php(1010): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\OwnershipTransferController.php(291): CodeIgniter\Model->update('1', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\OwnershipTransferController->verifyOtp()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\OwnershipTransferController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-03-24 23:52:36 --> mysqli_sql_exception: Unknown column 'receipt_path' in 'field list' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('\n            SE...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\n            SE...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\n            SE...')
+#3 C:\xampp\htdocs\ghmp-customer\app\Models\PaymentModel.php(37): CodeIgniter\Database\BaseConnection->query('\n            SE...')
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\PaymentManagementController.php(22): App\Models\PaymentModel->getAllPayments()
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\PaymentManagementController->index()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentManagementController))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-03-24 23:52:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'receipt_path' in 'field list'
+[Method: GET, Route: payment_management]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\PaymentModel.php(37): CodeIgniter\Database\BaseConnection->query('
+            SELECT \'Cash Sale\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Cash Sale\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            GROUP BY i.lot_id
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, ei.estate_id AS asset_id, eip.payment_amount, eip.payment_status, eip.receipt_path, eip.payment_date
+            FROM estate_installments ei
+            JOIN estate_installment_payments eip ON ei.id = eip.installment_id
+            GROUP BY ei.estate_id
+        ')
+ 2 APPPATH\Controllers\PaymentManagementController.php(22): App\Models\PaymentModel->getAllPayments()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PaymentManagementController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentManagementController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-24 23:52:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'receipt_path' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT \'Cash Sale\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Cash Sale\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            GROUP BY i.lot_id
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, ei.estate_id AS asset_id, eip.payment_amount, eip.payment_status, eip.receipt_path, eip.payment_date
+            FROM estate_installments ei
+            JOIN estate_installment_payments eip ON ei.id = eip.installment_id
+            GROUP BY ei.estate_id
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT \'Cash Sale\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Cash Sale\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            GROUP BY i.lot_id
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, ei.estate_id AS asset_id, eip.payment_amount, eip.payment_status, eip.receipt_path, eip.payment_date
+            FROM estate_installments ei
+            JOIN estate_installment_payments eip ON ei.id = eip.installment_id
+            GROUP BY ei.estate_id
+        ')
+ 3 APPPATH\Models\PaymentModel.php(37): CodeIgniter\Database\BaseConnection->query('
+            SELECT \'Cash Sale\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Cash Sale\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            GROUP BY i.lot_id
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, ei.estate_id AS asset_id, eip.payment_amount, eip.payment_status, eip.receipt_path, eip.payment_date
+            FROM estate_installments ei
+            JOIN estate_installment_payments eip ON ei.id = eip.installment_id
+            GROUP BY ei.estate_id
+        ')
+ 4 APPPATH\Controllers\PaymentManagementController.php(22): App\Models\PaymentModel->getAllPayments()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PaymentManagementController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentManagementController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-24 23:52:36 --> [Caused by] mysqli_sql_exception: Unknown column 'receipt_path' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+            SELECT \'Cash Sale\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Cash Sale\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            GROUP BY i.lot_id
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, ei.estate_id AS asset_id, eip.payment_amount, eip.payment_status, eip.receipt_path, eip.payment_date
+            FROM estate_installments ei
+            JOIN estate_installment_payments eip ON ei.id = eip.installment_id
+            GROUP BY ei.estate_id
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT \'Cash Sale\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Cash Sale\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            GROUP BY i.lot_id
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, ei.estate_id AS asset_id, eip.payment_amount, eip.payment_status, eip.receipt_path, eip.payment_date
+            FROM estate_installments ei
+            JOIN estate_installment_payments eip ON ei.id = eip.installment_id
+            GROUP BY ei.estate_id
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT \'Cash Sale\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Cash Sale\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            GROUP BY i.lot_id
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, ei.estate_id AS asset_id, eip.payment_amount, eip.payment_status, eip.receipt_path, eip.payment_date
+            FROM estate_installments ei
+            JOIN estate_installment_payments eip ON ei.id = eip.installment_id
+            GROUP BY ei.estate_id
+        ')
+ 4 APPPATH\Models\PaymentModel.php(37): CodeIgniter\Database\BaseConnection->query('
+            SELECT \'Cash Sale\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Cash Sale\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_cash_sales
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, lot_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'6 Months\' AS payment_option, estate_id AS asset_id, payment_amount, payment_status, receipt_path, payment_date
+            FROM estate_six_months
+            WHERE payment_status = \'Paid\'
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            GROUP BY i.lot_id
+            UNION ALL
+            SELECT \'Installment\' AS payment_option, ei.estate_id AS asset_id, eip.payment_amount, eip.payment_status, eip.receipt_path, eip.payment_date
+            FROM estate_installments ei
+            JOIN estate_installment_payments eip ON ei.id = eip.installment_id
+            GROUP BY ei.estate_id
+        ')
+ 5 APPPATH\Controllers\PaymentManagementController.php(22): App\Models\PaymentModel->getAllPayments()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PaymentManagementController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentManagementController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
