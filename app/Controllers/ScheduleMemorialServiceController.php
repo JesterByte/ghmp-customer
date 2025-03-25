@@ -16,7 +16,10 @@ class ScheduleMemorialServiceController extends BaseController
             return redirect()->to(base_url("signin")); // Redirect to signin if not logged in
         }
 
-        $data = ["pageTitle" => "Schedule a Memorial Service"];
+        $data = [
+            "pageTitle" => "Schedule a Memorial Service",
+            "session" => $session
+        ];
         return view("admin/schedule_memorial_service", $data);
         // return view('brochure/home');
     }

@@ -42,7 +42,8 @@ class MyLotsAndEstatesController extends BaseController {
 
         $data = [
             "pageTitle" => "My Lots & Estates",
-            "table" => $table 
+            "table" => $table ,
+            "session" => $session
         ];
         return view("admin/my_lots_and_estates", $data);
     }

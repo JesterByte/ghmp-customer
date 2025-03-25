@@ -25,7 +25,8 @@ class MyMemorialServicesController extends BaseController
 
         $data = [
             "pageTitle" => "My Memorial Services",
-            "burialReservations" => $burialReservations
+            "burialReservations" => $burialReservations,
+            "session" => $session
         ];
         return view("admin/my_memorial_services", $data);
         // return view('brochure/home');

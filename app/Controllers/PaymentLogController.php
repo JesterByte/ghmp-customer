@@ -8,7 +8,7 @@ use App\Models\InstallmentModel;
 use App\Models\PaymentModel;
 use App\Models\SixMonthsModel;
 
-class PaymentManagementController extends BaseController
+class PaymentLogController extends BaseController
 {
     public function index()
     {
@@ -22,11 +22,12 @@ class PaymentManagementController extends BaseController
         $payments = $paymentModel->getAllPayments();
 
         $data = [
-            "pageTitle" => "Payment Management",
-            "payments" => $payments
+            "pageTitle" => "Payment Log",
+            "payments" => $payments,
+            "session" => $session
         ];
 
-        return view("admin/payment_management", $data);
+        return view("admin/payment_log", $data);
     }
 
     public function getCashSales()

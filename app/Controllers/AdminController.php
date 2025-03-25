@@ -14,7 +14,10 @@ class AdminController extends BaseController
 
         $userFullName = $session->get("user_full_name");
 
-        $data = ["pageTitle" => "Dashboard"];
+        $data = [
+            "pageTitle" => "Dashboard",
+            "session" => $session
+        ];
         return view("admin/dashboard", $data);
     }
 }

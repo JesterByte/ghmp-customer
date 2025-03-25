@@ -19,6 +19,7 @@ class ReserveEstateController extends BaseController
 
         $data = [
             "pageTitle" => "Reserve an Estate",
+            "session" => $session
         ];
 
 

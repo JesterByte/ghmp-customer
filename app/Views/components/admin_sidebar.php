@@ -43,9 +43,9 @@
                 </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Payment Management", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "Payment Management", 'aria-current="page"') ?> href="<?= base_url("payment_management") ?>">
-                <i class="bi bi-credit-card<?= echo_if_route($pageTitle, "Payment Management", "-fill") ?>"></i>                
-                Payment Management
+              <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Payment Log", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "Payment Log", 'aria-current="page"') ?> href="<?= base_url("payment_log") ?>">
+                <i class="bi bi-credit-card<?= echo_if_route($pageTitle, "Payment Log", "-fill") ?>"></i>                
+                Payment Log
               </a>
             </li>
             <!-- <li class="nav-item">

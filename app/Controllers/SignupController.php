@@ -3,16 +3,21 @@
 namespace App\Controllers;
 
 use App\Helpers\FormatterHelper;
+use App\Models\AdminNotificationModel;
 use App\Models\BeneficiaryModel;
 use App\Models\CustomerModel;
+use App\Models\NotificationModel;
 
-class SignupController extends BaseController {
-    public function index() {
+class SignupController extends BaseController
+{
+    public function index()
+    {
         $data = ["pageTitle" => "Sign Up"];
         return view("signup", $data);
     }
 
-    public function submit() {
+    public function submit()
+    {
 
         $session = session();
         $firstName = FormatterHelper::cleanName($this->request->getPost("first_name"));
@@ -68,6 +73,19 @@ class SignupController extends BaseController {
 
         $beneficiaryModel = new BeneficiaryModel();
         $beneficiaryModel->insert($beneficiaryData);
+
+        // Insert notification for the customer
+        $adminNotificationModel = new AdminNotificationModel();
+        $notificationMessage = "A new customer, {$firstName} {$lastName}, has registered.";
+        $notificationData = [
+            "admin_id" => 1,
+            "message" => $notificationMessage,
+            "link" => "customers",
+            "is_read" => 0,
+            "created_at" => date("Y-m-d H:i:s")
+        ];
+
+        $adminNotificationModel->insert($notificationData);
 
         $session->setFlashdata("flash_message", [
             "icon" => '<i class="bi bi-check-lg text-success"></i>',

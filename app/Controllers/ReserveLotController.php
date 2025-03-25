@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\FormatterHelper;
+use App\Models\AdminNotificationModel;
 use App\Models\LotModel;
 use App\Models\LotReservationModel;
 
@@ -16,7 +17,10 @@ class ReserveLotController extends BaseController
             return redirect()->to(base_url("signin")); // Redirect to signin if not logged in
         }
 
-        $data = ["pageTitle" => "Reserve a Lot"];
+        $data = [
+            "pageTitle" => "Reserve a Lot",
+            "session" => $session
+        ];
         return view("admin/reserve_lot", $data);
     }
 
@@ -57,6 +61,18 @@ class ReserveLotController extends BaseController
         ];
         $lotReservationModel = new LotReservationModel();
         $lotReservationModel->save($reservationData);
+
+        // Insert notification for the admin about the new reservation
+        $adminNotificationModel = new AdminNotificationModel();
+        $notificationMessage = "A new lot reservation has been made for Lot ID: {$lotId}.";
+        $notificationData = [
+            'admin_id' => null,  // Null for general admin notification
+            'message' => $notificationMessage,
+            'link' => 'lot-reservations',  // Link to the reservations page
+            'is_read' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        $adminNotificationModel->insert($notificationData);
 
         return $this->response->setJSON(['success' => true, 'message' => 'Lot reserved successfully']);
     }

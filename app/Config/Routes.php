@@ -31,7 +31,7 @@ $routes->get("/reserve_estate", "ReserveEstateController::index");
 
 $routes->post("/reserve/submitMemorialService", "ScheduleMemorialServiceController::submitMemorialService");
 
-$routes->get("/payment_management", "PaymentManagementController::index");
+$routes->get("/payment_log", "PaymentLogController::index");
 
 $routes->post("reserve/submitReservation", "ReserveLotController::submitReservation");
 $routes->post("reserve/submitReservationEstate", "ReserveEstateController::submitReservation");
@@ -51,3 +51,7 @@ $routes->post("/api/pay_cash_sale", "PaymentManagementController::payCashSale");
 $routes->post("/api/pay_six_months", "PaymentManagementController::paySixMonths");
 $routes->post("/api/webhook", "WebhookController::index");
 $routes->post("/api/webhook_burial", "BurialWebhookController::index");
+
+$routes->get("notification/fetchNotifications/(:any)", "NotificationController::fetchNotifications/$1");
+$routes->get("notification/markAsRead/(:num)", "NotificationController::markAsRead/$1");
+$routes->get("notification/markAllAsRead/(:num)", "NotificationController::markAllAsRead/$1");
