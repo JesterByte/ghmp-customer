@@ -15,6 +15,7 @@
         <script src="<?= base_url("js/dataTables.responsive.js") ?>"></script>
         <script src="<?= base_url("js/responsive.bootstrap5.js") ?>"></script>
         <script src="<?= base_url("js/bootstrap-toast.js") ?>"></script>
+        <script src="<?= base_url("js/bootstrap-tooltip.js") ?>"></script>
 
         <?php
         if ($pageTitle == "My Lots & Estates") {

@@ -102,6 +102,10 @@ abstract class BaseController extends Controller
                         'amount' => $paymentAmount,
                         'description' => 'Payment for ' . $formatteddAssetId,
                         'remarks' => $paymentOption . ' Reservation',
+                        "redirect" => [
+                            "success" => base_url("my_lots_and_estates"),
+                            "failed" => base_url("my_lots_and_estates"),
+                        ]
                     ]
                 ]
             ]),
@@ -189,6 +193,10 @@ abstract class BaseController extends Controller
                         'amount' => $paymentAmount,
                         'description' => 'Payment for Burial in ' . $formatteddAssetId,
                         'remarks' => $burialType . ' Burial',
+                        "redirect" => [
+                            "success" => base_url("my_memorial_services"),
+                            "failed" => base_url("my_memorial_services"),
+                        ]
                     ]
                 ]
             ]),

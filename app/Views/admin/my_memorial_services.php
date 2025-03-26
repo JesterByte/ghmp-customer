@@ -32,7 +32,8 @@
                     $paymentAmount = FormatterHelper::formatPrice($row["payment_amount"]);
 
                     if ($row["status"] == "Approved" && $row["payment_status"] == "Pending") {
-                        $action = '<a role="button" target="_blank" class="btn btn-primary" href="' . $row["payment_link"] . '"><i class="bi bi-credit-card-fill"></i> Pay ' . $paymentAmount . '</a>';
+                        // $action = '<a role="button" target="_blank" class="btn btn-primary" href="' . $row["payment_link"] . '"><i class="bi bi-credit-card-fill"></i> Pay ' . $paymentAmount . '</a>';
+                        $action = '<a role="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click the button below to securely complete your payment through PayMongo." href="' . $row["payment_link"] . '"><i class="bi bi-credit-card-fill"></i> Pay ' . $paymentAmount . '</a>';
                     } else if ($row["status"] == "Approved" && $row["payment_status"] == "Paid") {
                         $action = '<button type="button" class="btn btn-success" disabled><i class="bi bi-check-circle-fill"></i> Paid</button';
                     } else {
