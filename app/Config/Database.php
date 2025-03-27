@@ -53,7 +53,7 @@ class Database extends Config
     //     ],
     // ];
 
-    // Hostinger Database Configuration
+    // // Hostinger Database Configuration
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',

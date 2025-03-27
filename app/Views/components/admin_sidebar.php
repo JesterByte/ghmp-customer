@@ -60,7 +60,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url("signout") ?>">
+          <a class="nav-link d-flex align-items-center gap-2" href="#" data-bs-toggle="modal" data-bs-target="#confirmSignout">
             <i class="bi bi-door-closed"></i>
             Sign out
           </a>

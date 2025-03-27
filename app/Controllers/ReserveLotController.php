@@ -62,9 +62,11 @@ class ReserveLotController extends BaseController
         $lotReservationModel = new LotReservationModel();
         $lotReservationModel->save($reservationData);
 
+        $formattedLotId = FormatterHelper::formatLotId($lotId);
+
         // Insert notification for the admin about the new reservation
         $adminNotificationModel = new AdminNotificationModel();
-        $notificationMessage = "A new lot reservation has been made for Lot ID: {$lotId}.";
+        $notificationMessage = "A new lot reservation has been made for Lot ID: {$formattedLotId}.";
         $notificationData = [
             'admin_id' => null,  // Null for general admin notification
             'message' => $notificationMessage,

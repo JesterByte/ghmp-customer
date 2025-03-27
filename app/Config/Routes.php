@@ -34,6 +34,10 @@ $routes->post("/reserve/submitMemorialService", "ScheduleMemorialServiceControll
 $routes->get("/payment_log", "PaymentLogController::index");
 
 $routes->get("/settings", "SettingsController::index");
+$routes->post("/settings/update_profile", "SettingsController::updateProfile");
+$routes->post("/settings/change_password", "SettingsController::changePassword");
+$routes->post("/settings/remove_beneficiary", "SettingsController::removeBeneficiary");
+$routes->post("/settings/add_beneficiary", "SettingsController::addBeneficiary");
 
 $routes->post("reserve/submitReservation", "ReserveLotController::submitReservation");
 $routes->post("reserve/submitReservationEstate", "ReserveEstateController::submitReservation");

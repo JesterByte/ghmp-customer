@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Helpers\FormatterHelper;
 use App\Models\AssetModel;
 use App\Models\BurialReservationsModel;
+use App\Models\AdminNotificationModel;
 
 class ScheduleMemorialServiceController extends BaseController
 {
@@ -87,6 +88,30 @@ class ScheduleMemorialServiceController extends BaseController
                 $paymentAmount,
                 $data["date_time"]
             );
+
+            $assetType = FormatterHelper::determineIdType($data["asset_id"]);
+
+            switch ($assetType) {
+                case "lot":
+                    $formattedAssetId = FormatterHelper::formatLotId($data["asset_id"]);
+                    break;
+                case "estate":
+                    $formattedAssetId = FormatterHelper::formatEstateId($data["asset_id"]);
+                    break;
+            }
+
+            // Insert notification for the admin about the new reservation
+            $adminNotificationModel = new AdminNotificationModel();
+            $notificationMessage = "A new burial reservation has been made for Asset ID: {$formattedAssetId}.";
+            $notificationData = [
+                'admin_id' => null,  // Null for general admin notification
+                'message' => $notificationMessage,
+                'link' => 'burial-reservations',  // Link to the reservations page
+                'is_read' => 0,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+            $adminNotificationModel->insert($notificationData);
+
 
             // Return response based on insertion result
             return $this->response->setJSON([

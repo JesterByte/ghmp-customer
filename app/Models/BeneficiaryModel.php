@@ -4,7 +4,8 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class BeneficiaryModel extends Model {
+class BeneficiaryModel extends Model
+{
     protected $table = "beneficiaries";
     protected $primaryKey = "id";
 
@@ -12,13 +13,21 @@ class BeneficiaryModel extends Model {
 
     protected $useTimestamps = true;
 
-    public function mainOwnerStatus($beneficiaryEmail) {
+    public function mainOwnerStatus($beneficiaryEmail)
+    {
         $result = $this->select("beneficiaries.status, customers.*")
-                    ->join("customers", "beneficiaries.customer_id = customers.id")
-                    ->where("beneficiaries.email_address", $beneficiaryEmail)
-                    ->get()
-                    ->getRowArray();
+            ->join("customers", "beneficiaries.customer_id = customers.id")
+            ->where("beneficiaries.email_address", $beneficiaryEmail)
+            ->get()
+            ->getRowArray();
 
         return $result ? $result["status"] : null;
+    }
+
+    public function countBeneficiariesByCustomerId($customerId)
+    {
+        return $this->where("customer_id", $customerId)
+            ->where("status", "Inactive")
+            ->countAllResults();
     }
 }

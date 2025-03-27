@@ -4,11 +4,15 @@ namespace App\Controllers;
 
 use App\Helpers\FormatterHelper;
 use CodeIgniter\RESTful\ResourceController;
+use App\Models\AdminNotificationModel;
+use App\Models\NotificationModel;
 
 class WebhookController extends ResourceController
 {
     public function index()
     {
+        $session = session();
+
         $paymongo_secret = "whsk_C7MvzaSKcgRHP7F2gaQrxQmN"; // Use .env for security
 
         $rawPayload = file_get_contents("php://input");
@@ -130,6 +134,17 @@ class WebhookController extends ResourceController
                 return $this->fail('Invalid payment option.');
         }
 
+        $assetIdType = FormatterHelper::determineIdType($reservation->asset_id);
+
+        switch ($assetIdType) {
+            case "lot":
+                $formattedAssetId = FormatterHelper::formatLotId($reservation->asset_id);
+                break;
+            case "estate":
+                $formattedAssetId = FormatterHelper::formatEstateId($reservation->asset_id);
+                break;
+        }
+
         if ($status === "paid") {
             if (str_contains($reservation->payment_option, "Installment")) {
                 log_message('error', "Payment is paid and is Installment");
@@ -161,6 +176,30 @@ class WebhookController extends ResourceController
                             "payment_status" => "Ongoing"
                         ])
                         ->update();
+
+                    // Insert notification for the admin about the new reservation
+                    $adminNotificationModel = new AdminNotificationModel();
+                    $notificationMessage = "A down payment has been made for Asset ID: {$formattedAssetId}.";
+                    $notificationData = [
+                        'admin_id' => null,  // Null for general admin notification
+                        'message' => $notificationMessage,
+                        'link' => 'installments',  // Link to the reservations page
+                        'is_read' => 0,
+                        'created_at' => date('Y-m-d H:i:s')
+                    ];
+                    $adminNotificationModel->insert($notificationData);
+
+                    // Insert notification for the admin about the new reservation
+                    $notificationModel = new NotificationModel();
+                    $notificationMessage = "Your down payment for Asset ID: {$formattedAssetId} has been successfully received.";
+                    $notificationData = [
+                        'admin_id' => null,  // Null for general admin notification
+                        'message' => $notificationMessage,
+                        'link' => 'installments',  // Link to the reservations page
+                        'is_read' => 0,
+                        'created_at' => date('Y-m-d H:i:s')
+                    ];
+                    $notificationModel->insert($notificationData);
                 } else if ($installment->reference_number === $referenceNumber) {
                     // Update Installment Status
                     $db->table($paymentOptionTable)
@@ -177,12 +216,61 @@ class WebhookController extends ResourceController
                     ];
 
                     $db->table($installmentPaymentsTable)->insert($data);
+
+                    // Insert notification for the admin about the new reservation
+                    $adminNotificationModel = new AdminNotificationModel();
+                    $notificationMessage = "An installment payment has been made for Asset ID: {$formattedAssetId}.";
+                    $notificationData = [
+                        'admin_id' => null,  // Null for general admin notification
+                        'message' => $notificationMessage,
+                        'link' => 'installments',  // Link to the reservations page
+                        'is_read' => 0,
+                        'created_at' => date('Y-m-d H:i:s')
+                    ];
+                    $adminNotificationModel->insert($notificationData);
+
+                    // Insert notification for the admin about the new reservation
+                    $notificationModel = new NotificationModel();
+                    $notificationMessage = "Your installment payment for Asset ID: {$formattedAssetId} has been successfully received.";
+                    $notificationData = [
+                        'admin_id' => null,  // Null for general admin notification
+                        'message' => $notificationMessage,
+                        'link' => 'payment_log',  // Link to the reservations page
+                        'is_read' => 0,
+                        'created_at' => date('Y-m-d H:i:s')
+                    ];
+                    $notificationModel->insert($notificationData);
                     $isCompleteInstallment = $this->isCompleteInstallment($installment->id, $installment->asset_id);
 
                     switch ($isCompleteInstallment) {
                         case true:
                             $this->assignAssetOwnership($reservation->reservee_id, $reservation->asset_id);
                             $this->completeInstallment($installment->id, $installment->asset_id);
+
+                            // Insert notification for the admin about the new reservation
+                            $adminNotificationModel = new AdminNotificationModel();
+                            $notificationMessage = "{$session->get("user_full_name")} has completed the installment for Asset ID: {$formattedAssetId}.";
+                            $notificationData = [
+                                'admin_id' => null,  // Null for general admin notification
+                                'message' => $notificationMessage,
+                                'link' => 'fully-paids',  // Link to the reservations page
+                                'is_read' => 0,
+                                'created_at' => date('Y-m-d H:i:s')
+                            ];
+                            $adminNotificationModel->insert($notificationData);
+
+                            // Insert notification for the admin about the new reservation
+                            $notificationModel = new NotificationModel();
+                            $notificationMessage = "You have successfully completed the installment for Asset ID: {$formattedAssetId}, congratulations!";
+                            $notificationData = [
+                                'admin_id' => null,  // Null for general admin notification
+                                'message' => $notificationMessage,
+                                'link' => 'my_lots_and_estates',  // Link to the reservations page
+                                'is_read' => 0,
+                                'created_at' => date('Y-m-d H:i:s')
+                            ];
+                            $notificationModel->insert($notificationData);
+
                             return $this->respond(["message" => "Payment successful, reservation completed."]);
                         case false:
                             return $this->respond(["message" => "Payment successful, reservation updated."]);
@@ -198,10 +286,35 @@ class WebhookController extends ResourceController
                 // Update Payment Status
                 $db->table($paymentOptionTable)
                     ->where("{$reservation->asset_type}_id", $reservation->asset_id)
+                    ->where("reservation_id", $reservation->id)
                     ->set(["payment_status" => "Paid", "payment_date" => date("Y-m-d H:i:s")])
                     ->update();
 
                 $this->assignAssetOwnership($reservation->reservee_id, $reservation->asset_id);
+
+                // Insert notification for the admin about the new reservation
+                $adminNotificationModel = new AdminNotificationModel();
+                $notificationMessage = "{$session->get("user_full_name")} has completed the {$reservation->payment_option} payment for Asset ID: {$formattedAssetId}.";
+                $notificationData = [
+                    'admin_id' => null,  // Null for general admin notification
+                    'message' => $notificationMessage,
+                    'link' => 'fully-paids',  // Link to the reservations page
+                    'is_read' => 0,
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+                $adminNotificationModel->insert($notificationData);
+
+                // Insert notification for the admin about the new reservation
+                $notificationModel = new NotificationModel();
+                $notificationMessage = "You have successfully completed the {$reservation->payment_option} payment for Asset ID: {$formattedAssetId}, congratulations!";
+                $notificationData = [
+                    'admin_id' => null,  // Null for general admin notification
+                    'message' => $notificationMessage,
+                    'link' => 'my_lots_and_estates',  // Link to the reservations page
+                    'is_read' => 0,
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+                $notificationModel->insert($notificationData);
             }
 
             log_message('info', "Reservation and Payment updated successfully for Reference Number: $referenceNumber");

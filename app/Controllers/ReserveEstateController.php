@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Helpers\FormatterHelper;
 use App\Models\EstateModel;
 use App\Models\EstateReservationModel;
-use App\Models\PricingModel;
+use App\Models\AdminNotificationModel;
 
 class ReserveEstateController extends BaseController
 {
@@ -75,6 +75,19 @@ class ReserveEstateController extends BaseController
         ];
         $estateReservationModel = new EstateReservationModel();
         $estateReservationModel->save($reservationData);
+
+        $formattedEstateId = FormatterHelper::formatEstateId($estateId);
+        // Insert notification for the admin about the new reservation
+        $adminNotificationModel = new AdminNotificationModel();
+        $notificationMessage = "A new estate reservation has been made for Estate ID: {$formattedEstateId}.";
+        $notificationData = [
+            'admin_id' => null,  // Null for general admin notification
+            'message' => $notificationMessage,
+            'link' => 'estate-reservations',  // Link to the reservations page
+            'is_read' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        $adminNotificationModel->insert($notificationData);
 
         return $this->response->setJSON(['success' => true, 'message' => 'Estate reserved successfully']);
     }

@@ -326,7 +326,7 @@ class OwnershipTransferController extends BaseController
         $session->setFlashdata("flash_message", [
             "icon" => FormatterHelper::$checkIcon,
             "title" => "Ownership Transfer Successful",
-            "message" => "You have successfully claimed the ownership of the main account!",
+            "message" => "You have successfully claimed the ownership of the main account! Please check your email for the temporary password.",
         ]);
 
         return redirect()->to(base_url("signin"));

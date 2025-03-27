@@ -27,10 +27,16 @@ class SigninController extends BaseController
         }
 
         $customerModel = new CustomerModel();
-        $user = $customerModel->where("email_address", $email)->first();
+        // $user = $customerModel->where("email_address", $email)->first();
+        $user = $customerModel->where("email_address", $email)
+            ->where("status", "Active")
+            ->where("active_beneficiary IS NULL", null, false)
+            ->first();
 
         $beneficiaryModel = new BeneficiaryModel();
-        $beneficiary = $beneficiaryModel->where("email_address", $email)->first();
+        $beneficiary = $beneficiaryModel->where("email_address", $email)
+            ->where("status", "Active")
+            ->first();
 
         if ($user) {
             if (password_verify($password, $user["password_hashed"]) || $password == $user["password_hashed"]) {
@@ -43,7 +49,8 @@ class SigninController extends BaseController
                     "user_id" => $user["id"],
                     "user_full_name" => $userFullName,
                     "email" => $user["email_address"],
-                    "isLoggedIn" => true
+                    "isLoggedIn" => true,
+                    "user_type" => "customer",
                 ]);
 
                 $session->setFlashdata("flash_message", [
@@ -70,7 +77,9 @@ class SigninController extends BaseController
                     "user_id" => $customer["id"],
                     "user_full_name" => $userFullName,
                     "email" => $beneficiary["email_address"],
-                    "isLoggedIn" => true
+                    "isLoggedIn" => true,
+                    "user_type" => "beneficiary",
+                    "beneficiary_id" => $beneficiary["id"],
                 ]);
 
                 $session->setFlashdata("flash_message", [

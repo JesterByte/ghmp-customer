@@ -8,6 +8,8 @@
         <script src="<?= BASE_URL . "js/responsive.bootstrap5.js" ?>"></script>
         <script src="<?= BASE_URL . "/js/bootstrap-toast.js" ?>"></script> -->
 
+        <?= $this->include("modals/confirm_sign_out") ?>
+
         <script src="<?= base_url("js/jquery.js") ?>"></script>
         <script src="<?= base_url("js/bootstrap.bundle.min.js") ?>"></script>
         <script src="<?= base_url("js/dataTables.js") ?>"></script>
