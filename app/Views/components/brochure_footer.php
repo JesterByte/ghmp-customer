@@ -1,4 +1,4 @@
-<?php if ($pageTitle == "Home" || $pageTitle == "Sign Up"): ?>
+<?php if ($pageTitle == "Home"): ?>
   <footer class="container">
     <p class="float-end"><a href="#" class="btn btn-primary rounded-circle"><i class="bi bi-arrow-up"></i></a></p>
     <p>&copy; 2017–2024 Green Haven Memorial Park &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>

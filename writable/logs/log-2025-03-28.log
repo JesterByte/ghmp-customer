@@ -1,0 +1,53 @@
+CRITICAL - 2025-03-28 23:11:39 --> ArgumentCountError: Too few arguments to function App\Models\PaymentModel::getAllPayments(), 0 passed in C:\xampp\htdocs\ghmp-customer\app\Controllers\PaymentLogController.php on line 22 and exactly 1 expected
+[Method: GET, Route: payment_log]
+in APPPATH\Models\PaymentModel.php on line 8.
+ 1 APPPATH\Controllers\PaymentLogController.php(22): App\Models\PaymentModel->getAllPayments()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PaymentLogController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentLogController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-28 23:14:10 --> ArgumentCountError: Too few arguments to function App\Models\PaymentModel::getAllPayments(), 0 passed in C:\xampp\htdocs\ghmp-customer\app\Controllers\PaymentLogController.php on line 22 and exactly 1 expected
+[Method: GET, Route: payment_log]
+in APPPATH\Models\PaymentModel.php on line 9.
+ 1 APPPATH\Controllers\PaymentLogController.php(22): App\Models\PaymentModel->getAllPayments()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PaymentLogController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentLogController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-28 23:14:10 --> ArgumentCountError: Too few arguments to function App\Models\PaymentModel::getAllPayments(), 0 passed in C:\xampp\htdocs\ghmp-customer\app\Controllers\PaymentLogController.php on line 22 and exactly 1 expected
+[Method: GET, Route: payment_log]
+in APPPATH\Models\PaymentModel.php on line 9.
+ 1 APPPATH\Controllers\PaymentLogController.php(22): App\Models\PaymentModel->getAllPayments()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PaymentLogController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentLogController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-03-28 23:15:51 --> ErrorException: Undefined variable $session
+[Method: GET, Route: select_payment_option/30290ecd4bbf7a07fad46669ca61c2d1c60b34e596559ee019fda90a814aa1572b270c3df5880790efecddc950530e4b5e4ed7649b7ef3dfa1c5244c7aaa1c2a92c7039f93f320de71526e98d660e3473adb57/a6142296ef032107efdb4b3b1a2fe2e1c41de8197df959819ea1199bcfddbd1ee73e083bfab5e5768e03940ea97996f042416fd9d305823c736e09f6bee1eab3e54711e2d2e88b3c17050a9bbb0649937a0a98fd492d/d7bf06edb3d0763e9a884b0f81dc05a29fd79f9f71e473a54ce8aba912b3c21f5cf3503cf5581bc6b782505f4fb4b59051ad52b04eb9e110a80e9fb710e862b9c8c930045d40270f9bd717fd14faf56ece0a543880ae79]
+in APPPATH\Views\components\admin_navbar.php on line 46.
+ 1 APPPATH\Views\components\admin_navbar.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $session', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\admin_navbar.php', 46)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\admin_navbar.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/admin_navbar', null, true)
+ 5 APPPATH\Views\components\admin_header.php(6): CodeIgniter\View\View->include('components/admin_navbar')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\admin_header.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/admin_header', null, true)
+ 9 APPPATH\Views\layouts\admin.php(1): CodeIgniter\View\View->include('components/admin_header')
+10 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\layouts\\admin.php')
+11 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+12 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('layouts/admin', [], true)
+13 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/payment_option', [], true)
+14 APPPATH\Controllers\MyLotsAndEstatesController.php(89): view('admin/payment_option', [...])
+15 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->selectPaymentOption('30290ecd4bbf7a07fad46669ca61c2d1c60b34e596559ee019fda90a814aa1572b270c3df5880790efecddc950530e4b5e4ed7649b7ef3dfa1c5244c7aaa1c2a92c7039f93f320de71526e98d660e3473adb57', 'a6142296ef032107efdb4b3b1a2fe2e1c41de8197df959819ea1199bcfddbd1ee73e083bfab5e5768e03940ea97996f042416fd9d305823c736e09f6bee1eab3e54711e2d2e88b3c17050a9bbb0649937a0a98fd492d', 'd7bf06edb3d0763e9a884b0f81dc05a29fd79f9f71e473a54ce8aba912b3c21f5cf3503cf5581bc6b782505f4fb4b59051ad52b04eb9e110a80e9fb710e862b9c8c930045d40270f9bd717fd14faf56ece0a543880ae79')
+16 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+17 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+18 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+19 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+20 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

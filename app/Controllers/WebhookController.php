@@ -57,29 +57,22 @@ class WebhookController extends ResourceController
         $data = json_decode($rawPayload, true);
         log_message("error", "Webhook Received: " . print_r($data, true));
 
-        if (!isset($data["data"]["attributes"]["data"]["attributes"]["status"])) {
-            log_message('error', 'Missing status in webhook payload.');
-            return $this->fail("Missing status.");
-        }
-
         $status = $data["data"]["attributes"]["data"]["attributes"]["status"];
-
-        if (!isset($data["data"]["attributes"]["data"]["attributes"]["reference_number"])) {
-            log_message('error', 'Reference number not found in webhook payload.');
-            return $this->fail("Missing reference number.");
-        }
-
-        $referenceNumber = $data["data"]["attributes"]["data"]["attributes"]["reference_number"];
 
         if (!$status) {
             log_message('error', 'Missing status in webhook payload.');
             return $this->fail("Missing status.");
         }
 
+        $referenceNumber = $data["data"]["attributes"]["data"]["attributes"]["reference_number"] ??
+            $data["data"]["attributes"]["data"]["attributes"]["external_reference_number"] ??
+            $data["data"]["attributes"]["data"]["attributes"]["metadata"]["pm_reference_number"] ?? null;
+
         if (!$referenceNumber) {
             log_message('error', 'Reference number not found in webhook payload.');
             return $this->fail('Missing reference number.');
         }
+
 
         // Connect to Database
         $db = \Config\Database::connect();

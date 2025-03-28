@@ -49,6 +49,8 @@ class MyLotsAndEstatesController extends BaseController {
     }
 
     public function selectPaymentOption($reservationId, $assetId, $assetType) {
+        $session = session();
+
         $decryptedReservationId = $this->encrypter->decrypt(hex2bin($reservationId));
         $decryptedAssetId = $this->encrypter->decrypt(hex2bin($assetId));
         $decryptedAssetType = $this->encrypter->decrypt(hex2bin($assetType));
@@ -84,7 +86,9 @@ class MyLotsAndEstatesController extends BaseController {
             "encryptedAssetType" => $assetType,
             "phase" => $phase,
             "lotType" => $lotType,
-            "estateType" => $estateType
+            "estateType" => $estateType,
+
+            "session" => $session
         ];
         return view("admin/payment_option", $data);
     }

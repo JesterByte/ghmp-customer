@@ -19,7 +19,7 @@ class PaymentLogController extends BaseController
         }
 
         $paymentModel = new PaymentModel();
-        $payments = $paymentModel->getAllPayments();
+        $payments = $paymentModel->getAllPayments($session->get("user_id"));
 
         $data = [
             "pageTitle" => "Payment Log",

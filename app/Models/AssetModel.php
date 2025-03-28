@@ -89,7 +89,8 @@ class AssetModel extends Model
             ->where("owner_id", $userId)
             ->where("owner_id IS NOT NULL", null, false)
             ->where("status", "Sold")
-            ->where("owner_id IS NOT NULL", null, false);
+            ->where("owner_id IS NOT NULL", null, false)
+            ->where("NOT EXISTS (SELECT 1 FROM burial_reservations WHERE asset_id = lot_id AND status != 'Cancelled')", null, false);
 
         $builder2 = $this->db->table("estates")
             ->select("
