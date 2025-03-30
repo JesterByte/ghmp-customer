@@ -9,6 +9,8 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get("/", "Home::index");
 $routes->get("/home", "Home::index");
 $routes->get("/locator", "Home::locator");
+$routes->get("/locator/fetch_lots", "Home::fetchLots");
+
 $routes->get("/about", "Home::about");
 $routes->get("/contact", "Home::contact");
 $routes->get("/signup", "SignupController::index");

@@ -62,7 +62,9 @@
             <div class="form-floating mb-3">
                 <input type="password" name="password" required placeholder="Password" id="password" class="form-control">
                 <label for="password">Password</label>
-                <small class="form-text text-muted">Create a strong password with at least 8 characters, including numbers and special characters.</small>
+                <small class="form-text text-muted">
+                    Your password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*#?&).
+                </small>
                 <div class="invalid-feedback">Password must be at least 8 characters long and include a number and a special character.</div>
             </div>
 
@@ -89,6 +91,12 @@
                 </select>
                 <label for="beneficiaryRelationship">Relationship to Owner</label>
                 <div class="invalid-feedback">Please select a relationship.</div>
+            </div>
+
+            <!-- Hidden input field for "Other" -->
+            <div class="form-floating mb-3" id="otherRelationshipContainer" style="display: none;">
+                <input type="text" name="beneficiary_other_relationship" placeholder="Specify Relationship" id="beneficiaryOtherRelationship" class="form-control">
+                <label for="beneficiaryOtherRelationship">Specify Relationship</label>
             </div>
 
             <div class="form-floating mb-3">
@@ -146,6 +154,20 @@
 
 <!-- Add jQuery and custom validation script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#beneficiaryRelationship").change(function() {
+            if ($(this).val() === "Other") {
+                $("#otherRelationshipContainer").show();
+                $("#beneficiaryOtherRelationship").attr("required", true);
+            } else {
+                $("#otherRelationshipContainer").hide();
+                $("#beneficiaryOtherRelationship").removeAttr("required");
+            }
+        });
+    });
+</script>
 <script>
     $(document).ready(function() {
         // Real-time validation for email fields
@@ -156,7 +178,7 @@
 
         // Real-time validation for Philippine mobile number
         function validateContactNumber(contactNumber) {
-            const regex = /^09\d{9}$/; // Philippine mobile numbers start with 09 and are 11 digits long
+            const regex = /^(09\d{9}|\+639\d{9})$/;
             return regex.test(contactNumber);
         }
 

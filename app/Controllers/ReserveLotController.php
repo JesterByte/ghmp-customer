@@ -70,7 +70,7 @@ class ReserveLotController extends BaseController
         $notificationData = [
             'admin_id' => null,  // Null for general admin notification
             'message' => $notificationMessage,
-            'link' => 'lot-reservations',  // Link to the reservations page
+            'link' => 'lot-reservations-requests',  // Link to the reservations page
             'is_read' => 0,
             'created_at' => date('Y-m-d H:i:s')
         ];

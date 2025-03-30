@@ -27,7 +27,7 @@
                     $middleName = !empty($row["middle_name"]) ? $row["middle_name"] : "";
                     $suffix = !empty($row["suffix"]) ? ", " . $row["suffix"] : "";
                     $interred = $row["first_name"] . " " . $middleName . " " . $row["last_name"] . $suffix;
-                    $dateTime = FormatterHelper::formatDate($row["date_time"]);
+                    $dateTime = date("F j, Y h:i A", strtotime($row["date_time"]));
 
                     $paymentAmount = FormatterHelper::formatPrice($row["payment_amount"]);
 
@@ -40,11 +40,14 @@
                         $action = "";
                     }
 
+                    $assetId = FormatterHelper::formatAssetId($row['asset_id']);
+                    $status = $row["status"] === "Pending" ? "Pending (Please wait for approval)" : $row["status"];
+
                     echo "<tr>";
-                    echo "<td class='text-center'>" . $row['asset_id'] . "</td>";
+                    echo "<td class='text-center'>" . $assetId . "</td>";
                     echo "<td class='text-center'>" . $interred . "</td>";
                     echo "<td class='text-center'>" . $dateTime . "</td>";
-                    echo "<td class='text-center'>" . $row["status"] . "</td>";
+                    echo "<td class='text-center'>" . $status . "</td>";
                     echo "<td class='text-center'>
                         $action
                     </td>";

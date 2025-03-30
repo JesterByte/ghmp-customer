@@ -123,9 +123,9 @@ class BurialWebhookController extends ResourceController
             ];
             $notificationModel->insert($notificationData);
 
-            return $this->respond(["message" => "Payment successful, reservation updated."]);
+            return $this->respond(["message" => "Webhook received successfully"], 200);
         }
 
-        return $this->fail("Payment status is not 'paid'.");
+        return $this->respond(["message" => "Webhook received successfully"], 200);
     }
 }

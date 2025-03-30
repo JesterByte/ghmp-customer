@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\MapModel;
 
 class Home extends BaseController
 {
@@ -53,13 +54,12 @@ class Home extends BaseController
         return view("brochure/contact", $data);
     }
 
-    // public function signup() {
-    //     $data = ["pageTitle" => "Sign Up"];
-    //     return view("signup", $data);
-    // }
+    public function fetchLots()
+    {
+        $mapModel = new MapModel();
+        $lots = $mapModel->getLots();
 
-    // public function signin() {
-    //     $data = ["pageTitle" => "Sign In"];
-    //     return view("signin", $data);
-    // }
+        header("Content-Type: application/json");
+        echo json_encode($lots);
+    }
 }

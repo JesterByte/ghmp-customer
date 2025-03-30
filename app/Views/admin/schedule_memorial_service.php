@@ -60,18 +60,22 @@
 
     function submitReservation() {
         const form = document.querySelector("#scheduleBurial .needs-validation");
+        const submitBtn = document.getElementById("submitBtn");
+        const submitSpinner = document.getElementById("submitSpinner");
 
         // Check if the form is valid
         if (form.checkValidity() === false) {
-            // Trigger Bootstrap's form validation
             form.classList.add("was-validated");
             return; // Stop further execution if the form is invalid
         }
 
+        // Disable button and show spinner
+        submitBtn.disabled = true;
+        submitSpinner.style.display = "inline-block";
+
         // Determine the relationship value
         let relationship = $("#relationship").val();
         if (relationship === "Other") {
-            // Use the value from the other_relationship field
             relationship = $("#otherRelationship").val();
         }
 
@@ -111,8 +115,14 @@
             .catch(error => {
                 console.error("Fetch error:", error);
                 showToast("<i class='bi bi-x-lg text-danger'></i>", "Network error or server is unreachable.", "Operation Failed");
+            })
+            .finally(() => {
+                // Re-enable the button and hide spinner after request completes
+                submitBtn.disabled = false;
+                submitSpinner.style.display = "none";
             });
     }
+
 
     function showToast(htmlIcon, message, title = 'Notification', delay = 5000) {
         if (!this.toastContainer) {

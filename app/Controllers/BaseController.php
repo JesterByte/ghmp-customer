@@ -24,13 +24,21 @@ use App\Helpers\FormatterHelper;
 abstract class BaseController extends Controller
 {
     protected $encrypter;
+    protected $email;
+    protected $adminEmail;
 
     public function __construct()
     {
         $this->encrypter = \Config\Services::encrypter();
+        $this->email = \Config\Services::email();
+        $this->adminEmail = "ejjose94@gmail.com";
+
         date_default_timezone_set("Asia/Manila");
     }
 
+    public function admin_url($relativePath){
+        return "localhost/ghmp/public/" . $relativePath;
+    }
     /**
      * Instance of the main Request object.
      *

@@ -69,3 +69,5 @@ sessionSavePath = 'writable/session'
 # logger.threshold = 4
 
 # PAYMONGO_WEBHOOK_SECRET = whsk_C7MvzaSKcgRHP7F2gaQrxQmN
+
+ADMIN_EMAIL = ejjose94@gmail.com

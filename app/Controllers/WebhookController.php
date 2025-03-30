@@ -264,10 +264,10 @@ class WebhookController extends ResourceController
                             ];
                             $notificationModel->insert($notificationData);
 
-                            return $this->respond(["message" => "Payment successful, reservation completed."]);
-                        case false:
-                            return $this->respond(["message" => "Payment successful, reservation updated."]);
-                    }
+                            return $this->respond(["message" => "Webhook received successfully"], 200);
+                            case false:
+                                return $this->respond(["message" => "Webhook received successfully"], 200);
+                            }
                 }
             } else {
                 // Update Reservation Status
@@ -313,7 +313,9 @@ class WebhookController extends ResourceController
             log_message('info', "Reservation and Payment updated successfully for Reference Number: $referenceNumber");
         }
 
-        return $this->fail("Payment status is not 'paid'.");
+        log_message("info", "Webhook processed successfully.");
+
+        return $this->respond(["message" => "Webhook received successfully"], 200);
     }
 
     private function isCompleteInstallment($installmentId, $assetId): bool
