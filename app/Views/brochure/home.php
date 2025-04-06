@@ -1,143 +1,149 @@
 <?= $this->extend('components/brochure_template') ?>
 
 <?= $this->section('content') ?>
-  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg> -->
-        <!-- <img class="img-fluid" src="<?= base_url("img/carousel_1.jpg") ?>" alt=""> -->
-        <div class="position-relative">
-          <img src="<?= base_url("img/carousel_1.jpg") ?>" alt="Image">
-          <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
-        </div>
-        <div class="container">
-          <div class="carousel-caption text-start text-white">
-            <h1>Example headline.</h1>
-            <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-          </div>
-        </div>
+<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="position-relative">
+        <img src="<?= base_url("img/carousel_1.jpg") ?>" alt="Peaceful Gardens">
+        <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
       </div>
-      <div class="carousel-item">
-        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg> -->
-        <!-- <img class="img-fluid" src="<?= base_url("img/carousel_2.jpg") ?>" alt=""> -->
-        <div class="position-relative">
-          <img src="<?= base_url("img/carousel_2.jpg") ?>" alt="Image">
-          <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
-        </div>
-        <div class="container">
-          <div class="carousel-caption text-white">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg> -->
-        <!-- <img class="img-fluid" src="<?= base_url("img/carousel_3.jpg") ?>" alt=""> -->
-        <div class="position-relative">
-          <img src="<?= base_url("img/carousel_3.jpg") ?>" alt="Image">
-          <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
-        </div>
-        <div class="container">
-          <div class="carousel-caption text-end text-white">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
+      <div class="container">
+        <div class="carousel-caption text-start text-white">
+          <h1>Serenity, Dignity, Legacy</h1>
+          <p class="opacity-75">A sacred place to honor your loved ones with grace and peace.</p>
+          <p><a class="btn btn-lg btn-primary" href="<?= base_url("contact") ?>">Inquire Now</a></p>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <div class="carousel-item">
+      <div class="position-relative">
+        <img src="<?= base_url("img/carousel_2.jpg") ?>" alt="Garden View">
+        <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
+      </div>
+      <div class="container">
+        <div class="carousel-caption text-white">
+          <h1>Premium Memorial Lots</h1>
+          <p>Choose from lawn lots and private estates (mausoleums) thoughtfully designed for enduring remembrance.</p>
+          <p><a class="btn btn-lg btn-primary" href="#">View Lot Options</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="position-relative">
+        <img src="<?= base_url("img/carousel_3.jpg") ?>" alt="Estate Mausoleums">
+        <div class="position-absolute top-0 left-0 w-100 h-100 bg-dark opacity-50"></div>
+      </div>
+      <div class="container">
+        <div class="carousel-caption text-end text-white">
+          <h1>Personalized Private Estates</h1>
+          <p>Honor your legacy with exclusive mausoleum-style estates tailored to your family's wishes.</p>
+          <p><a class="btn btn-lg btn-primary" href="#">Explore Estates</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="container marketing">
+  <div class="row">
+    <!-- Lawn Lots Section -->
+    <div class="col-lg-4">
+      <a target="_blank" href="https://www.flaticon.com/free-icons/grave" title="grave icons">
+        <img src="<?= base_url("img/grave.png") ?>" class="bd-placeholder-img rounded" width="140" height="140" alt="Lot">
+      </a>
+      <h2 class="fw-normal">Lawn Lots</h2>
+      <p>Ideal for individual or companion memorials. Carefully landscaped with serene surroundings.</p>
+      <p><a class="btn btn-secondary" href="<?= base_url("pricing?type=lot") ?>">View Lot Pricing &raquo;</a></p>
+    </div>
+
+    <!-- Estate Mausoleums Section -->
+    <div class="col-lg-4">
+      <a target="_blank" href="https://www.flaticon.com/free-icons/mausoleum" title="Mausoleum icons">
+        <img src="<?= base_url("img/mausoleum.png") ?>" class="bd-placeholder-img rounded" width="140" height="140" alt="Mausoleum">
+      </a>
+      <h2 class="fw-normal">Estate Mausoleums</h2>
+      <p>Available in sizes A, B, and C, our estates offer customizable private mausoleum spaces for families.</p>
+      <p><a class="btn btn-secondary" href="<?= base_url("pricing?type=estate") ?>">View Estate Pricing &raquo;</a></p>
+    </div>
+
+    <!-- Burial Services Section -->
+    <div class="col-lg-4">
+      <a target="_blank" href="https://www.flaticon.com/free-icons/grief" title="grief icons">
+        <img src="<?= base_url("img/funeral.png") ?>" class="bd-placeholder-img rounded" width="140" height="140" alt="Burial Services">
+      </a>
+      <h2 class="fw-normal">Burial Services</h2>
+      <p>Comprehensive burial services including preparation, ceremony arrangements, and memorials for loved ones.</p>
+      <p><a class="btn btn-secondary" href="<?= base_url("pricing?type=burial") ?>">View Burial Pricing &raquo;</a></p>
+    </div>
   </div>
 
 
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <div class="container marketing">
+  <hr class="featurette-divider">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Heading</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Heading</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Heading</h2>
-        <p>And lastly this, the third column of representative placeholder content.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
-
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading fw-normal lh-1">Lots & Estates Selection <span class="text-body-secondary">Find the perfect space.</span></h2>
+      <p class="lead">Choose from a variety of options, from traditional lawn lots to exclusive family estates. Each lot is thoughtfully developed to provide a peaceful environment where legacy lives on.</p>
+    </div>
+    <div class="col-md-5">
+      <a href="<?= base_url("locator") ?>" title="Click to check lot and estate availability">
+        <img
+          src="<?= base_url("img/ghmp_aerial_view.png") ?>"
+          class="img-fluid rounded shadow"
+          alt="Lot Selection">
+      </a>
+      <div class="text-center mt-2">
+        <small class="text-muted">Click on the image to check the availability of lots and estates.</small>
       </div>
     </div>
+  </div>
 
-    <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-body-secondary">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-      </div>
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading fw-normal lh-1">Transparent Pricing <span class="text-body-secondary">Tailored for every family.</span></h2>
+      <p class="lead">Our prices are designed to be accessible, with options for every budget. Estate mausoleums start at <?= $lowestEstatePrice ?>. Lawn lots begin at <?= $lowestLotPrice ?>. Full details available on request.</p>
     </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-body-secondary">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-      </div>
+    <div class="col-md-5 order-md-1">
+      <a target="_blank" href="https://www.flaticon.com/free-icons/money" title="money icons">
+        <img src="<?= base_url("img/pricing.png") ?>" class="img-fluid" alt="Pricing Info">
+      </a>
     </div>
+  </div>
 
-    <hr class="featurette-divider">
+  <hr class="featurette-divider">
 
-    <!-- /END THE FEATURETTES -->
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading fw-normal lh-1">Seamless Transactions <span class="text-body-secondary">Simple and secure.</span></h2>
+      <p class="lead">Inquire, reserve, and settle payments through our guided process. Our staff will walk you through reservation, document processing, and payment submission, whether online or in person.</p>
+    </div>
+    <div class="col-md-5">
+      <a target="_blank" href="https://www.flaticon.com/free-icons/transaction" title="transaction icons">
+        <img src="<?= base_url("img/transaction.png") ?>" class="img-fluid" alt="Transaction Process">
+      </a>
+    </div>
+  </div>
 
-  </div><!-- /.container -->
+  <hr class="featurette-divider">
+</div>
+</div>
 
-
-
-  <?= $this->endSection() ?>
+<?= $this->endSection() ?>

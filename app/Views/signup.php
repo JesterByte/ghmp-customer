@@ -217,9 +217,9 @@
                     
                     <!-- Right Side - Visual -->
                     <div class="col-lg-4 d-none d-lg-flex bg-primary-light align-items-center justify-content-center p-5">
-                        <div class="text-center text-white">
+                        <div class="text-center welcome-panel">
                             <img src="<?= base_url('img/ghmp_logo.png') ?>" alt="Sign Up" class="img-fluid mb-4" style="max-width: 200px;">
-                            <h3 class="mb-3">Welcome to Green Haven</h3>
+                            <h3 class="mb-3">Welcome to Green Haven Memorial Park</h3>
                             <p class="mb-4">Join our community to manage memorial services with ease and peace of mind.</p>
                             <div class="d-flex align-items-center justify-content-center">
                                 <i class="bi bi-check-circle-fill me-2"></i>
@@ -256,6 +256,7 @@
         --primary-color: #2e7d32;
         --primary-light: #e8f5e9;
         --secondary-color: #689f38;
+        --dark-green: #1b5e20;
     }
     
     body {
@@ -383,6 +384,27 @@
     
     .input-group-text {
         background-color: #f8f9fa;
+    }
+    
+    /* Welcome Panel Styling */
+    .welcome-panel h3 {
+        color: var(--dark-green) !important;
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+    
+    .welcome-panel p, 
+    .welcome-panel span {
+        color: var(--primary-color) !important;
+        font-size: 1rem;
+    }
+    
+    .welcome-panel .bi {
+        color: var(--primary-color) !important;
+    }
+    
+    .welcome-panel .d-flex {
+        margin-bottom: 0.5rem;
     }
 </style>
 

@@ -158,8 +158,8 @@
             value: "Standard",
             text: "Standard"
         }, {
-            value: "Cremation",
-            text: "Cremation"
+            value: "Columbarium",
+            text: "Columbarium"
         }, {
             value: "Bone Transfer",
             text: "Bone Transfer"

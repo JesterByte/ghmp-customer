@@ -16,12 +16,15 @@
             <a class="nav-link <?= echo_if_route($pageTitle, "Lots & Estates", "active") ?>" <?= echo_if_route($pageTitle, "Lots & Estates", 'aria-current="page"') ?> href="<?= base_url("locator") ?>">Lots & Estates</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link <?= echo_if_route($pageTitle, "Pricing", "active") ?>" <?= echo_if_route($pageTitle, "Pricing", 'aria-current="page"') ?> href="<?= base_url("pricing") ?>">Pricing</a>
+          </li>F
+          <li class="nav-item">
             <a class="nav-link <?= echo_if_route($pageTitle, "About", "active") ?>" <?= echo_if_route($pageTitle, "About", 'aria-current="page"') ?> href="<?= base_url("about") ?>">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?= echo_if_route($pageTitle, "Contact", "active") ?>" <?= echo_if_route($pageTitle, "Contact", 'aria-current="page"') ?> href="<?= base_url("contact") ?>">Contact</a>
           </li>
-            <!-- <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link disabled" aria-disabled="true">Disabled</a>
             </li> -->
         </ul>

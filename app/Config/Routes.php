@@ -11,8 +11,15 @@ $routes->get("/home", "Home::index");
 $routes->get("/locator", "Home::locator");
 $routes->get("/locator/fetch_lots", "Home::fetchLots");
 
+$routes->get("/pricing", "Home::pricing");
+$routes->post('/pricing/getLotPricing', 'Home::getLotPricing');
+$routes->post('/pricing/getEstatePricing', 'Home::getEstatePricing');
+$routes->post('/pricing/getBurialPricing', 'Home::getBurialPricing');
+
 $routes->get("/about", "Home::about");
 $routes->get("/contact", "Home::contact");
+$routes->post("/contact/submit", "Home::contactSubmit");
+
 $routes->get("/signup", "SignupController::index");
 $routes->get("/signin", "SigninController::index");
 $routes->get("/signout", "SignoutController::signout");
