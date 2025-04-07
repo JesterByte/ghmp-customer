@@ -111,6 +111,9 @@ class WebhookController extends ResourceController
                 break;
             case "6 Months":
                 $paymentOptionTable = $prefix . "six_months";
+                $installmentPaymentsTable = $prefix . "six_months_payments";
+
+                log_message('error', "Payment option:" . $reservation->payment_option);
                 break;
             case (strpos($reservation->payment_option, "Installment") !== false):
                 $paymentOptionTable = $prefix . "installments";
@@ -139,14 +142,23 @@ class WebhookController extends ResourceController
         }
 
         if ($status === "paid") {
-            if (str_contains($reservation->payment_option, "Installment")) {
-                log_message('error', "Payment is paid and is Installment");
+            if ($reservation->payment_option === "6 Months" || str_contains($reservation->payment_option, "Installment")) {
+                log_message('error', "Payment is paid and is 6 Months or Installment");
                 switch ($assetType) {
                     case "lot":
                         $assetIdColumn = "lot_id";
                         break;
                     case "estate":
                         $assetIdColumn = "estate_id";
+                        break;
+                }
+
+                switch ($reservation->payment_option) {
+                    case "6 Months":
+                        $paymentOptionIdKey = "six_months_id";
+                        break;
+                    case str_contains($reservation->payment_option, "Installment"):
+                        $paymentOptionIdKey = "installment_id";
                         break;
                 }
 
@@ -202,7 +214,7 @@ class WebhookController extends ResourceController
                         ->update();
 
                     $data = [
-                        "installment_id" => $installment->id,
+                        $paymentOptionIdKey => $installment->id,
                         "payment_amount" => $installment->monthly_payment,
                         "payment_date" => date("Y-m-d H:i:s"),
                         "payment_status" => "Paid"
@@ -265,9 +277,9 @@ class WebhookController extends ResourceController
                             $notificationModel->insert($notificationData);
 
                             return $this->respond(["message" => "Webhook received successfully"], 200);
-                            case false:
-                                return $this->respond(["message" => "Webhook received successfully"], 200);
-                            }
+                        case false:
+                            return $this->respond(["message" => "Webhook received successfully"], 200);
+                    }
                 }
             } else {
                 // Update Reservation Status

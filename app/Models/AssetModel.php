@@ -21,12 +21,14 @@ class AssetModel extends Model
         lr.payment_option, 
         lr.reservation_status, 
         'lot' AS asset, 
+        COALESCE(sm.down_payment, 0) AS six_months_down_payment,
+        COALESCE(sm.down_payment_status) AS six_months_down_payment_status,
         COALESCE(i.down_payment, 0) AS down_payment,
         i.down_payment_status AS down_payment_status,
-        COALESCE(cs.payment_amount, sm.payment_amount, i.monthly_payment, 0) AS payment_amount,
+        COALESCE(cs.payment_amount, sm.monthly_payment, i.monthly_payment, 0) AS payment_amount,
         CASE
             WHEN cs.payment_amount IS NOT NULL THEN 'cash_sale'
-            WHEN sm.payment_amount IS NOT NULL THEN 'six_months'
+            WHEN sm.monthly_payment IS NOT NULL THEN 'six_months'
             WHEN i.monthly_payment IS NOT NULL THEN 'installments'
             ELSE 'none'
         END AS payment_type")
@@ -45,19 +47,21 @@ class AssetModel extends Model
             er.payment_option, 
             er.reservation_status, 
             'estate' AS asset, 
-            COALESCE(ei.down_payment, 0) AS down_payment,
-            ei.down_payment_status AS down_payment_status,
-            COALESCE(ecs.payment_amount, esm.payment_amount, ei.monthly_payment, 0) AS payment_amount,
+            COALESCE(sm.down_payment, 0) AS six_months_down_payment,
+            COALESCE(sm.down_payment_status) AS six_months_down_payment_status,
+            COALESCE(i.down_payment, 0) AS down_payment,
+            i.down_payment_status AS down_payment_status,
+            COALESCE(cs.payment_amount, sm.monthly_payment, i.monthly_payment, 0) AS payment_amount,
             CASE
-                WHEN ecs.payment_amount IS NOT NULL THEN 'estate_cash_sale'
-                WHEN esm.payment_amount IS NOT NULL THEN 'estate_six_months'
-                WHEN ei.monthly_payment IS NOT NULL THEN 'estate_installments'
+                WHEN cs.payment_amount IS NOT NULL THEN 'estate_cash_sale'
+                WHEN sm.monthly_payment IS NOT NULL THEN 'estate_six_months'
+                WHEN i.monthly_payment IS NOT NULL THEN 'estate_installments'
                 ELSE 'none'
             END AS payment_type")
             ->where("er.reservee_id", $userId)
-            ->join("estate_cash_sales AS ecs", "ecs.estate_id = er.estate_id", "left")
-            ->join("estate_six_months AS esm", "esm.estate_id = er.estate_id", "left")
-            ->join("estate_installments AS ei", "ei.estate_id = er.estate_id", "left");
+            ->join("estate_cash_sales AS cs", "cs.estate_id = er.estate_id", "left")
+            ->join("estate_six_months AS sm", "sm.estate_id = er.estate_id", "left")
+            ->join("estate_installments AS i", "i.estate_id = er.estate_id", "left");
 
         // Get the compiled SELECT SQL queries
         $sql1 = $builder1->getCompiledSelect();
