@@ -1,0 +1,294 @@
+ERROR - 2025-04-09 08:36:57 --> mysqli_sql_exception: Unknown column 'sm.payment_amount' in 'field list' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `lr`.`id...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lr`.`id...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lr`.`id...')
+#3 C:\xampp\htdocs\ghmp-customer\app\Models\AssetModel.php(70): CodeIgniter\Database\BaseConnection->query('SELECT `lr`.`id...')
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyLotsAndEstatesController.php(24): App\Models\AssetModel->getAssetsById('49')
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-04-09 08:36:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sm.payment_amount' in 'field list'
+[Method: GET, Route: my_lots_and_estates]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\AssetModel.php(70): CodeIgniter\Database\BaseConnection->query('SELECT `lr`.`id` AS `reservation_id`, `lr`.`lot_id` AS `asset_id`, `lr`.`reservee_id`, `lr`.`lot_type` AS `asset_type`, `lr`.`payment_option`, `lr`.`reservation_status`, \'lot\' AS asset, COALESCE(i.down_payment, 0) AS down_payment, `i`.`down_payment_status` AS `down_payment_status`, COALESCE(cs.payment_amount, `sm`.`payment_amount`, `i`.`monthly_payment`, 0) AS payment_amount, CASE
+            WHEN cs.payment_amount IS NOT NULL THEN \'cash_sale\'
+            WHEN sm.payment_amount IS NOT NULL THEN \'six_months\'
+            WHEN i.monthly_payment IS NOT NULL THEN \'installments\'
+            ELSE \'none\'
+        END AS payment_type
+FROM `lot_reservations` AS `lr`
+LEFT JOIN `cash_sales` AS `cs` ON `cs`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `six_months` AS `sm` ON `sm`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `installments` AS `i` ON `i`.`lot_id` = `lr`.`lot_id`
+WHERE `lr`.`reservee_id` = \'49\' UNION SELECT `er`.`id` AS `reservation_id`, `er`.`estate_id` AS `asset_id`, `er`.`reservee_id`, `er`.`estate_type` AS `asset_type`, `er`.`payment_option`, `er`.`reservation_status`, \'estate\' AS asset, COALESCE(ei.down_payment, 0) AS down_payment, `ei`.`down_payment_status` AS `down_payment_status`, COALESCE(ecs.payment_amount, `esm`.`payment_amount`, `ei`.`monthly_payment`, 0) AS payment_amount, CASE
+                WHEN ecs.payment_amount IS NOT NULL THEN \'estate_cash_sale\'
+                WHEN esm.payment_amount IS NOT NULL THEN \'estate_six_months\'
+                WHEN ei.monthly_payment IS NOT NULL THEN \'estate_installments\'
+                ELSE \'none\'
+            END AS payment_type
+FROM `estate_reservations` AS `er`
+LEFT JOIN `estate_cash_sales` AS `ecs` ON `ecs`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_six_months` AS `esm` ON `esm`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_installments` AS `ei` ON `ei`.`estate_id` = `er`.`estate_id`
+WHERE `er`.`reservee_id` = \'49\'')
+ 2 APPPATH\Controllers\MyLotsAndEstatesController.php(24): App\Models\AssetModel->getAssetsById('49')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-09 08:36:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'sm.payment_amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lr`.`id` AS `reservation_id`, `lr`.`lot_id` AS `asset_id`, `lr`.`reservee_id`, `lr`.`lot_type` AS `asset_type`, `lr`.`payment_option`, `lr`.`reservation_status`, \'lot\' AS asset, COALESCE(i.down_payment, 0) AS down_payment, `i`.`down_payment_status` AS `down_payment_status`, COALESCE(cs.payment_amount, `sm`.`payment_amount`, `i`.`monthly_payment`, 0) AS payment_amount, CASE
+            WHEN cs.payment_amount IS NOT NULL THEN \'cash_sale\'
+            WHEN sm.payment_amount IS NOT NULL THEN \'six_months\'
+            WHEN i.monthly_payment IS NOT NULL THEN \'installments\'
+            ELSE \'none\'
+        END AS payment_type
+FROM `lot_reservations` AS `lr`
+LEFT JOIN `cash_sales` AS `cs` ON `cs`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `six_months` AS `sm` ON `sm`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `installments` AS `i` ON `i`.`lot_id` = `lr`.`lot_id`
+WHERE `lr`.`reservee_id` = \'49\' UNION SELECT `er`.`id` AS `reservation_id`, `er`.`estate_id` AS `asset_id`, `er`.`reservee_id`, `er`.`estate_type` AS `asset_type`, `er`.`payment_option`, `er`.`reservation_status`, \'estate\' AS asset, COALESCE(ei.down_payment, 0) AS down_payment, `ei`.`down_payment_status` AS `down_payment_status`, COALESCE(ecs.payment_amount, `esm`.`payment_amount`, `ei`.`monthly_payment`, 0) AS payment_amount, CASE
+                WHEN ecs.payment_amount IS NOT NULL THEN \'estate_cash_sale\'
+                WHEN esm.payment_amount IS NOT NULL THEN \'estate_six_months\'
+                WHEN ei.monthly_payment IS NOT NULL THEN \'estate_installments\'
+                ELSE \'none\'
+            END AS payment_type
+FROM `estate_reservations` AS `er`
+LEFT JOIN `estate_cash_sales` AS `ecs` ON `ecs`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_six_months` AS `esm` ON `esm`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_installments` AS `ei` ON `ei`.`estate_id` = `er`.`estate_id`
+WHERE `er`.`reservee_id` = \'49\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lr`.`id` AS `reservation_id`, `lr`.`lot_id` AS `asset_id`, `lr`.`reservee_id`, `lr`.`lot_type` AS `asset_type`, `lr`.`payment_option`, `lr`.`reservation_status`, \'lot\' AS asset, COALESCE(i.down_payment, 0) AS down_payment, `i`.`down_payment_status` AS `down_payment_status`, COALESCE(cs.payment_amount, `sm`.`payment_amount`, `i`.`monthly_payment`, 0) AS payment_amount, CASE
+            WHEN cs.payment_amount IS NOT NULL THEN \'cash_sale\'
+            WHEN sm.payment_amount IS NOT NULL THEN \'six_months\'
+            WHEN i.monthly_payment IS NOT NULL THEN \'installments\'
+            ELSE \'none\'
+        END AS payment_type
+FROM `lot_reservations` AS `lr`
+LEFT JOIN `cash_sales` AS `cs` ON `cs`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `six_months` AS `sm` ON `sm`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `installments` AS `i` ON `i`.`lot_id` = `lr`.`lot_id`
+WHERE `lr`.`reservee_id` = \'49\' UNION SELECT `er`.`id` AS `reservation_id`, `er`.`estate_id` AS `asset_id`, `er`.`reservee_id`, `er`.`estate_type` AS `asset_type`, `er`.`payment_option`, `er`.`reservation_status`, \'estate\' AS asset, COALESCE(ei.down_payment, 0) AS down_payment, `ei`.`down_payment_status` AS `down_payment_status`, COALESCE(ecs.payment_amount, `esm`.`payment_amount`, `ei`.`monthly_payment`, 0) AS payment_amount, CASE
+                WHEN ecs.payment_amount IS NOT NULL THEN \'estate_cash_sale\'
+                WHEN esm.payment_amount IS NOT NULL THEN \'estate_six_months\'
+                WHEN ei.monthly_payment IS NOT NULL THEN \'estate_installments\'
+                ELSE \'none\'
+            END AS payment_type
+FROM `estate_reservations` AS `er`
+LEFT JOIN `estate_cash_sales` AS `ecs` ON `ecs`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_six_months` AS `esm` ON `esm`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_installments` AS `ei` ON `ei`.`estate_id` = `er`.`estate_id`
+WHERE `er`.`reservee_id` = \'49\'')
+ 3 APPPATH\Models\AssetModel.php(70): CodeIgniter\Database\BaseConnection->query('SELECT `lr`.`id` AS `reservation_id`, `lr`.`lot_id` AS `asset_id`, `lr`.`reservee_id`, `lr`.`lot_type` AS `asset_type`, `lr`.`payment_option`, `lr`.`reservation_status`, \'lot\' AS asset, COALESCE(i.down_payment, 0) AS down_payment, `i`.`down_payment_status` AS `down_payment_status`, COALESCE(cs.payment_amount, `sm`.`payment_amount`, `i`.`monthly_payment`, 0) AS payment_amount, CASE
+            WHEN cs.payment_amount IS NOT NULL THEN \'cash_sale\'
+            WHEN sm.payment_amount IS NOT NULL THEN \'six_months\'
+            WHEN i.monthly_payment IS NOT NULL THEN \'installments\'
+            ELSE \'none\'
+        END AS payment_type
+FROM `lot_reservations` AS `lr`
+LEFT JOIN `cash_sales` AS `cs` ON `cs`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `six_months` AS `sm` ON `sm`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `installments` AS `i` ON `i`.`lot_id` = `lr`.`lot_id`
+WHERE `lr`.`reservee_id` = \'49\' UNION SELECT `er`.`id` AS `reservation_id`, `er`.`estate_id` AS `asset_id`, `er`.`reservee_id`, `er`.`estate_type` AS `asset_type`, `er`.`payment_option`, `er`.`reservation_status`, \'estate\' AS asset, COALESCE(ei.down_payment, 0) AS down_payment, `ei`.`down_payment_status` AS `down_payment_status`, COALESCE(ecs.payment_amount, `esm`.`payment_amount`, `ei`.`monthly_payment`, 0) AS payment_amount, CASE
+                WHEN ecs.payment_amount IS NOT NULL THEN \'estate_cash_sale\'
+                WHEN esm.payment_amount IS NOT NULL THEN \'estate_six_months\'
+                WHEN ei.monthly_payment IS NOT NULL THEN \'estate_installments\'
+                ELSE \'none\'
+            END AS payment_type
+FROM `estate_reservations` AS `er`
+LEFT JOIN `estate_cash_sales` AS `ecs` ON `ecs`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_six_months` AS `esm` ON `esm`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_installments` AS `ei` ON `ei`.`estate_id` = `er`.`estate_id`
+WHERE `er`.`reservee_id` = \'49\'')
+ 4 APPPATH\Controllers\MyLotsAndEstatesController.php(24): App\Models\AssetModel->getAssetsById('49')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-09 08:36:57 --> [Caused by] mysqli_sql_exception: Unknown column 'sm.payment_amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `lr`.`id` AS `reservation_id`, `lr`.`lot_id` AS `asset_id`, `lr`.`reservee_id`, `lr`.`lot_type` AS `asset_type`, `lr`.`payment_option`, `lr`.`reservation_status`, \'lot\' AS asset, COALESCE(i.down_payment, 0) AS down_payment, `i`.`down_payment_status` AS `down_payment_status`, COALESCE(cs.payment_amount, `sm`.`payment_amount`, `i`.`monthly_payment`, 0) AS payment_amount, CASE
+            WHEN cs.payment_amount IS NOT NULL THEN \'cash_sale\'
+            WHEN sm.payment_amount IS NOT NULL THEN \'six_months\'
+            WHEN i.monthly_payment IS NOT NULL THEN \'installments\'
+            ELSE \'none\'
+        END AS payment_type
+FROM `lot_reservations` AS `lr`
+LEFT JOIN `cash_sales` AS `cs` ON `cs`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `six_months` AS `sm` ON `sm`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `installments` AS `i` ON `i`.`lot_id` = `lr`.`lot_id`
+WHERE `lr`.`reservee_id` = \'49\' UNION SELECT `er`.`id` AS `reservation_id`, `er`.`estate_id` AS `asset_id`, `er`.`reservee_id`, `er`.`estate_type` AS `asset_type`, `er`.`payment_option`, `er`.`reservation_status`, \'estate\' AS asset, COALESCE(ei.down_payment, 0) AS down_payment, `ei`.`down_payment_status` AS `down_payment_status`, COALESCE(ecs.payment_amount, `esm`.`payment_amount`, `ei`.`monthly_payment`, 0) AS payment_amount, CASE
+                WHEN ecs.payment_amount IS NOT NULL THEN \'estate_cash_sale\'
+                WHEN esm.payment_amount IS NOT NULL THEN \'estate_six_months\'
+                WHEN ei.monthly_payment IS NOT NULL THEN \'estate_installments\'
+                ELSE \'none\'
+            END AS payment_type
+FROM `estate_reservations` AS `er`
+LEFT JOIN `estate_cash_sales` AS `ecs` ON `ecs`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_six_months` AS `esm` ON `esm`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_installments` AS `ei` ON `ei`.`estate_id` = `er`.`estate_id`
+WHERE `er`.`reservee_id` = \'49\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `lr`.`id` AS `reservation_id`, `lr`.`lot_id` AS `asset_id`, `lr`.`reservee_id`, `lr`.`lot_type` AS `asset_type`, `lr`.`payment_option`, `lr`.`reservation_status`, \'lot\' AS asset, COALESCE(i.down_payment, 0) AS down_payment, `i`.`down_payment_status` AS `down_payment_status`, COALESCE(cs.payment_amount, `sm`.`payment_amount`, `i`.`monthly_payment`, 0) AS payment_amount, CASE
+            WHEN cs.payment_amount IS NOT NULL THEN \'cash_sale\'
+            WHEN sm.payment_amount IS NOT NULL THEN \'six_months\'
+            WHEN i.monthly_payment IS NOT NULL THEN \'installments\'
+            ELSE \'none\'
+        END AS payment_type
+FROM `lot_reservations` AS `lr`
+LEFT JOIN `cash_sales` AS `cs` ON `cs`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `six_months` AS `sm` ON `sm`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `installments` AS `i` ON `i`.`lot_id` = `lr`.`lot_id`
+WHERE `lr`.`reservee_id` = \'49\' UNION SELECT `er`.`id` AS `reservation_id`, `er`.`estate_id` AS `asset_id`, `er`.`reservee_id`, `er`.`estate_type` AS `asset_type`, `er`.`payment_option`, `er`.`reservation_status`, \'estate\' AS asset, COALESCE(ei.down_payment, 0) AS down_payment, `ei`.`down_payment_status` AS `down_payment_status`, COALESCE(ecs.payment_amount, `esm`.`payment_amount`, `ei`.`monthly_payment`, 0) AS payment_amount, CASE
+                WHEN ecs.payment_amount IS NOT NULL THEN \'estate_cash_sale\'
+                WHEN esm.payment_amount IS NOT NULL THEN \'estate_six_months\'
+                WHEN ei.monthly_payment IS NOT NULL THEN \'estate_installments\'
+                ELSE \'none\'
+            END AS payment_type
+FROM `estate_reservations` AS `er`
+LEFT JOIN `estate_cash_sales` AS `ecs` ON `ecs`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_six_months` AS `esm` ON `esm`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_installments` AS `ei` ON `ei`.`estate_id` = `er`.`estate_id`
+WHERE `er`.`reservee_id` = \'49\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `lr`.`id` AS `reservation_id`, `lr`.`lot_id` AS `asset_id`, `lr`.`reservee_id`, `lr`.`lot_type` AS `asset_type`, `lr`.`payment_option`, `lr`.`reservation_status`, \'lot\' AS asset, COALESCE(i.down_payment, 0) AS down_payment, `i`.`down_payment_status` AS `down_payment_status`, COALESCE(cs.payment_amount, `sm`.`payment_amount`, `i`.`monthly_payment`, 0) AS payment_amount, CASE
+            WHEN cs.payment_amount IS NOT NULL THEN \'cash_sale\'
+            WHEN sm.payment_amount IS NOT NULL THEN \'six_months\'
+            WHEN i.monthly_payment IS NOT NULL THEN \'installments\'
+            ELSE \'none\'
+        END AS payment_type
+FROM `lot_reservations` AS `lr`
+LEFT JOIN `cash_sales` AS `cs` ON `cs`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `six_months` AS `sm` ON `sm`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `installments` AS `i` ON `i`.`lot_id` = `lr`.`lot_id`
+WHERE `lr`.`reservee_id` = \'49\' UNION SELECT `er`.`id` AS `reservation_id`, `er`.`estate_id` AS `asset_id`, `er`.`reservee_id`, `er`.`estate_type` AS `asset_type`, `er`.`payment_option`, `er`.`reservation_status`, \'estate\' AS asset, COALESCE(ei.down_payment, 0) AS down_payment, `ei`.`down_payment_status` AS `down_payment_status`, COALESCE(ecs.payment_amount, `esm`.`payment_amount`, `ei`.`monthly_payment`, 0) AS payment_amount, CASE
+                WHEN ecs.payment_amount IS NOT NULL THEN \'estate_cash_sale\'
+                WHEN esm.payment_amount IS NOT NULL THEN \'estate_six_months\'
+                WHEN ei.monthly_payment IS NOT NULL THEN \'estate_installments\'
+                ELSE \'none\'
+            END AS payment_type
+FROM `estate_reservations` AS `er`
+LEFT JOIN `estate_cash_sales` AS `ecs` ON `ecs`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_six_months` AS `esm` ON `esm`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_installments` AS `ei` ON `ei`.`estate_id` = `er`.`estate_id`
+WHERE `er`.`reservee_id` = \'49\'')
+ 4 APPPATH\Models\AssetModel.php(70): CodeIgniter\Database\BaseConnection->query('SELECT `lr`.`id` AS `reservation_id`, `lr`.`lot_id` AS `asset_id`, `lr`.`reservee_id`, `lr`.`lot_type` AS `asset_type`, `lr`.`payment_option`, `lr`.`reservation_status`, \'lot\' AS asset, COALESCE(i.down_payment, 0) AS down_payment, `i`.`down_payment_status` AS `down_payment_status`, COALESCE(cs.payment_amount, `sm`.`payment_amount`, `i`.`monthly_payment`, 0) AS payment_amount, CASE
+            WHEN cs.payment_amount IS NOT NULL THEN \'cash_sale\'
+            WHEN sm.payment_amount IS NOT NULL THEN \'six_months\'
+            WHEN i.monthly_payment IS NOT NULL THEN \'installments\'
+            ELSE \'none\'
+        END AS payment_type
+FROM `lot_reservations` AS `lr`
+LEFT JOIN `cash_sales` AS `cs` ON `cs`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `six_months` AS `sm` ON `sm`.`lot_id` = `lr`.`lot_id`
+LEFT JOIN `installments` AS `i` ON `i`.`lot_id` = `lr`.`lot_id`
+WHERE `lr`.`reservee_id` = \'49\' UNION SELECT `er`.`id` AS `reservation_id`, `er`.`estate_id` AS `asset_id`, `er`.`reservee_id`, `er`.`estate_type` AS `asset_type`, `er`.`payment_option`, `er`.`reservation_status`, \'estate\' AS asset, COALESCE(ei.down_payment, 0) AS down_payment, `ei`.`down_payment_status` AS `down_payment_status`, COALESCE(ecs.payment_amount, `esm`.`payment_amount`, `ei`.`monthly_payment`, 0) AS payment_amount, CASE
+                WHEN ecs.payment_amount IS NOT NULL THEN \'estate_cash_sale\'
+                WHEN esm.payment_amount IS NOT NULL THEN \'estate_six_months\'
+                WHEN ei.monthly_payment IS NOT NULL THEN \'estate_installments\'
+                ELSE \'none\'
+            END AS payment_type
+FROM `estate_reservations` AS `er`
+LEFT JOIN `estate_cash_sales` AS `ecs` ON `ecs`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_six_months` AS `esm` ON `esm`.`estate_id` = `er`.`estate_id`
+LEFT JOIN `estate_installments` AS `ei` ON `ei`.`estate_id` = `er`.`estate_id`
+WHERE `er`.`reservee_id` = \'49\'')
+ 5 APPPATH\Controllers\MyLotsAndEstatesController.php(24): App\Models\AssetModel->getAssetsById('49')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-09 21:03:13 --> ErrorException: Undefined variable $hasInstallment
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 22.
+ 1 APPPATH\Views\admin\dashboard.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $hasInstallment', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 22)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(32): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-09 21:04:22 --> ErrorException: Undefined variable $hasInstallment
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 22.
+ 1 APPPATH\Views\admin\dashboard.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $hasInstallment', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 22)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(32): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-09 21:04:23 --> ErrorException: Undefined variable $hasInstallment
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 22.
+ 1 APPPATH\Views\admin\dashboard.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $hasInstallment', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 22)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(32): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-09 21:13:02 --> ErrorException: Undefined variable $hasInstallment
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 22.
+ 1 APPPATH\Views\admin\dashboard.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $hasInstallment', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 22)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(32): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-09 21:19:13 --> ErrorException: Undefined variable $hasInstallment
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 22.
+ 1 APPPATH\Views\admin\dashboard.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $hasInstallment', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 22)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(32): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-09 21:33:29 --> ErrorException: Undefined variable $hasInstallments
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 22.
+ 1 APPPATH\Views\admin\dashboard.php(22): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $hasInstallments', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 22)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(32): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
