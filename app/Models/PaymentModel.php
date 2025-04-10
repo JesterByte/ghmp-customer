@@ -29,7 +29,6 @@ class PaymentModel extends Model
             JOIN six_months_payments smp ON sm.id = smp.six_months_id
             WHERE lr.reservee_id = ?
             GROUP BY sm.lot_id
-
     
             UNION ALL
     

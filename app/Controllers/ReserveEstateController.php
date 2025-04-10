@@ -83,7 +83,7 @@ class ReserveEstateController extends BaseController
         $notificationData = [
             'admin_id' => null,  // Null for general admin notification
             'message' => $notificationMessage,
-            'link' => 'estate-reservations-requests',  // Link to the reservations page
+            'link' => 'estate-reservation-requests',  // Link to the reservations page
             'is_read' => 0,
             'created_at' => date('Y-m-d H:i:s')
         ];

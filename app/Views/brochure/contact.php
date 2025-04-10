@@ -33,9 +33,9 @@
             <h3>Our Office</h3>
             <p>Visit us at our office or contact us via phone:</p>
             <ul>
-                <li><strong>Address:</strong> 123 Memorial Park Road, Green Haven</li>
-                <li><strong>Phone:</strong> +1 (123) 456-7890</li>
-                <li><strong>Email:</strong> info@greenhaven.com</li>
+                <li><strong>Address:</strong> Green Heaven Memorial Park, Mag-Asawang Sapa Road, Santa Maria, Bulacan, Philippines</li>
+                <li><strong>Phone:</strong> 0933 816 3494</li>
+                <li><strong>Email:</strong> greenhaven.memorialpark@gmail.com</li>
             </ul>
 
             <div class="ratio ratio-4x3">

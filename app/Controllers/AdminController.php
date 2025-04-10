@@ -8,7 +8,8 @@ class AdminController extends BaseController
 {
     protected $adminModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->adminModel = new AdminModel();
     }
 
@@ -22,14 +23,26 @@ class AdminController extends BaseController
 
         $userFullName = $session->get("user_full_name");
 
-        $ownedPropertiesCount = $this->adminModel->getOwnerPropertiesCount($session->get("user_id"));
+        $ownedPropertiesCount = $this->adminModel->getOwnerAssetsCount($session->get("user_id"));
         $scheduledMemorialServices = $this->adminModel->getScheduledMemorialServices($session->get("user_id"));
+        $nextPaymentDueDate = $this->adminModel->getNextPaymentDueDate($session->get("user_id"));
+        $lastTwoPayments = $this->adminModel->getLastTwoPayments($session->get("user_id"));
+        $paymentHistory = $this->adminModel->getPaymentHistory($session->get("user_id"));
+        $propertyDistribution = $this->adminModel->getAssetDistribution($session->get("user_id"));
+
 
         $data = [
             "pageTitle" => "Dashboard",
             "session" => $session,
             "ownedPropertiesCount" => $ownedPropertiesCount,
-            "scheduledMemorialServices" => $scheduledMemorialServices
+            "scheduledMemorialServices" => $scheduledMemorialServices,
+            "nextPaymentDueDate" => $nextPaymentDueDate,
+            "lastTwoPayments" => $lastTwoPayments,
+            'chartData' => [
+                'paymentMonths' => json_encode($paymentHistory['months']),
+                'paymentAmounts' => json_encode($paymentHistory['amounts']),
+                'propertyCounts' => json_encode($propertyDistribution['counts'])
+            ]
         ];
         return view("admin/dashboard", $data);
     }

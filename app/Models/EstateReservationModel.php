@@ -89,30 +89,44 @@ class EstateReservationModel extends Model
     //     return $this->db->table("estate_six_months")->insert($data);
     // }
 
-    public function setSixMonthsPayment($reservationId, $estateId, $paymentAmount)
+    // public function setSixMonthsPayment($reservationId, $estateId, $paymentAmount)
+    // {
+    //     $data = [
+    //         "reservation_id" => $reservationId,
+    //         "estate_id" => $estateId,
+    //         "payment_amount" => $paymentAmount
+    //     ];
+
+    //     $this->db->table("estate_six_months")->insert($data);
+
+    //     $insertedId = $this->db->insertID();
+
+    //     return $insertedId;
+    // }
+
+    // public function setSixMonthsDueDate($sixMonthsId, $estateId, $dueDate)
+    // {
+    //     $data = [
+    //         "six_months_id" => $sixMonthsId,
+    //         "estate_id" => $estateId,
+    //         "due_date" => $dueDate
+    //     ];
+
+    //     return $this->db->table("estate_six_months_due_dates")->insert($data);
+    // }
+
+    public function setSixMonthsPayment($reservationId, $estateId, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount)
     {
         $data = [
             "reservation_id" => $reservationId,
             "estate_id" => $estateId,
-            "payment_amount" => $paymentAmount
+            "down_payment" => $downPayment,
+            "down_payment_due_date" => $downPaymentDueDate,
+            "total_amount" => $totalAmount,
+            "monthly_payment" => $paymentAmount,
         ];
 
-        $this->db->table("estate_six_months")->insert($data);
-    
-        $insertedId = $this->db->insertID();
-
-        return $insertedId;
-    }
-
-    public function setSixMonthsDueDate($sixMonthsId, $estateId, $dueDate)
-    {
-        $data = [
-            "six_months_id" => $sixMonthsId,
-            "estate_id" => $estateId,
-            "due_date" => $dueDate
-        ];
-
-        return $this->db->table("estate_six_months_due_dates")->insert($data);
+        return $this->db->table("estate_six_months")->insert($data);
     }
 
     public function setInstallmentPayment($reservationId, $estateId, $termYears, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount, $interestRate)

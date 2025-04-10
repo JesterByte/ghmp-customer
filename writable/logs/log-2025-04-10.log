@@ -1,0 +1,384 @@
+CRITICAL - 2025-04-10 08:22:42 --> ErrorException: Undefined variable $hasInstallments
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 13.
+ 1 APPPATH\Views\admin\dashboard.php(13): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $hasInstallments', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 13)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(34): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 09:47:01 --> ParseError: syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 165.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 3 APPPATH\Controllers\AdminController.php(36): view('admin/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 09:47:07 --> ParseError: syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 165.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 3 APPPATH\Controllers\AdminController.php(36): view('admin/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 09:47:08 --> ParseError: syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 165.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 3 APPPATH\Controllers\AdminController.php(36): view('admin/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 09:47:08 --> ParseError: syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 165.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 3 APPPATH\Controllers\AdminController.php(36): view('admin/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 09:47:08 --> ParseError: syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 165.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 3 APPPATH\Controllers\AdminController.php(36): view('admin/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 09:47:08 --> ParseError: syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 165.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 3 APPPATH\Controllers\AdminController.php(36): view('admin/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-10 16:43:41 --> mysqli_sql_exception: Unknown column 'payment_amount' in 'field list' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `si...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `si...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `si...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `si...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Models\LotReservationModel.php(99): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyLotsAndEstatesController.php(328): App\Models\LotReservationModel->setSixMonthsPayment('141', '1C1-3', '75908.02')
+#6 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyLotsAndEstatesController.php(299): App\Controllers\MyLotsAndEstatesController->applySixMonths(Object(App\Models\LotReservationModel), '141', '1C1-3', Array)
+#7 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyLotsAndEstatesController.php(274): App\Controllers\MyLotsAndEstatesController->applyPaymentOption(Object(App\Models\LotReservationModel), '141', '1C1-3', '6 Months', Array, '2025-05-10')
+#8 C:\xampp\htdocs\ghmp-customer\app\Controllers\MyLotsAndEstatesController.php(136): App\Controllers\MyLotsAndEstatesController->processLotReservation('141', '1C1-3', 'Supreme', '6 Months', Object(CodeIgniter\Session\Session))
+#9 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->paymentOptionSubmit()
+#10 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+#11 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-04-10 16:43:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'payment_amount' in 'field list'
+[Method: POST, Route: payment_option_submit]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `six_months` (`reservation_id`, `lot_id`, `payment_amount`) VALUES (:reservation_id:, :lot_id:, :payment_amount:)', [...], false)
+ 2 APPPATH\Models\LotReservationModel.php(99): CodeIgniter\Database\BaseBuilder->insert([...])
+ 3 APPPATH\Controllers\MyLotsAndEstatesController.php(328): App\Models\LotReservationModel->setSixMonthsPayment('141', '1C1-3', '75908.02')
+ 4 APPPATH\Controllers\MyLotsAndEstatesController.php(299): App\Controllers\MyLotsAndEstatesController->applySixMonths(Object(App\Models\LotReservationModel), '141', '1C1-3', [...])
+ 5 APPPATH\Controllers\MyLotsAndEstatesController.php(274): App\Controllers\MyLotsAndEstatesController->applyPaymentOption(Object(App\Models\LotReservationModel), '141', '1C1-3', '6 Months', [...], '2025-05-10')
+ 6 APPPATH\Controllers\MyLotsAndEstatesController.php(136): App\Controllers\MyLotsAndEstatesController->processLotReservation('141', '1C1-3', 'Supreme', '6 Months', Object(CodeIgniter\Session\Session))
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->paymentOptionSubmit()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 16:43:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'payment_amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `six_months` (`reservation_id`, `lot_id`, `payment_amount`) VALUES (\'141\', \'1C1-3\', \'75908.02\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `six_months` (`reservation_id`, `lot_id`, `payment_amount`) VALUES (\'141\', \'1C1-3\', \'75908.02\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `six_months` (`reservation_id`, `lot_id`, `payment_amount`) VALUES (:reservation_id:, :lot_id:, :payment_amount:)', [...], false)
+ 4 APPPATH\Models\LotReservationModel.php(99): CodeIgniter\Database\BaseBuilder->insert([...])
+ 5 APPPATH\Controllers\MyLotsAndEstatesController.php(328): App\Models\LotReservationModel->setSixMonthsPayment('141', '1C1-3', '75908.02')
+ 6 APPPATH\Controllers\MyLotsAndEstatesController.php(299): App\Controllers\MyLotsAndEstatesController->applySixMonths(Object(App\Models\LotReservationModel), '141', '1C1-3', [...])
+ 7 APPPATH\Controllers\MyLotsAndEstatesController.php(274): App\Controllers\MyLotsAndEstatesController->applyPaymentOption(Object(App\Models\LotReservationModel), '141', '1C1-3', '6 Months', [...], '2025-05-10')
+ 8 APPPATH\Controllers\MyLotsAndEstatesController.php(136): App\Controllers\MyLotsAndEstatesController->processLotReservation('141', '1C1-3', 'Supreme', '6 Months', Object(CodeIgniter\Session\Session))
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->paymentOptionSubmit()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 16:43:41 --> [Caused by] mysqli_sql_exception: Unknown column 'payment_amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `six_months` (`reservation_id`, `lot_id`, `payment_amount`) VALUES (\'141\', \'1C1-3\', \'75908.02\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `six_months` (`reservation_id`, `lot_id`, `payment_amount`) VALUES (\'141\', \'1C1-3\', \'75908.02\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `six_months` (`reservation_id`, `lot_id`, `payment_amount`) VALUES (\'141\', \'1C1-3\', \'75908.02\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `six_months` (`reservation_id`, `lot_id`, `payment_amount`) VALUES (:reservation_id:, :lot_id:, :payment_amount:)', [...], false)
+ 5 APPPATH\Models\LotReservationModel.php(99): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 APPPATH\Controllers\MyLotsAndEstatesController.php(328): App\Models\LotReservationModel->setSixMonthsPayment('141', '1C1-3', '75908.02')
+ 7 APPPATH\Controllers\MyLotsAndEstatesController.php(299): App\Controllers\MyLotsAndEstatesController->applySixMonths(Object(App\Models\LotReservationModel), '141', '1C1-3', [...])
+ 8 APPPATH\Controllers\MyLotsAndEstatesController.php(274): App\Controllers\MyLotsAndEstatesController->applyPaymentOption(Object(App\Models\LotReservationModel), '141', '1C1-3', '6 Months', [...], '2025-05-10')
+ 9 APPPATH\Controllers\MyLotsAndEstatesController.php(136): App\Controllers\MyLotsAndEstatesController->processLotReservation('141', '1C1-3', 'Supreme', '6 Months', Object(CodeIgniter\Session\Session))
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->paymentOptionSubmit()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:08:45 --> ErrorException: Undefined variable $chartData
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 118.
+ 1 APPPATH\Views\admin\dashboard.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $chartData', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(38): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:08:45 --> ErrorException: Undefined variable $chartData
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 118.
+ 1 APPPATH\Views\admin\dashboard.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $chartData', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(38): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:09:21 --> ErrorException: Undefined variable $chartData
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 118.
+ 1 APPPATH\Views\admin\dashboard.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $chartData', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(38): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:09:22 --> ErrorException: Undefined variable $chartData
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 118.
+ 1 APPPATH\Views\admin\dashboard.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $chartData', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(38): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:10:36 --> ErrorException: Undefined variable $chartData
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 118.
+ 1 APPPATH\Views\admin\dashboard.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $chartData', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(38): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:12:23 --> ErrorException: Undefined variable $chartData
+[Method: GET, Route: dashboard]
+in APPPATH\Views\admin\dashboard.php on line 118.
+ 1 APPPATH\Views\admin\dashboard.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $chartData', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(38): view('admin/dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:15:29 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\AdminModel::getSixMonthPaymentHistory
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\AdminController.php(30): CodeIgniter\Model->__call('getSixMonthPaymentHistory', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:15:30 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\AdminModel::getSixMonthPaymentHistory
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\AdminController.php(30): CodeIgniter\Model->__call('getSixMonthPaymentHistory', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-10 21:15:50 --> mysqli_sql_exception: Unknown column 'cs.amount' in 'field list' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT COALESCE...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COALESCE...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COALESCE...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT COALESCE...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Models\AdminModel.php(139): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\AdminController.php(30): App\Models\AdminModel->getPaymentHistory('49')
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\AdminController->index()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-04-10 21:15:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'cs.amount' in 'field list'
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT COALESCE(SUM(cs.amount), 0) + COALESCE(SUM(smp.amount), 0) + COALESCE(SUM(ip.amount), 0) as total
+FROM `lot_reservations` `lr`
+LEFT JOIN `cash_sales` `cs` ON `cs`.`reservation_id` = `lr`.`id` AND `cs`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `six_months` `sm` ON `sm`.`reservation_id` = `lr`.`id`
+LEFT JOIN `six_months_payments` `smp` ON `smp`.`six_months_id` = `sm`.`id` AND `smp`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `installments` `i` ON `i`.`reservation_id` = `lr`.`id`
+LEFT JOIN `installment_payments` `ip` ON `ip`.`installment_id` = `i`.`id` AND `ip`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+WHERE `lr`.`reservee_id` = :lr.reservee_id:
+AND `lr`.`reservation_status` = :lr.reservation_status:', [...], false)
+ 2 APPPATH\Models\AdminModel.php(139): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\AdminController.php(30): App\Models\AdminModel->getPaymentHistory('49')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:15:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'cs.amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COALESCE(SUM(cs.amount), 0) + COALESCE(SUM(smp.amount), 0) + COALESCE(SUM(ip.amount), 0) as total
+FROM `lot_reservations` `lr`
+LEFT JOIN `cash_sales` `cs` ON `cs`.`reservation_id` = `lr`.`id` AND `cs`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `six_months` `sm` ON `sm`.`reservation_id` = `lr`.`id`
+LEFT JOIN `six_months_payments` `smp` ON `smp`.`six_months_id` = `sm`.`id` AND `smp`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `installments` `i` ON `i`.`reservation_id` = `lr`.`id`
+LEFT JOIN `installment_payments` `ip` ON `ip`.`installment_id` = `i`.`id` AND `ip`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+WHERE `lr`.`reservee_id` = \'49\'
+AND `lr`.`reservation_status` = \'Confirmed\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COALESCE(SUM(cs.amount), 0) + COALESCE(SUM(smp.amount), 0) + COALESCE(SUM(ip.amount), 0) as total
+FROM `lot_reservations` `lr`
+LEFT JOIN `cash_sales` `cs` ON `cs`.`reservation_id` = `lr`.`id` AND `cs`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `six_months` `sm` ON `sm`.`reservation_id` = `lr`.`id`
+LEFT JOIN `six_months_payments` `smp` ON `smp`.`six_months_id` = `sm`.`id` AND `smp`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `installments` `i` ON `i`.`reservation_id` = `lr`.`id`
+LEFT JOIN `installment_payments` `ip` ON `ip`.`installment_id` = `i`.`id` AND `ip`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+WHERE `lr`.`reservee_id` = \'49\'
+AND `lr`.`reservation_status` = \'Confirmed\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT COALESCE(SUM(cs.amount), 0) + COALESCE(SUM(smp.amount), 0) + COALESCE(SUM(ip.amount), 0) as total
+FROM `lot_reservations` `lr`
+LEFT JOIN `cash_sales` `cs` ON `cs`.`reservation_id` = `lr`.`id` AND `cs`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `six_months` `sm` ON `sm`.`reservation_id` = `lr`.`id`
+LEFT JOIN `six_months_payments` `smp` ON `smp`.`six_months_id` = `sm`.`id` AND `smp`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `installments` `i` ON `i`.`reservation_id` = `lr`.`id`
+LEFT JOIN `installment_payments` `ip` ON `ip`.`installment_id` = `i`.`id` AND `ip`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+WHERE `lr`.`reservee_id` = :lr.reservee_id:
+AND `lr`.`reservation_status` = :lr.reservation_status:', [...], false)
+ 4 APPPATH\Models\AdminModel.php(139): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\AdminController.php(30): App\Models\AdminModel->getPaymentHistory('49')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:15:50 --> [Caused by] mysqli_sql_exception: Unknown column 'cs.amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT COALESCE(SUM(cs.amount), 0) + COALESCE(SUM(smp.amount), 0) + COALESCE(SUM(ip.amount), 0) as total
+FROM `lot_reservations` `lr`
+LEFT JOIN `cash_sales` `cs` ON `cs`.`reservation_id` = `lr`.`id` AND `cs`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `six_months` `sm` ON `sm`.`reservation_id` = `lr`.`id`
+LEFT JOIN `six_months_payments` `smp` ON `smp`.`six_months_id` = `sm`.`id` AND `smp`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `installments` `i` ON `i`.`reservation_id` = `lr`.`id`
+LEFT JOIN `installment_payments` `ip` ON `ip`.`installment_id` = `i`.`id` AND `ip`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+WHERE `lr`.`reservee_id` = \'49\'
+AND `lr`.`reservation_status` = \'Confirmed\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COALESCE(SUM(cs.amount), 0) + COALESCE(SUM(smp.amount), 0) + COALESCE(SUM(ip.amount), 0) as total
+FROM `lot_reservations` `lr`
+LEFT JOIN `cash_sales` `cs` ON `cs`.`reservation_id` = `lr`.`id` AND `cs`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `six_months` `sm` ON `sm`.`reservation_id` = `lr`.`id`
+LEFT JOIN `six_months_payments` `smp` ON `smp`.`six_months_id` = `sm`.`id` AND `smp`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `installments` `i` ON `i`.`reservation_id` = `lr`.`id`
+LEFT JOIN `installment_payments` `ip` ON `ip`.`installment_id` = `i`.`id` AND `ip`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+WHERE `lr`.`reservee_id` = \'49\'
+AND `lr`.`reservation_status` = \'Confirmed\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COALESCE(SUM(cs.amount), 0) + COALESCE(SUM(smp.amount), 0) + COALESCE(SUM(ip.amount), 0) as total
+FROM `lot_reservations` `lr`
+LEFT JOIN `cash_sales` `cs` ON `cs`.`reservation_id` = `lr`.`id` AND `cs`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `six_months` `sm` ON `sm`.`reservation_id` = `lr`.`id`
+LEFT JOIN `six_months_payments` `smp` ON `smp`.`six_months_id` = `sm`.`id` AND `smp`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `installments` `i` ON `i`.`reservation_id` = `lr`.`id`
+LEFT JOIN `installment_payments` `ip` ON `ip`.`installment_id` = `i`.`id` AND `ip`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+WHERE `lr`.`reservee_id` = \'49\'
+AND `lr`.`reservation_status` = \'Confirmed\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT COALESCE(SUM(cs.amount), 0) + COALESCE(SUM(smp.amount), 0) + COALESCE(SUM(ip.amount), 0) as total
+FROM `lot_reservations` `lr`
+LEFT JOIN `cash_sales` `cs` ON `cs`.`reservation_id` = `lr`.`id` AND `cs`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `six_months` `sm` ON `sm`.`reservation_id` = `lr`.`id`
+LEFT JOIN `six_months_payments` `smp` ON `smp`.`six_months_id` = `sm`.`id` AND `smp`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+LEFT JOIN `installments` `i` ON `i`.`reservation_id` = `lr`.`id`
+LEFT JOIN `installment_payments` `ip` ON `ip`.`installment_id` = `i`.`id` AND `ip`.`payment_date` BETWEEN "2024-11-01" AND "2024-11-30"
+WHERE `lr`.`reservee_id` = :lr.reservee_id:
+AND `lr`.`reservation_status` = :lr.reservation_status:', [...], false)
+ 5 APPPATH\Models\AdminModel.php(139): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\AdminController.php(30): App\Models\AdminModel->getPaymentHistory('49')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-10 21:16:33 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\AdminModel::getPropertyDistribution
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\AdminController.php(31): CodeIgniter\Model->__call('getPropertyDistribution', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

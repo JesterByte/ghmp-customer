@@ -285,7 +285,6 @@ class MyLotsAndEstatesController extends BaseController
         $estateReservationModel = new EstateReservationModel();
         $estateReservationModel->updateEstatePaymentOption($reservationId, $assetId, $session->get("user_id"), $paymentOption, "Confirmed");
         $downPaymentDueDate = $this->generateDownPaymentDueDate();
-
         $this->applyPaymentOption($estateReservationModel, $reservationId, $assetId, $paymentOption, $pricing, $downPaymentDueDate);
     }
 
@@ -296,7 +295,7 @@ class MyLotsAndEstatesController extends BaseController
                 $this->applyCashSale($reservationModel, $reservationId, $assetId, $pricing);
                 break;
             case "6 Months":
-                $this->applySixMonths($reservationModel, $reservationId, $assetId, $pricing);
+                $this->applySixMonths($reservationModel, $reservationId, $assetId, $pricing, $downPaymentDueDate);
                 break;
             case "Installment: 1 Year":
                 $this->applyInstallment($reservationModel, $reservationId, $assetId, $pricing, 1, $downPaymentDueDate);
@@ -323,11 +322,12 @@ class MyLotsAndEstatesController extends BaseController
         $reservationModel->setCashSaleDueDate($cashSaleId, $assetId, $dueDate);
     }
 
-    private function applySixMonths($reservationModel, $reservationId, $assetId, $pricing)
+    private function applySixMonths($reservationModel, $reservationId, $assetId, $pricing, $downPaymentDueDate)
     {
-        $sixMonthsId = $reservationModel->setSixMonthsPayment($reservationId, $assetId, $pricing["cash_sale"]);
-        $dueDate = $this->generateSixMonthsDueDate();
-        $reservationModel->setSixMonthsDueDate($sixMonthsId, $assetId, $dueDate);
+        $downPayment = $pricing["six_months_down_payment"];
+        $totalAmount = $this->getSixMonthsFinalBalance($pricing["six_months_monthly_amortization"]);
+        $paymentAmount = $pricing["six_months_monthly_amortization"];
+        $reservationModel->setSixMonthsPayment($reservationId, $assetId, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount);
     }
 
     private function applyInstallment($reservationModel, $reservationId, $assetId, $pricing, $termYears, $downPaymentDueDate)
@@ -343,8 +343,8 @@ class MyLotsAndEstatesController extends BaseController
         $termYears = $years[$termYears];
 
         $downPayment = $pricing["down_payment"];
-        // $totalAmount = $this->getFinalBalance($pricing["monthly_amortization_" . $termYearsKey], $termYears);
-        $totalAmount = $pricing["balance"];
+        $totalAmount = $this->getFinalBalance($pricing["monthly_amortization_" . $termYearsKey], $termYears);
+        // $totalAmount = $pricing["balance"];
         $paymentAmount = $pricing["monthly_amortization_" . $termYearsKey];
         $interestRate = $pricing[$termYearsKey . "_interest_rate"];
 
@@ -359,13 +359,13 @@ class MyLotsAndEstatesController extends BaseController
         return $date->format("Y-m-d");
     }
 
-    private function generateSixMonthsDueDate()
-    {
-        $date = new \DateTime();
+    // private function generateSixMonthsDueDate()
+    // {
+    //     $date = new \DateTime();
 
-        $date->modify("+6 months");
-        return $date->format("Y-m-d");
-    }
+    //     $date->modify("+6 months");
+    //     return $date->format("Y-m-d");
+    // }
 
     private function generateDownPaymentDueDate()
     {
@@ -377,6 +377,11 @@ class MyLotsAndEstatesController extends BaseController
 
     private function getFinalBalance($monthlyPayment, $termYears)
     {
-        return $monthlyPayment * ((int) $termYears * 12);
+        return (float) $monthlyPayment * ((int) $termYears * 12);
+    }
+
+    private function getSixMonthsFinalBalance($monthlyPayment)
+    {
+        return (float) $monthlyPayment * 6;
     }
 }

@@ -88,30 +88,44 @@ class LotReservationModel extends Model
     //     return $this->db->table("six_months")->insert($data);
     // }
 
-    public function setSixMonthsPayment($reservationId, $lotId, $paymentAmount)
+    // public function setSixMonthsPayment($reservationId, $lotId, $paymentAmount)
+    // {
+    //     $data = [
+    //         "reservation_id" => $reservationId,
+    //         "lot_id" => $lotId,
+    //         "payment_amount" => $paymentAmount
+    //     ];
+
+    //     $this->db->table("six_months")->insert($data);
+
+    //     $insertedId = $this->db->insertID();
+
+    //     return $insertedId; 
+    // }
+
+    // public function setSixMonthsDueDate($sixMonthsId, $lotId, $dueDate)
+    // {
+    //     $data = [
+    //         "six_months_id" => $sixMonthsId,
+    //         "lot_id" => $lotId,
+    //         "due_date" => $dueDate
+    //     ];
+
+    //     return $this->db->table("six_months_due_dates")->insert($data);
+    // }
+
+    public function setSixMonthsPayment($reservationId, $lotId, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount)
     {
         $data = [
             "reservation_id" => $reservationId,
             "lot_id" => $lotId,
-            "payment_amount" => $paymentAmount
+            "down_payment" => $downPayment,
+            "down_payment_due_date" => $downPaymentDueDate,
+            "total_amount" => $totalAmount,
+            "monthly_payment" => $paymentAmount
         ];
 
-        $this->db->table("six_months")->insert($data);
-        
-        $insertedId = $this->db->insertID();
-
-        return $insertedId; 
-    }
-
-    public function setSixMonthsDueDate($sixMonthsId, $lotId, $dueDate)
-    {
-        $data = [
-            "six_months_id" => $sixMonthsId,
-            "lot_id" => $lotId,
-            "due_date" => $dueDate
-        ];
-
-        return $this->db->table("six_months_due_dates")->insert($data);
+        return $this->db->table("six_months")->insert($data);
     }
 
     public function setInstallmentPayment($reservationId, $lotId, $termYears, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount, $interestRate)
