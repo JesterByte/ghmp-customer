@@ -22,7 +22,7 @@ class WebhookController extends ResourceController
         $signatureHeader = $headers['Paymongo-Signature'] ?? '';
         if (!$signatureHeader) {
             log_message('error', 'PayMongo Signature header missing.');
-            return $this->failForbidden('Missing Signature Header');
+            return $this->respond(['message' => 'Missing Signature Header'], 200);
         }
 
         // Extract timestamp and signature
@@ -41,14 +41,14 @@ class WebhookController extends ResourceController
 
         if (!$timestamp || !$signatureHash) {
             log_message('error', 'Invalid PayMongo Signature format.');
-            return $this->failForbidden('Invalid Signature Format');
+            return $this->respond(['message' => 'Invalid Signature Format'], 200);
         }
 
         // Compute expected signature
         $expectedSignature = hash_hmac('sha256', $timestamp . "." . $rawPayload, $paymongo_secret);
         if (!hash_equals($expectedSignature, $signatureHash)) {
             log_message('error', 'Unauthorized Webhook Access - Signature Mismatch');
-            return $this->failForbidden('Invalid Signature');
+            return $this->respond(['message' => 'Invalid Signature'], 200);
         }
 
         log_message('error', "Computed Signature: $expectedSignature");
@@ -61,7 +61,7 @@ class WebhookController extends ResourceController
 
         if (!$status) {
             log_message('error', 'Missing status in webhook payload.');
-            return $this->fail("Missing status.");
+            return $this->respond(['message' => 'Missing status'], 200);
         }
 
         $referenceNumber = $data["data"]["attributes"]["data"]["attributes"]["reference_number"] ??
@@ -70,7 +70,7 @@ class WebhookController extends ResourceController
 
         if (!$referenceNumber) {
             log_message('error', 'Reference number not found in webhook payload.');
-            return $this->fail('Missing reference number.');
+            return $this->respond(['message' => 'Missing reference number'], 200);
         }
 
 
@@ -98,7 +98,7 @@ class WebhookController extends ResourceController
 
         if (!$reservation) {
             log_message('error', "No reservation found for Reference Number: $referenceNumber");
-            return $this->failNotFound("Reservation not found.");
+            return $this->respond(['message' => 'Reservation not found'], 200);
         }
 
         // Determine table prefixes
@@ -121,13 +121,9 @@ class WebhookController extends ResourceController
 
                 log_message('error', "Payment option:" . $reservation->payment_option);
                 break;
-            // case "Installment":
-            //     $paymentOptionTable = $prefix . "installments";
-            //     $installmentPaymentsTable = $prefix . "installment_payments";
-            //     break;
             default:
                 log_message('error', "Unknown payment option for Reference Number: $referenceNumber");
-                return $this->fail('Invalid payment option.');
+                return $this->respond(['message' => 'Invalid payment option'], 200);
         }
 
         $assetIdType = FormatterHelper::determineIdType($reservation->asset_id);

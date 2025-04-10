@@ -382,3 +382,143 @@ in SYSTEMPATH\Model.php on line 930.
  5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
  6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-10 21:39:53 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'u714551035_ghmp'@'localhost' (using password: YES) in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'u714551035_ghmp', Object(SensitiveParameterValue), 'u714551035_ghmp...', 3306, '', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\ghmp-customer\app\Models\PaymentModel.php(60): CodeIgniter\Database\BaseConnection->query('\r\n            S...', Array)
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\PaymentLogController.php(22): App\Models\PaymentModel->getAllPayments('49')
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\PaymentLogController->index()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentLogController))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\ghmp-customer\app\Models\PaymentModel.php(60): CodeIgniter\Database\BaseConnection->query('\r\n            S...', Array)
+#3 C:\xampp\htdocs\ghmp-customer\app\Controllers\PaymentLogController.php(22): App\Models\PaymentModel->getAllPayments('49')
+#4 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\PaymentLogController->index()
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentLogController))
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2025-04-10 21:39:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: payment_log]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\PaymentModel.php(60): CodeIgniter\Database\BaseConnection->query('
+            SELECT \'Cash Sale\' AS payment_option, cs.lot_id AS asset_id, cs.payment_amount, cs.payment_status, cs.receipt_path, cs.payment_date
+            FROM cash_sales cs
+            JOIN lot_reservations lr ON cs.reservation_id = lr.id
+            WHERE cs.payment_status = \'Paid\' AND lr.reservee_id = ?
+    
+            UNION ALL
+    
+            SELECT \'Cash Sale\' AS payment_option, cs.estate_id AS asset_id, cs.payment_amount, cs.payment_status, cs.receipt_path, cs.payment_date
+            FROM estate_cash_sales cs
+            JOIN estate_reservations er ON cs.reservation_id = er.id
+            WHERE cs.payment_status = \'Paid\' AND er.reservee_id = ?
+    
+            UNION ALL
+    
+            SELECT \'6 Months\' AS payment_option, sm.lot_id AS asset_id, smp.payment_amount, sm.payment_status, smp.receipt_path, smp.payment_date
+            FROM six_months sm
+            JOIN lot_reservations lr ON sm.reservation_id = lr.id
+            JOIN six_months_payments smp ON sm.id = smp.six_months_id
+            WHERE lr.reservee_id = ?
+            GROUP BY sm.lot_id
+    
+            UNION ALL
+    
+            SELECT \'6 Months\' AS payment_option, sm.estate_id AS asset_id, smp.payment_amount, sm.payment_status, smp.receipt_path, smp.payment_date
+            FROM estate_six_months sm
+            JOIN estate_reservations er ON sm.reservation_id = er.id
+            JOIN estate_six_months_payments smp ON sm.id = smp.six_months_id
+            WHERE er.reservee_id = ?
+            GROUP BY sm.estate_id
+    
+            UNION ALL
+    
+            SELECT \'Installment\' AS payment_option, i.lot_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM installments i
+            JOIN lot_reservations lr ON i.reservation_id = lr.id
+            JOIN installment_payments ip ON i.id = ip.installment_id
+            WHERE lr.reservee_id = ?
+            GROUP BY i.lot_id
+    
+            UNION ALL
+    
+            SELECT \'Installment\' AS payment_option, i.estate_id AS asset_id, ip.payment_amount, ip.payment_status, ip.receipt_path, ip.payment_date
+            FROM estate_installments i
+            JOIN estate_reservations er ON i.reservation_id = er.id
+            JOIN estate_installment_payments ip ON i.id = ip.installment_id
+            WHERE er.reservee_id = ?
+            GROUP BY i.estate_id', [...])
+ 3 APPPATH\Controllers\PaymentLogController.php(22): App\Models\PaymentModel->getAllPayments('49')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PaymentLogController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PaymentLogController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-10 22:25:55 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'u714551035_ghmp'@'localhost' (using password: YES) in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'u714551035_ghmp', Object(SensitiveParameterValue), 'u714551035_ghmp...', 3306, '', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ghmp-customer\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\ghmp-customer\app\Models\EstateModel.php(16): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\ghmp-customer\app\Controllers\ReserveEstateController.php(32): App\Models\EstateModel->getAvailableEstates()
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\ReserveEstateController->getAvailableEstates()
+#9 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReserveEstateController))
+#10 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\ghmp-customer\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\ghmp-customer\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\ghmp-customer\app\Models\EstateModel.php(16): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\ghmp-customer\app\Controllers\ReserveEstateController.php(32): App\Models\EstateModel->getAvailableEstates()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\ReserveEstateController->getAvailableEstates()
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReserveEstateController))
+#9 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-04-10 22:25:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: api/available_estates]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `estates`
+WHERE `status` = :status:', [...], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\EstateModel.php(16): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\ReserveEstateController.php(32): App\Models\EstateModel->getAvailableEstates()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReserveEstateController->getAvailableEstates()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReserveEstateController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

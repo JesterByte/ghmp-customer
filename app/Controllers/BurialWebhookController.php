@@ -22,7 +22,7 @@ class BurialWebhookController extends ResourceController
         $signatureHeader = $headers['Paymongo-Signature'] ?? '';
         if (!$signatureHeader) {
             log_message('error', 'PayMongo Signature header missing.');
-            return $this->failForbidden('Missing Signature Header');
+            return $this->respond(['message' => 'Missing Signature Header'], 200);
         }
 
         // Extract timestamp and signature
@@ -41,14 +41,14 @@ class BurialWebhookController extends ResourceController
 
         if (!$timestamp || !$signatureHash) {
             log_message('error', 'Invalid PayMongo Signature format.');
-            return $this->failForbidden('Invalid Signature Format');
+            return $this->respond(['message' => 'Invalid Signature Format'], 200);
         }
 
         // Compute expected signature
         $expectedSignature = hash_hmac('sha256', $timestamp . "." . $rawPayload, $paymongo_secret);
         if (!hash_equals($expectedSignature, $signatureHash)) {
             log_message('error', 'Unauthorized Webhook Access - Signature Mismatch');
-            return $this->failForbidden('Invalid Signature');
+            return $this->respond(['message' => 'Invalid Signature'], 200);
         }
 
         log_message('error', "Computed Signature: $expectedSignature");
@@ -60,26 +60,26 @@ class BurialWebhookController extends ResourceController
 
         if (!isset($data["data"]["attributes"]["data"]["attributes"]["status"])) {
             log_message('error', 'Missing status in webhook payload.');
-            return $this->fail("Missing status.");
+            return $this->respond(['message' => 'Missing status'], 200);
         }
 
         $status = $data["data"]["attributes"]["data"]["attributes"]["status"];
 
         if (!isset($data["data"]["attributes"]["data"]["attributes"]["reference_number"])) {
             log_message('error', 'Reference number not found in webhook payload.');
-            return $this->fail("Missing reference number.");
+            return $this->respond(['message' => 'Missing reference number'], 200);
         }
 
         $referenceNumber = $data["data"]["attributes"]["data"]["attributes"]["reference_number"];
 
         if (!$status) {
             log_message('error', 'Missing status in webhook payload.');
-            return $this->fail("Missing status.");
+            return $this->respond(['message' => 'Missing status'], 200);
         }
 
         if (!$referenceNumber) {
             log_message('error', 'Reference number not found in webhook payload.');
-            return $this->fail('Missing reference number.');
+            return $this->respond(['message' => 'Missing reference number'], 200);
         }
 
         // Connect to Database

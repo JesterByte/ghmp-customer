@@ -11,12 +11,12 @@
 
 <script>
     // Initialize the map
-    var map = L.map("map").setView([14.871318, 120.976566], 18); // Set default coordinates and zoom level
+    var map = L.map("map").setView([14.871318, 120.976566], 19); // Set default coordinates and zoom level
 
     // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 20
+        maxZoom: 22
     }).addTo(map);
 
     document.addEventListener("DOMContentLoaded", function() {
