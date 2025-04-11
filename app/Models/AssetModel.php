@@ -21,10 +21,8 @@ class AssetModel extends Model
         lr.payment_option, 
         lr.reservation_status, 
         'lot' AS asset, 
-        COALESCE(sm.down_payment, 0) AS six_months_down_payment,
-        COALESCE(sm.down_payment_status) AS six_months_down_payment_status,
-        COALESCE(i.down_payment, 0) AS down_payment,
-        i.down_payment_status AS down_payment_status,
+        COALESCE(sm.down_payment, i.down_payment, 0) AS down_payment,
+        COALESCE(sm.down_payment_status, i.down_payment_status, 0) AS down_payment_status,
         COALESCE(cs.payment_amount, sm.monthly_payment, i.monthly_payment, 0) AS payment_amount,
         CASE
             WHEN cs.payment_amount IS NOT NULL THEN 'cash_sale'
@@ -47,10 +45,8 @@ class AssetModel extends Model
             er.payment_option, 
             er.reservation_status, 
             'estate' AS asset, 
-            COALESCE(sm.down_payment, 0) AS six_months_down_payment,
-            COALESCE(sm.down_payment_status) AS six_months_down_payment_status,
-            COALESCE(i.down_payment, 0) AS down_payment,
-            i.down_payment_status AS down_payment_status,
+            COALESCE(sm.down_payment, i.down_payment, 0) AS down_payment,
+            COALESCE(sm.down_payment_status, i.down_payment_status, 0) AS down_payment_status,
             COALESCE(cs.payment_amount, sm.monthly_payment, i.monthly_payment, 0) AS payment_amount,
             CASE
                 WHEN cs.payment_amount IS NOT NULL THEN 'estate_cash_sale'

@@ -74,7 +74,7 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = service('session');
     }
 
-    public function createPaymongoLink($paymentAmount, $assetId, $paymentOption, $isDownPayment = false)
+    public function createPaymongoLink($paymentAmount, $assetId, $paymentOption, $isDownPayment = false, $isSixMonths = false)
     {
         $db = \Config\Database::connect();
 
@@ -84,13 +84,15 @@ abstract class BaseController extends Controller
             case "lot":
                 $formatteddAssetId = FormatterHelper::formatLotId($assetId);
                 $reservationTable = "lot_reservations";
-                $installmentTable = "installments";
+                $installmentTable = $isSixMonths === true ? "six_months" : "installments";
+                // $installmentTable = "six_months";
                 $column = "lot_id";
                 break;
             case "estate":
                 $formatteddAssetId = FormatterHelper::formatEstateId($assetId);
                 $reservationTable = "estate_reservations";
-                $installmentTable = "estate_installments";
+                $installmentTable = $isSixMonths === true ? "estate_six_months" : "estate_installments";
+                // $installmentTable = "estate_six_months";
                 $column = "estate_id";
                 break;
             default:
@@ -133,7 +135,7 @@ abstract class BaseController extends Controller
         $referenceNumber = $data["data"]["attributes"]["reference_number"] ?? null;
 
         if ($checkoutUrl && $referenceNumber) {
-            if (str_contains($paymentOption, "Installment")) {
+            if ($paymentOption === "6 Months" || str_contains($paymentOption, "Installment")) {
                 switch ($isDownPayment) {
                     case true:
                         $referenceNumberColumn = "down_reference_number";
@@ -145,18 +147,24 @@ abstract class BaseController extends Controller
 
                 $db->table($installmentTable)
                     ->where($column, $assetId)
+                    ->orderBy('created_at', 'DESC')
+                    ->limit(1)
                     ->set([$referenceNumberColumn => $referenceNumber])
                     ->update();
 
                 // Store the reference number in the reservation table
                 $db->table($reservationTable)
                     ->where($column, $assetId)
+                    ->orderBy('created_at', 'DESC')
+                    ->limit(1)
                     ->set(["reference_number" => $referenceNumber])
                     ->update();
             } else {
                 // Store the reference number in the reservation table
                 $db->table($reservationTable)
                     ->where($column, $assetId)
+                    ->orderBy('created_at', 'DESC')
+                    ->limit(1)
                     ->set(["reference_number" => $referenceNumber])
                     ->update();
             }
@@ -224,31 +232,11 @@ abstract class BaseController extends Controller
         $referenceNumber = $data["data"]["attributes"]["reference_number"] ?? null;
 
         if ($checkoutUrl && $referenceNumber) {
-            // if (str_contains($paymentOption, "Installment")) {
-            //     switch ($isDownPayment) {
-            //         case true:
-            //             $referenceNumberColumn = "down_reference_number";
-            //             break;
-            //         case false:
-            //             $referenceNumberColumn = "reference_number";
-            //             break;
-            //     }
-
-            //     $db->table($installmentTable)
-            //     ->where($column, $assetId)
-            //     ->set([$referenceNumberColumn => $referenceNumber])
-            //     ->update();
-            // } else {
-            //     // Store the reference number in the reservation table
-            //     $db->table($reservationTable)
-            //     ->where($column, $assetId)
-            //     ->set(["reference_number" => $referenceNumber])
-            //     ->update();
-            // }
-
             $db->table("burial_reservations")
                 ->where("asset_id", $assetId)
                 ->where("burial_type", $burialType)
+                ->orderBy('created_at', 'DESC')
+                ->limit(1)
                 ->set(["reference_number" => $referenceNumber])
                 ->update();
         }

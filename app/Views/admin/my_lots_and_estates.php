@@ -46,10 +46,10 @@
 
                         if ($row["down_payment_status"] == "Pending") {
                             // $action = '<a target="_blank" href="' . $row["down_payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay Down ' . FormatterHelper::formatPrice($row["down_payment"]) . '</a>';
-                            $action = '<a href="' . $row["down_payment_link"] . '" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click the button below to securely complete your payment through PayMongo." role="button"><i class="bi bi-credit-card-fill"></i> Pay Down ' . FormatterHelper::formatPrice($row["down_payment"]) . '</a>';
+                            $action = '<a target="_blank" href="' . $row["down_payment_link"] . '" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click the button below to securely complete your payment through PayMongo." role="button"><i class="bi bi-credit-card-fill"></i> Pay Down ' . FormatterHelper::formatPrice($row["down_payment"]) . '</a>';
                         } else {
                             // $action = '<a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-primary" role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
-                            $action = '<a href="' . $row["payment_link"] . '" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click the button below to securely complete your payment through PayMongo." role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
+                            $action = '<a target="_blank" href="' . $row["payment_link"] . '" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Click the button below to securely complete your payment through PayMongo." role="button"><i class="bi bi-credit-card-fill"></i> Pay ' . FormatterHelper::formatPrice($row["payment_amount"]) . '</a>';
                         }
                     } else if ($row["reservation_status"] == "Completed") {
                         $action = '<button type="button" class="btn btn-success" disabled><i class="bi bi-check-circle-fill"></i> Paid</button';

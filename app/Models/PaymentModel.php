@@ -8,8 +8,7 @@ class PaymentModel extends Model
 {
     public function getAllPayments($userId)
     {
-        $query = "
-            SELECT 'Cash Sale' AS payment_option, cs.lot_id AS asset_id, cs.payment_amount, cs.payment_status, cs.receipt_path, cs.payment_date
+        $query = "SELECT 'Cash Sale' AS payment_option, cs.lot_id AS asset_id, cs.payment_amount, cs.payment_status, cs.receipt_path, cs.payment_date
             FROM cash_sales cs
             JOIN lot_reservations lr ON cs.reservation_id = lr.id
             WHERE cs.payment_status = 'Paid' AND lr.reservee_id = ?

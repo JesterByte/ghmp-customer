@@ -17,7 +17,7 @@
     // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 20
+        maxZoom: 22
     }).addTo(map);
 
     // Fetch lot data from the API

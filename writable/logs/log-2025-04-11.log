@@ -1,0 +1,391 @@
+CRITICAL - 2025-04-11 21:16:05 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(12): view('forgot_password')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:17:55 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(12): view('forgot_password')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-11 21:18:55 --> mysqli_sql_exception: Unknown column 'email' in 'where clause' in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ghmp-customer\system\BaseModel.php(713): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\ghmp-customer\app\Controllers\ForgotPasswordController.php(25): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->sendResetLink()
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+#9 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-04-11 21:18:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'email' in 'where clause'
+[Method: POST, Route: forgot-password/send]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `customers`
+WHERE `email` = :email:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\ForgotPasswordController.php(25): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->sendResetLink()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:18:55 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'email' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `customers`
+WHERE `email` = \'ejjose94@gmail.com\'
+ LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `customers`
+WHERE `email` = \'ejjose94@gmail.com\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `customers`
+WHERE `email` = :email:
+ LIMIT 1', [...], false)
+ 4 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->doFirst()
+ 6 APPPATH\Controllers\ForgotPasswordController.php(25): CodeIgniter\BaseModel->first()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->sendResetLink()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:18:55 --> [Caused by] mysqli_sql_exception: Unknown column 'email' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `customers`
+WHERE `email` = \'ejjose94@gmail.com\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `customers`
+WHERE `email` = \'ejjose94@gmail.com\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `customers`
+WHERE `email` = \'ejjose94@gmail.com\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `customers`
+WHERE `email` = :email:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(713): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Controllers\ForgotPasswordController.php(25): CodeIgniter\BaseModel->first()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->sendResetLink()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:22:13 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+[Method: POST, Route: forgot-password/send]
+in SYSTEMPATH\BaseModel.php on line 1010.
+ 1 SYSTEMPATH\BaseModel.php(1010): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\ForgotPasswordController.php(42): CodeIgniter\Model->update('49', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->sendResetLink()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:24:09 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+[Method: POST, Route: forgot-password/send]
+in SYSTEMPATH\BaseModel.php on line 1010.
+ 1 SYSTEMPATH\BaseModel.php(1010): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\ForgotPasswordController.php(42): CodeIgniter\Model->update('49', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->sendResetLink()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:42:08 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(12): view('forgot_password')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:42:19 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(12): view('forgot_password')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:43:00 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "emails/reset_password_otp.php"
+[Method: POST, Route: forgot-password/send-otp]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('emails/reset_password_otp.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('emails/reset_password_otp', [], true)
+ 3 APPPATH\Controllers\ForgotPasswordController.php(45): view('emails/reset_password_otp', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->sendOTP()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:44:35 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: verify-otp]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('verify_otp', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(65): view('verify_otp')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->verifyOTP()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:44:42 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: verify-otp]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('verify_otp', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(65): view('verify_otp')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->verifyOTP()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:45:35 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+[Method: POST, Route: verify-otp/validate]
+in SYSTEMPATH\BaseModel.php on line 1010.
+ 1 SYSTEMPATH\BaseModel.php(1010): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\ForgotPasswordController.php(96): CodeIgniter\Model->update('49', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->validateOTP()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:48:49 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+[Method: POST, Route: verify-otp/validate]
+in SYSTEMPATH\BaseModel.php on line 1010.
+ 1 SYSTEMPATH\BaseModel.php(1010): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\ForgotPasswordController.php(96): CodeIgniter\Model->update('49', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->validateOTP()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 21:51:45 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+[Method: POST, Route: verify-otp/validate]
+in SYSTEMPATH\BaseModel.php on line 1010.
+ 1 SYSTEMPATH\BaseModel.php(1010): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\ForgotPasswordController.php(96): CodeIgniter\Model->update('49', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->validateOTP()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-11 22:02:54 --> Invalid token or token expired. Token: 790aee906ee29a2dbd9ed98a130d92d001a1b3a4a6cfbf3a067ebe452fd70921
+ERROR - 2025-04-11 22:04:00 --> Invalid token or token expired. Token: 97ef23cc5a156cacc33f3de1de5d33503410bd5381ac7905edad6fa4f4e19629
+ERROR - 2025-04-11 22:04:36 --> Invalid token or token expired. Token: d1c2b32e93464cff95a0ce20c8288316cc79fbe0b3ae2de5100e41800931cbd4
+ERROR - 2025-04-11 22:08:13 --> Invalid token or token expired. Token: 7e8cdd764d96c2c484d62af1002875afc0137e7717cf40b1aee7114245962885
+CRITICAL - 2025-04-11 22:17:06 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password_request', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(11): view('forgot_password_request')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 22:17:09 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password_request', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(11): view('forgot_password_request')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 22:17:11 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password_request', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(11): view('forgot_password_request')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 22:17:18 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password/request]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password_request', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(11): view('forgot_password_request')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 22:18:22 --> ErrorException: Undefined variable $pageTitle
+[Method: GET, Route: forgot-password/request]
+in APPPATH\Views\components\brochure_header.php on line 10.
+ 1 APPPATH\Views\components\brochure_header.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pageTitle', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php', 10)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_header.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('components/brochure_header', null, true)
+ 5 APPPATH\Views\components\brochure_template.php(1): CodeIgniter\View\View->include('components/brochure_header')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\components\\brochure_template.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(240): CodeIgniter\View\View->render('components/brochure_template', [], true)
+ 9 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('forgot_password_request', [], true)
+10 APPPATH\Controllers\ForgotPasswordController.php(11): view('forgot_password_request')
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 22:19:08 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "emails/reset_password_otp.php"
+[Method: POST, Route: forgot-password/send-otp]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('emails/reset_password_otp.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('emails/reset_password_otp', [], true)
+ 3 APPPATH\Controllers\ForgotPasswordController.php(44): view('emails/reset_password_otp', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->sendOTP()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 22:28:13 --> CodeIgniter\Database\Exceptions\DataException: There is no data to update.
+[Method: POST, Route: reset-password/update]
+in SYSTEMPATH\BaseModel.php on line 1010.
+ 1 SYSTEMPATH\BaseModel.php(1010): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\ForgotPasswordController.php(194): CodeIgniter\Model->update('49', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ForgotPasswordController->updatePassword()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ForgotPasswordController))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

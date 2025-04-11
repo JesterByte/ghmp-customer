@@ -70,3 +70,11 @@ $routes->post("/api/webhook_burial", "BurialWebhookController::index");
 $routes->get("notification/fetchNotifications/(:any)", "NotificationController::fetchNotifications/$1");
 $routes->get("notification/markAsRead/(:num)", "NotificationController::markAsRead/$1");
 $routes->get("notification/markAllAsRead/(:num)", "NotificationController::markAllAsRead/$1");
+
+$routes->get('forgot-password/request', 'ForgotPasswordController::index');
+$routes->post('forgot-password/send-otp', 'ForgotPasswordController::sendOTP');
+$routes->get('verify-otp', 'ForgotPasswordController::verifyOTP');
+$routes->post('verify-otp/validate', 'ForgotPasswordController::validateOTP');
+$routes->post('forgot-password/resend-otp', 'ForgotPasswordController::resendOTP');
+$routes->get('reset-password', 'ForgotPasswordController::resetPassword');
+$routes->post('reset-password/update', 'ForgotPasswordController::updatePassword');

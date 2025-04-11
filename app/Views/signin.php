@@ -40,12 +40,12 @@
                         </div>
 
                         <!-- Remember Me & Forgot Password -->
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <div class="form-check">
+                        <div class="d-flex justify-content-end align-items-center mb-4">
+                            <!-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="remember" name="remember">
                                 <label class="form-check-label" for="remember">Remember me</label>
-                            </div>
-                            <a href="<?= base_url('forgot-password') ?>" class="text-decoration-none">Forgot password?</a>
+                            </div> -->
+                            <a href="<?= base_url('forgot-password/request') ?>" class="text-decoration-none">Forgot password?</a>
                         </div>
 
                         <!-- Submit Button -->

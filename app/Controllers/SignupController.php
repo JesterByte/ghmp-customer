@@ -33,7 +33,7 @@ class SignupController extends BaseController
         $lastName = FormatterHelper::cleanName($this->request->getPost("last_name"));
         $suffixName = $this->request->getPost("suffix");
 
-        $contactNumber = $this->request->getPost("contact_number");
+        $contactNumber = "+639{$this->request->getPost("contact_number")}";
         $email = FormatterHelper::cleanEmail($this->request->getPost("email"));
 
         $password = trim($this->request->getPost("password"));
@@ -71,7 +71,7 @@ class SignupController extends BaseController
         $beneficiaryMiddleName = FormatterHelper::cleanName($this->request->getPost("beneficiary_middle_name"));
         $beneficiaryLastName = FormatterHelper::cleanName($this->request->getPost("beneficiary_last_name"));
         $beneficiarySuffixName = $this->request->getPost("beneficiary_suffix");
-        $beneficiaryContactNumber = $this->request->getPost("beneficiary_contact_number");
+        $beneficiaryContactNumber = "+639{$this->request->getPost("beneficiary_contact_number")}";
         $beneficiaryEmail = FormatterHelper::cleanEmail($this->request->getPost("beneficiary_email"));
 
         $existingBeneficiary = $beneficiaryModel->where("email_address", $beneficiaryEmail)->first();

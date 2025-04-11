@@ -30,7 +30,7 @@
         <div class="carousel-caption text-white">
           <h1>Premium Memorial Lots</h1>
           <p>Choose from lawn lots and private estates (mausoleums) thoughtfully designed for enduring remembrance.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">View Lot Options</a></p>
+          <p><a class="btn btn-lg btn-primary" href="<?= base_url("pricing?type=lot") ?>">View Lot Options</a></p>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
         <div class="carousel-caption text-end text-white">
           <h1>Personalized Private Estates</h1>
           <p>Honor your legacy with exclusive mausoleum-style estates tailored to your family's wishes.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Explore Estates</a></p>
+          <p><a class="btn btn-lg btn-primary" href="<?= base_url("pricing?type=estate") ?>">Explore Estates</a></p>
         </div>
       </div>
     </div>

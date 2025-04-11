@@ -93,6 +93,7 @@ class BurialWebhookController extends ResourceController
                 ->update();
 
             $burialReservation = $db->table("burial_reservations")
+                ->select("asset_id")
                 ->where("reference_number", $referenceNumber)
                 ->get()
                 ->getRow();

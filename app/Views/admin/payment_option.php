@@ -144,17 +144,29 @@ use App\Helpers\FormatterHelper;
             4: <?= (float) $pricing["four_years_interest_rate"] ?>,
             5: <?= (float) $pricing["five_years_interest_rate"] ?>
         };
+        
+        let totalPurchasePrice = <?= (float) $pricing["total_purchase_price"] ?>;
+        let downPayment = <?= (float) $pricing["down_payment"] ?>;
+        let initialBalance = totalPurchasePrice - downPayment;
+        
+        // Calculate interest and monthly payment
         let interestRate = interestRates[years];
-        let balance = <?= (int) $pricing["balance"] ?>;
-        let totalAmount = balance + (balance * interestRate);
-        let monthlyPayment = totalAmount / (years * 12);
-        let totalPayableAmount = numberFormat(monthlyPayment * (years * 12));
+        let totalWithInterest = initialBalance + (initialBalance * interestRate);
+        let monthlyPayment = totalWithInterest / (years * 12);
+        
+        // Calculate total amount from monthly payments
+        let numberOfPayments = years * 12;
+        let totalMonthlyPayments = monthlyPayment * numberOfPayments;
+        let totalPayableAmount = totalMonthlyPayments;
+        
+        // Format for display
         let formattedMonthlyPayment = numberFormat(monthlyPayment);
+        let formattedTotalPayable = numberFormat(totalPayableAmount);
 
+        // Update display
         document.getElementById('interestRate').innerText = (interestRate * 100) + "%";
         document.getElementById('monthlyPayment').innerText = "₱" + formattedMonthlyPayment;
-        document.getElementById('totalPayableAmount').innerText = "₱" + totalPayableAmount;
-
+        document.getElementById('totalPayableAmount').innerText = "₱" + formattedTotalPayable;
     }
 
     document.getElementById('payment_option').addEventListener('change', updateInstallmentDetails);

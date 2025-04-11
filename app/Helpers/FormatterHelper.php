@@ -160,11 +160,11 @@ class FormatterHelper
 
     public static function cleanName($name)
     {
-        return trim(ucwords(strtolower($name)));
+        return strip_tags(trim(ucwords(strtolower($name))));
     }
 
     public static function cleanEmail($email)
     {
-        return trim(strtolower($email));
+        return strip_tags(trim(strtolower($email)));
     }
 }

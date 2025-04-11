@@ -86,11 +86,19 @@
                                 <div class="mb-3">
                                     <label for="contactNumber" class="form-label">Contact Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <span class="input-group-text">+63</span>
-                                        <input type="text" name="contact_number" required id="contactNumber" class="form-control form-control-lg" placeholder="9123456789">
+                                        <span class="input-group-text">+639</span>
+                                        <input type="text" 
+                                               name="contact_number" 
+                                               required 
+                                               id="contactNumber" 
+                                               class="form-control form-control-lg" 
+                                               placeholder="123456789"
+                                               maxlength="9"
+                                               pattern="[0-9]{9}"
+                                               inputmode="numeric">
                                     </div>
-                                    <div class="invalid-feedback">Please enter a valid Philippine mobile number.</div>
-                                    <small class="form-text text-muted">Format: 9123456789 (no spaces or dashes)</small>
+                                    <div class="invalid-feedback">Please enter a valid 9-digit mobile number.</div>
+                                    <small class="form-text text-muted">Format: 9 digits only (no spaces or special characters)</small>
                                 </div>
                                 
                                 <div class="row">
@@ -102,13 +110,20 @@
                                                 <i class="bi bi-eye"></i>
                                             </button>
                                         </div>
-                                        <div class="invalid-feedback">Password must be at least 8 characters with special characters.</div>
+                                        <div class="invalid-feedback">Password must meet the requirements below.</div>
                                         <div class="password-strength mt-2">
                                             <div class="progress" style="height: 5px;">
                                                 <div class="progress-bar" role="progressbar" style="width: 0%"></div>
                                             </div>
                                             <small class="text-muted password-strength-text">Password strength</small>
                                         </div>
+                                        <small class="form-text text-muted mt-1">
+                                            Password must contain:<br>
+                                            - At least 8 characters<br>
+                                            - At least one letter<br>
+                                            - At least one number<br>
+                                            - At least one special character (@$!%*#?&_)
+                                        </small>
                                     </div>
                                     
                                     <div class="col-md-6 mb-3">
@@ -139,7 +154,7 @@
                                 <div class="mb-3">
                                     <label for="beneficiaryRelationship" class="form-label">Relationship <span class="text-danger">*</span></label>
                                     <select name="beneficiary_relationship" id="beneficiaryRelationship" class="form-select form-select-lg" required>
-                                        <option value="" selected disabled>Select relationship</option>
+                                        <option value="" selected disabled>Select relationship to the beneficiary</option>
                                         <option value="Spouse">Spouse</option>
                                         <option value="Child">Child</option>
                                         <option value="Parent">Parent</option>
@@ -191,10 +206,19 @@
                                 <div class="mb-3">
                                     <label for="beneficiaryContactNumber" class="form-label">Contact Number <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <span class="input-group-text">+63</span>
-                                        <input type="text" name="beneficiary_contact_number" required id="beneficiaryContactNumber" class="form-control form-control-lg" placeholder="9123456789">
+                                        <span class="input-group-text">+639</span>
+                                        <input type="text" 
+                                               name="beneficiary_contact_number" 
+                                               required 
+                                               id="beneficiaryContactNumber" 
+                                               class="form-control form-control-lg" 
+                                               placeholder="123456789"
+                                               maxlength="9"
+                                               pattern="[0-9]{9}"
+                                               inputmode="numeric">
                                     </div>
-                                    <div class="invalid-feedback">Please enter a valid Philippine mobile number.</div>
+                                    <div class="invalid-feedback">Please enter a valid 9-digit mobile number.</div>
+                                    <small class="form-text text-muted">Format: 9 digits only (no spaces or special characters)</small>
                                 </div>
                                 
                                 <div class="mb-3">
@@ -427,7 +451,7 @@
                     isValid = false;
                 }
             });
-            
+             
             if (isValid) {
                 currentSection.removeClass('active');
                 $(`#section-${nextSectionId}`).addClass('active');
@@ -558,7 +582,7 @@
             }
             
             // Validate password strength
-            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&_])[A-Za-z\d@$!%*#?&_]{8,}$/;
             if (!passwordRegex.test($("#password").val())) {
                 $("#password").addClass('is-invalid');
                 isValid = false;
@@ -583,6 +607,66 @@
         $('[required]').on('input', function() {
             if ($(this).val()) {
                 $(this).removeClass('is-invalid');
+            }
+        });
+
+        // Add this to your existing $(document).ready() function
+        $("#contactNumber").on('input', function(e) {
+            // Remove any non-numeric characters
+            this.value = this.value.replace(/[^0-9]/g, '');
+            
+            // Ensure maximum length of 9 digits
+            if (this.value.length > 9) {
+                this.value = this.value.slice(0, 9);
+            }
+        });
+
+        // Prevent pasting of non-numeric characters
+        $("#contactNumber").on('paste', function(e) {
+            // Get pasted data
+            let pastedData = (e.originalEvent.clipboardData || window.clipboardData).getData('text');
+            
+            // Check if pasted data contains non-numeric characters
+            if (!/^\d*$/.test(pastedData)) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent key press of non-numeric characters
+        $("#contactNumber").on('keypress', function(e) {
+            // Allow only numeric keys
+            if (e.which < 48 || e.which > 57) {
+                e.preventDefault();
+            }
+        });
+
+        // Add this to your existing $(document).ready() function
+        $("#beneficiaryContactNumber").on('input', function(e) {
+            // Remove any non-numeric characters
+            this.value = this.value.replace(/[^0-9]/g, '');
+            
+            // Ensure maximum length of 9 digits
+            if (this.value.length > 9) {
+                this.value = this.value.slice(0, 9);
+            }
+        });
+
+        // Prevent pasting of non-numeric characters
+        $("#beneficiaryContactNumber").on('paste', function(e) {
+            // Get pasted data
+            let pastedData = (e.originalEvent.clipboardData || window.clipboardData).getData('text');
+            
+            // Check if pasted data contains non-numeric characters
+            if (!/^\d*$/.test(pastedData)) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent key press of non-numeric characters
+        $("#beneficiaryContactNumber").on('keypress', function(e) {
+            // Allow only numeric keys
+            if (e.which < 48 || e.which > 57) {
+                e.preventDefault();
             }
         });
     });

@@ -31,11 +31,23 @@ class MyLotsAndEstatesController extends BaseController
             if ($row["reservation_status"] == "Cancelled" || $row["reservation_status"] == "Completed" || $row["reservation_status"] == "Pending" || (isset($row["down_payment_status"]) && $row["down_payment_status"] == "Pending")) {
                 $row["payment_link"] = "#";
             } else {
-                $row["payment_link"] = $this->createPaymongoLink($row["payment_amount"], $row["asset_id"], $row["payment_option"]);
+                if ($row["payment_option"] == "6 Months") {
+                    $isSixMonths = true;
+                } else {
+                    $isSixMonths = false;
+                }
+
+                $row["payment_link"] = $this->createPaymongoLink($row["payment_amount"], $row["asset_id"], $row["payment_option"], false, $isSixMonths);
             }
 
             if (isset($row["down_payment_status"]) && $row["down_payment_status"] == "Pending") {
-                $row["down_payment_link"] = $this->createPaymongoLink($row["down_payment"], $row["asset_id"], $row["payment_option"], true);
+                if ($row["payment_option"] == "6 Months") {
+                    $isSixMonths = true;
+                } else {
+                    $isSixMonths = false;
+                }
+
+                $row["down_payment_link"] = $this->createPaymongoLink($row["down_payment"], $row["asset_id"], $row["payment_option"], true, $isSixMonths);
             } else {
                 $row["down_payment_link"] = "#";
             }

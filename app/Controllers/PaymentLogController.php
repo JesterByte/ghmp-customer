@@ -30,102 +30,102 @@ class PaymentLogController extends BaseController
         return view("admin/payment_log", $data);
     }
 
-    public function getCashSales()
-    {
-        $cashSaleModel = new CashSaleModel();
+    // public function getCashSales()
+    // {
+    //     $cashSaleModel = new CashSaleModel();
 
-        $cashSales = $cashSaleModel->getCashSales();
+    //     $cashSales = $cashSaleModel->getCashSales();
 
-        return $this->response->setJSON($cashSales);
-    }
+    //     return $this->response->setJSON($cashSales);
+    // }
 
-    public function getSixMonths()
-    {
-        $sixMonthsModel = new SixMonthsModel();
-        $sixMonths = $sixMonthsModel->getSixMonths();
+    // public function getSixMonths()
+    // {
+    //     $sixMonthsModel = new SixMonthsModel();
+    //     $sixMonths = $sixMonthsModel->getSixMonths();
 
-        return $this->response->setJSON($sixMonths);
-    }
+    //     return $this->response->setJSON($sixMonths);
+    // }
 
-    public function getInstallmentDownPayments()
-    {
-        $installmentsModel = new InstallmentModel();
-        $installmentDownPayments = $installmentsModel->getInstallmentDownPayments();
+    // public function getInstallmentDownPayments()
+    // {
+    //     $installmentsModel = new InstallmentModel();
+    //     $installmentDownPayments = $installmentsModel->getInstallmentDownPayments();
 
-        return $this->response->setJSON($installmentDownPayments);
-    }
+    //     return $this->response->setJSON($installmentDownPayments);
+    // }
 
-    public function payCashSale()
-    {
-        $assetId = $this->request->getPost("asset_id");
-        $paymentAmount = $this->request->getPost("payment_amount");
-        $receipt = $this->request->getFile("receipt");
+    // public function payCashSale()
+    // {
+    //     $assetId = $this->request->getPost("asset_id");
+    //     $paymentAmount = $this->request->getPost("payment_amount");
+    //     $receipt = $this->request->getFile("receipt");
 
-        if (!$assetId || !$paymentAmount || !$receipt) {
-            return $this->response->setJSON(["success" => false, "message" => "All fields are required!"]);
-        }
+    //     if (!$assetId || !$paymentAmount || !$receipt) {
+    //         return $this->response->setJSON(["success" => false, "message" => "All fields are required!"]);
+    //     }
 
-        if ($receipt->isValid() && !$receipt->hasMoved()) {
-            $newName = $receipt->getRandomName();
-            $receipt->move(FCPATH . "uploads/receipts/", $newName);
-        } else {
-            return $this->response->setJSON(["success" => false, "message" => "Invalid file upload!"]);
-        }
+    //     if ($receipt->isValid() && !$receipt->hasMoved()) {
+    //         $newName = $receipt->getRandomName();
+    //         $receipt->move(FCPATH . "uploads/receipts/", $newName);
+    //     } else {
+    //         return $this->response->setJSON(["success" => false, "message" => "Invalid file upload!"]);
+    //     }
 
-        $assetIdType = FormatterHelper::determineIdType($assetId);
+    //     $assetIdType = FormatterHelper::determineIdType($assetId);
 
-        switch ($assetIdType) {
-            case "lot":
-                $table = "cash_sales";
-                $assetIdKey = "lot_id";
-                break;
-            case "estate":
-                $table = "estate_cash_sales";
-                $assetIdKey = "estate_id";
-                break;
-        }
-        $receiptPath = "uploads/receipts/" . $newName;
+    //     switch ($assetIdType) {
+    //         case "lot":
+    //             $table = "cash_sales";
+    //             $assetIdKey = "lot_id";
+    //             break;
+    //         case "estate":
+    //             $table = "estate_cash_sales";
+    //             $assetIdKey = "estate_id";
+    //             break;
+    //     }
+    //     $receiptPath = "uploads/receipts/" . $newName;
 
-        $cashSaleModel = new CashSaleModel();
-        $result = $cashSaleModel->setCashSalePayment($assetIdType, $table, $assetId, $assetIdKey, $paymentAmount, $receiptPath);
+    //     $cashSaleModel = new CashSaleModel();
+    //     $result = $cashSaleModel->setCashSalePayment($assetIdType, $table, $assetId, $assetIdKey, $paymentAmount, $receiptPath);
 
-        return $this->response->setJSON($result);
-    }
+    //     return $this->response->setJSON($result);
+    // }
 
-    public function paySixMonths()
-    {
-        $assetId = $this->request->getPost("asset_id");
-        $paymentAmount = $this->request->getPost("payment_amount");
-        $receipt = $this->request->getFile("receipt");
+    // public function paySixMonths()
+    // {
+    //     $assetId = $this->request->getPost("asset_id");
+    //     $paymentAmount = $this->request->getPost("payment_amount");
+    //     $receipt = $this->request->getFile("receipt");
 
-        if (!$assetId || !$paymentAmount || !$receipt) {
-            return $this->response->setJSON(["success" => false, "message" => "All fields are required!"]);
-        }
+    //     if (!$assetId || !$paymentAmount || !$receipt) {
+    //         return $this->response->setJSON(["success" => false, "message" => "All fields are required!"]);
+    //     }
 
-        if ($receipt->isValid() && !$receipt->hasMoved()) {
-            $newName = $receipt->getRandomName();
-            $receipt->move(FCPATH . "uploads/receipts/", $newName);
-        } else {
-            return $this->response->setJSON(["success" => false, "message" => "Invalid file upload!"]);
-        }
+    //     if ($receipt->isValid() && !$receipt->hasMoved()) {
+    //         $newName = $receipt->getRandomName();
+    //         $receipt->move(FCPATH . "uploads/receipts/", $newName);
+    //     } else {
+    //         return $this->response->setJSON(["success" => false, "message" => "Invalid file upload!"]);
+    //     }
 
-        $assetIdType = FormatterHelper::determineIdType($assetId);
+    //     $assetIdType = FormatterHelper::determineIdType($assetId);
 
-        switch ($assetIdType) {
-            case "lot":
-                $table = "six_months";
-                $assetIdKey = "lot_id";
-                break;
-            case "estate":
-                $table = "estate_six_months";
-                $assetIdKey = "estate_id";
-                break;
-        }
-        $receiptPath = "uploads/receipts/" . $newName;
+    //     switch ($assetIdType) {
+    //         case "lot":
+    //             $table = "six_months";
+    //             $assetIdKey = "lot_id";
+    //             break;
+    //         case "estate":
+    //             $table = "estate_six_months";
+    //             $assetIdKey = "estate_id";
+    //             break;
+    //     }
+    //     $receiptPath = "uploads/receipts/" . $newName;
 
-        $sixMonthsModel = new SixMonthsModel();
-        $result = $sixMonthsModel->setSixMonthsPayment($assetIdType, $table, $assetId, $assetIdKey, $paymentAmount, $receiptPath);
+    //     $sixMonthsModel = new SixMonthsModel();
+    //     $result = $sixMonthsModel->setSixMonthsPayment($assetIdType, $table, $assetId, $assetIdKey, $paymentAmount, $receiptPath);
 
-        return $this->response->setJSON($result);
-    }
+    //     return $this->response->setJSON($result);
+    // }
 }
