@@ -389,3 +389,59 @@ in SYSTEMPATH\BaseModel.php on line 1010.
  7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
  8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-11 23:45:10 --> CodeIgniter\Security\Exceptions\SecurityException: Attempted to send a secure cookie over a non-secure connection.
+[Method: GET, Route: signin]
+in SYSTEMPATH\HTTP\ResponseTrait.php on line 679.
+ 1 SYSTEMPATH\HTTP\ResponseTrait.php(679): CodeIgniter\Security\Exceptions\SecurityException::forInsecureCookie()
+ 2 SYSTEMPATH\HTTP\ResponseTrait.php(669): CodeIgniter\HTTP\Response->dispatchCookies()
+ 3 SYSTEMPATH\HTTP\ResponseTrait.php(377): CodeIgniter\HTTP\Response->sendCookies()
+ 4 SYSTEMPATH\CodeIgniter.php(1105): CodeIgniter\HTTP\Response->send()
+ 5 SYSTEMPATH\CodeIgniter.php(377): CodeIgniter\CodeIgniter->sendResponse()
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-11 23:46:34 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'u714551035_ghmp'@'localhost' (using password: YES) in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'u714551035_ghmp', Object(SensitiveParameterValue), 'u714551035_ghmp...', 3306, '', 0)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT MIN(tota...', Array, false)
+#4 C:\xampp\htdocs\ghmp-customer\app\Models\PricingModel.php(52): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ghmp-customer\app\Controllers\Home.php(40): App\Models\PricingModel->getLowestLotPrice()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\Home->index()
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in C:\xampp\htdocs\ghmp-customer\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\ghmp-customer\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\ghmp-customer\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT MIN(tota...', Array, false)
+#3 C:\xampp\htdocs\ghmp-customer\app\Models\PricingModel.php(52): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\ghmp-customer\app\Controllers\Home.php(40): App\Models\PricingModel->getLowestLotPrice()
+#5 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(933): App\Controllers\Home->index()
+#6 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\ghmp-customer\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ghmp-customer\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ghmp-customer\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ghmp-customer\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-04-11 23:46:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT MIN(total_purchase_price) as lowest_price
+FROM `phase_pricing`', [], false)
+ 3 APPPATH\Models\PricingModel.php(52): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\Home.php(40): App\Models\PricingModel->getLowestLotPrice()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

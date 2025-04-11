@@ -557,9 +557,10 @@
         
         // Form validation
         $("#signupForm").on('submit', function(e) {
+            e.preventDefault(); // Prevent default submission initially
             let isValid = true;
             
-            // Validate all required fields in active section
+            // Validate all required fields
             $(this).find('[required]').each(function() {
                 if (!$(this).val()) {
                     $(this).addClass('is-invalid');
@@ -574,8 +575,8 @@
                 isValid = false;
             }
             
-            // Validate contact number format (Philippine mobile)
-            const contactRegex = /^9\d{9}$/;
+            // Validate contact number format
+            const contactRegex = /^[0-9]{9}$/;
             if (!contactRegex.test($("#contactNumber").val())) {
                 $("#contactNumber").addClass('is-invalid');
                 isValid = false;
@@ -595,12 +596,21 @@
             }
             
             if (!isValid) {
-                e.preventDefault();
                 // Scroll to first invalid field
                 $('html, body').animate({
                     scrollTop: $(".is-invalid").first().offset().top - 100
                 }, 500);
+            } else {
+                // If everything is valid, submit the form
+                $(this).off('submit').submit();
             }
+        });
+
+        // Add this after the form validation code
+        $("#signupForm").on('submit', function() {
+            const submitBtn = $(this).find('button[type="submit"]');
+            submitBtn.prop('disabled', true);
+            submitBtn.html('<span class="spinner-border spinner-border-sm me-2"></span>Submitting...');
         });
         
         // Real-time validation for required fields
