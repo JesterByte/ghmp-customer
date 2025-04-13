@@ -38,19 +38,26 @@ use App\Helpers\FormatterHelper;
         <div class="col-md-4 mb-3">
             <div class="card shadow p-3 h-100">
                 <h4>6 Months Plan</h4>
-                <p><b>Original Price:</b> <?= FormatterHelper::formatPrice($pricing["total_purchase_price"]) ?></p>
-                <p><b>6 Months Discount:</b> <?= FormatterHelper::formatRate($pricing["six_months_discount"]) ?></p>
-                <p><b>Total Payable Amount:</b> <?= FormatterHelper::formatPrice($pricing["six_months"]) ?></p>
-                <p><b>Payment Deadline:</b> <?= FormatterHelper::sixMonthsFromNow() ?></p>
-                <!-- <button class="btn btn-primary w-100 mt-3">Choose this option</button> -->
                 <form action="<?= base_url("payment_option_submit") ?>" method="post">
+                    <p><b>Original Price:</b> <?= FormatterHelper::formatPrice($pricing["total_purchase_price"]) ?></p>
+                    <p><b>Down Payment (<?= FormatterHelper::formatRate($pricing["down_payment_rate"]) ?>):</b> <?= FormatterHelper::formatPrice($pricing["down_payment"]) ?></p>
+                    <p><b>Balance:</b> <?= FormatterHelper::formatPrice($pricing["balance"]) ?></p>
+                    <p><b>6 Months Discount:</b> <?= FormatterHelper::formatRate($pricing["six_months_discount"]) ?></p>
+                    <p><b>Monthly Payment:</b> <span id="sixMonthsMonthlyPayment"></span></p>
+                    <p><b>Total Payable Amount:</b> <span id="sixMonthsTotalPayable"></span></p>
+                    
                     <input type="hidden" value="<?= $encryptedReservationId ?>" name="reservation_id">
                     <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">
                     <input type="hidden" value="six_months" name="payment_option">
-                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" data-reservation-id="<?= $encryptedReservationId ?>" data-option="6 Months Plan" data-amount="<?= FormatterHelper::formatPrice($pricing["six_months"]) ?>" data-asset-id="<?= $encryptedAssetId ?>" data-reservation-type="<?= $encryptedAssetType ?>" data-payment-option="six_months">Choose this option</button>
+                    
+                    <button type="button" class="btn btn-primary w-100 mt-3 review-button" 
+                            data-reservation-id="<?= $encryptedReservationId ?>" 
+                            data-option="6 Months Plan" 
+                            data-asset-id="<?= $encryptedAssetId ?>" 
+                            data-reservation-type="<?= $encryptedAssetType ?>"
+                            data-payment-option="six_months">Choose this option</button>
                 </form>
-                <!-- <a class="btn btn-primary w-100 mt-3" role="button" href="payment_option/six_months">Choose this option</a> -->
             </div>
         </div>
 
@@ -178,6 +185,30 @@ use App\Helpers\FormatterHelper;
             maximumFractionDigits: decimals
         });
     }
+
+    function calculateSixMonthsPayments() {
+        let totalPurchasePrice = <?= (float) $pricing["total_purchase_price"] ?>;
+        let downPayment = <?= (float) $pricing["down_payment"] ?>;
+        let discount = <?= (float) $pricing["six_months_discount"] ?>;
+        
+        let initialBalance = totalPurchasePrice - downPayment;
+        let discountedBalance = initialBalance * (1 - discount);
+        let monthlyPayment = discountedBalance / 6;
+        let totalPayable = downPayment + discountedBalance;
+        
+        // Format for display
+        let formattedMonthlyPayment = numberFormat(monthlyPayment);
+        let formattedTotalPayable = numberFormat(totalPayable);
+        
+        // Update display
+        document.getElementById('sixMonthsMonthlyPayment').innerText = "₱" + formattedMonthlyPayment;
+        document.getElementById('sixMonthsTotalPayable').innerText = "₱" + formattedTotalPayable;
+    }
+
+    // Call this function when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        calculateSixMonthsPayments();
+    });
 </script>
 
 <?= $this->endSection(); ?>

@@ -89,41 +89,47 @@ class BurialWebhookController extends ResourceController
             // Update Reservation Status
             $db->table(("burial_reservations"))
                 ->where("reference_number", $referenceNumber)
-                ->set(["payment_status" => "Paid"])
+                ->set(["payment_status" => "Paid", "payment_date" => date("Y-m-d H:i:s")])
                 ->update();
 
             $burialReservation = $db->table("burial_reservations")
-                ->select("asset_id")
+                ->select("*")
                 ->where("reference_number", $referenceNumber)
                 ->get()
                 ->getRow();
 
             log_message('info', "Reservation and Payment updated successfully for Reference Number: $referenceNumber");
 
-            // Insert notification for the admin about the new reservation
-            $adminNotificationModel = new AdminNotificationModel();
-            $notificationMessage = "{$session->get("user_full_name")} has completed the payment for a burial reservation for Asset ID: {$burialReservation->asset_id}.";
-            $notificationData = [
-                'admin_id' => null,  // Null for general admin notification
-                'message' => $notificationMessage,
-                'link' => 'burial-payments',  // Link to the reservations page
-                'is_read' => 0,
-                'created_at' => date('Y-m-d H:i:s')
-            ];
-            $adminNotificationModel->insert($notificationData);
+            if ($burialReservation) {
+                // Insert notification for the admin about the new reservation
+                $adminNotificationModel = new AdminNotificationModel();
+                $notificationMessage = "{$session->get("user_full_name")} has completed the payment for a burial reservation for Asset ID: {$burialReservation->asset_id}.";
+                $notificationData = [
+                    'admin_id' => null,  // Null for general admin notification
+                    'message' => $notificationMessage,
+                    'link' => 'burial-payments',  // Link to the reservations page
+                    'is_read' => 0,
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+                $adminNotificationModel->insert($notificationData);
 
-            // Insert notification for the admin about the new reservation
-            $notificationModel = new NotificationModel();
-            $notificationMessage = "You have successfully completed the payment for a burial reservation for Asset ID: {$burialReservation->asset_id}, congratulations!";
-            $notificationData = [
-                'admin_id' => null,  // Null for general admin notification
-                'message' => $notificationMessage,
-                'link' => 'my_memorial_services',  // Link to the reservations page
-                'is_read' => 0,
-                'created_at' => date('Y-m-d H:i:s')
-            ];
-            $notificationModel->insert($notificationData);
+                // Insert notification for the admin about the new reservation
+                $notificationModel = new NotificationModel();
+                $notificationMessage = "You have successfully completed the payment for a burial reservation for Asset ID: {$burialReservation->asset_id}, congratulations!";
+                $notificationData = [
+                    'customer_id' => $burialReservation->reservee_id,  // Null for general admin notification
+                    'message' => $notificationMessage,
+                    'link' => 'my_memorial_services',  // Link to the reservations page
+                    'is_read' => 0,
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+                $notificationModel->insert($notificationData);
 
+                $db->table("burial_reservations")
+                    ->where("reference_number", $referenceNumber)
+                    ->set(["reference_number" => ""])
+                    ->update();
+            }
             return $this->respond(["message" => "Webhook received successfully"], 200);
         }
 

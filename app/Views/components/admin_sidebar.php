@@ -18,8 +18,14 @@
             My Lots & Estates
           </a>
         </li>
-        <?php $reserveList = ["Reserve a Lot", "Reserve an Estate"]; ?>
         <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Reserve", "active text-bg-primary") ?>" <?= echo_if_route($pageTitle, "Reserve", 'aria-current="page"') ?> href="<?= base_url("reserve") ?>">
+            <i class="bi bi-calendar<?= echo_if_route($pageTitle, "Reserve", "-fill") ?>"></i>
+            Reserve
+          </a>
+        </li>
+        <?php $reserveList = ["Reserve a Lot", "Reserve an Estate"]; ?>
+        <!-- <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" data-bs-toggle="collapse" href="#reserveSubmenu" role="button" aria-expanded="<?= page_in_List($pageTitle, $reserveList, "true", "false") ?>" aria-controls="reserveSubmenu">
             <i class="bi bi-calendar<?= page_in_List($pageTitle, $reserveList, "-fill") ?>"></i> Reserve <i class="bi bi-caret-down<?= page_in_List($pageTitle, $reserveList, "-fill") ?>"></i>
           </a>
@@ -29,7 +35,7 @@
               <li><a href="<?= base_url("reserve_estate") ?>" class="nav-link d-flex align-items-center gap-2 <?= echo_if_route($pageTitle, "Reserve an Estate", "active text-bg-primary") ?>"><i class="bi bi-caret-right<?= echo_if_route($pageTitle, "Reserve an Estate", "-fill") ?>"></i> Reserve an Estate</a></li>
             </ul>
           </div>
-        </li>
+        </li> -->
         <?php $memorialServicesList = ["Schedule a Memorial Service", "My Memorial Services"]; ?>
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" data-bs-toggle="collapse" href="#memorialServicesSubmenu" role="button" aria-expanded="<?= page_in_List($pageTitle, $memorialServicesList, "true", "false") ?>" aria-controls="memorialServicesSubmenu">

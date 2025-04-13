@@ -164,9 +164,6 @@
             value: "Bone Transfer",
             text: "Bone Transfer"
         }] : [{
-            value: "Standard",
-            text: "Standard"
-        }, {
             value: "Mausoleum",
             text: "Mausoleum"
         }, {
