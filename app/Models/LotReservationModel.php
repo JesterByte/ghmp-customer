@@ -10,7 +10,7 @@ class LotReservationModel extends Model
     protected $primaryKey = 'id';
 
     protected $returnType     = 'array'; // Return results as an array
-    protected $allowedFields  = ['id', 'lot_id', 'reservee_id', 'lot_type', 'payment_option', 'reservation_status', 'reference_number', 'created_at', 'updated_at']; // Define the allowed fields
+    protected $allowedFields  = ['id', 'lot_id', 'reservee_id', 'lot_type', 'payment_option', 'reservation_status', "cancellation_reason", 'reference_number', 'created_at', 'updated_at']; // Define the allowed fields
     protected $useTimestamps = true;
 
     public function updateLotPaymentOption($reservationId, $lotId, $reserveeId, $paymentOption, $reservationStatus)

@@ -11,6 +11,7 @@
     <table id="table" class="table">
         <thead>
             <tr>
+                <th class="text-center">Sorter</th>
                 <th class="text-center">Asset</th>
                 <th class="text-center">Interred</th>
                 <th class="text-center">Date & Time</th>
@@ -44,6 +45,7 @@
                     $status = $row["status"] === "Pending" ? "Pending (Please wait for approval)" : $row["status"];
 
                     echo "<tr>";
+                    echo "<td class='text-center'>" . $row["created_at"] . "</td>";
                     echo "<td class='text-center'>" . $assetId . "</td>";
                     echo "<td class='text-center'>" . $interred . "</td>";
                     echo "<td class='text-center'>" . $dateTime . "</td>";

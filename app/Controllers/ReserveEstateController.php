@@ -33,6 +33,7 @@ class ReserveEstateController extends BaseController
 
         foreach ($availableEstates as $availableEstate) {
             $availableEstate["formatted_estate_id"] = FormatterHelper::formatEstateId($availableEstate["estate_id"]);
+            $availableEstate["price"] = FormatterHelper::formatPrice($availableEstate["price"]);
 
             $estateType = "Estate " . FormatterHelper::extractEstateIdParts($availableEstate["estate_id"])["type"];
             $availableEstate["estate_type"] = $estateType;

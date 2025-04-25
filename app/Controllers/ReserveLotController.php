@@ -30,6 +30,7 @@ class ReserveLotController extends BaseController
         $availableLots = $lotModel->getAvailableLots();
         foreach ($availableLots as $availableLot) {
             $availableLot["formatted_lot_id"] = FormatterHelper::formatLotId($availableLot["lot_id"]);
+            $availableLot["price"] = FormatterHelper::formatPrice($availableLot["price"]);
             $availableLots[] = $availableLot;
         }
 

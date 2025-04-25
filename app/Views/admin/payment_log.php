@@ -23,10 +23,11 @@
     <table class="table" id="table">
         <thead>
             <tr>
-                <th>Payment Date</th>
-                <th>Payment For</th>
-                <th>Amount</th>
-                <th>Payment Option</th>
+                <th class="text-center">Sorter</th>
+                <th class="text-center">Payment Date</th>
+                <th class="text-center">Payment For</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Payment Option</th>
             </tr>
         </thead>
         <tbody>
@@ -48,10 +49,11 @@
                     $paymentDate = FormatterHelper::formatDate($payment["payment_date"]);
                     
                     echo "<tr>";
-                    echo "<td>{$paymentDate}</td>";
-                    echo "<td>{$assetId}</td>";
-                    echo "<td>{$paymentAmount}</td>";
-                    echo "<td>{$payment['payment_option']}</td>";
+                    echo "<td class='text-center'>{$row["payment_date"]}</td>";
+                    echo "<td class='text-center'>{$paymentDate}</td>";
+                    echo "<td class='text-center'>{$assetId}</td>";
+                    echo "<td class='text-center'>{$paymentAmount}</td>";
+                    echo "<td class='text-center'>{$payment['payment_option']}</td>";
                     echo "</tr>";
                 }
             ?>

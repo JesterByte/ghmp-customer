@@ -8,10 +8,10 @@ use App\Models\EstateReservationModel;
 use App\Models\LotReservationModel;
 use App\Models\PricingModel;
 use App\Models\AdminNotificationModel;
+use App\Models\RestructureRequestModel;
 
 class MyLotsAndEstatesController extends BaseController
 {
-
     public function index()
     {
         $session = session();
@@ -52,6 +52,10 @@ class MyLotsAndEstatesController extends BaseController
                 $row["down_payment_link"] = "#";
             }
 
+            if ($row["restructure_status"] === "Approved") {
+                $row["restructure_link"] = $this->createPaymongoLink($row["discounted_price"], $row["asset_id"], $row["payment_option"]);
+            }
+
             $table[$key] = $row;
         }
 
@@ -61,6 +65,98 @@ class MyLotsAndEstatesController extends BaseController
             "session" => $session
         ];
         return view("admin/my_lots_and_estates", $data);
+    }
+
+    public function restructureRequestSubmit()
+    {
+        $session = session();
+
+        $reservationId = $this->request->getPost("reservation_id");
+        $assetId = $this->request->getPost("asset_id");
+        $customerId = $session->get("user_id");
+        $reason = $this->request->getPost("restructure_reason");
+
+        $data = [
+            "reservation_id" => $reservationId,
+            "customer_id" => $customerId,
+            "asset_id" => $assetId,
+            "reason" => $reason
+        ];
+
+        $restructureRequestModel = new RestructureRequestModel();
+        $isInserted = $restructureRequestModel->insert($data);
+
+        if ($isInserted) {
+            $icon = FormatterHelper::$checkIcon;
+            $message = "Your request to restructure your installment plan into a one-time payment has been successfully submitted.";
+            $title = "Request Submitted";
+        } else {
+            $icon = FormatterHelper::$xIcon;
+            $message = "Something went wrong while submitting your request. Please try again later.";
+            $title = "Submission Failed";
+        }
+
+        $session->setFlashdata("flash_message", [
+            "icon" => $icon,
+            "message" => $message,
+            "title" => $title
+        ]);
+
+        return redirect()->to(base_url("my_lots_and_estates"));
+    }
+
+
+    public function cancelReservation()
+    {
+        $session = session();
+
+        $assetId = $this->request->getPost("asset_id");
+        $reason = strip_tags($this->request->getPost("reason"));
+
+        $assetType = FormatterHelper::determineIdType($assetId);
+
+        $model = null;
+        switch ($assetType) {
+            case "lot":
+                $model = new LotReservationModel();
+                $assetIdColumnKey = "lot_id";
+                break;
+            case "estate":
+                $model = new EstateReservationModel();
+                $assetIdColumnKey = "estate_id";
+                break;
+        }
+
+        $reservation = $model
+            ->where($assetIdColumnKey, $assetId)
+            ->where("reservee_id", $session->get("user_id"))
+            ->orderBy("created_at", "DESC")
+            ->first();
+
+        if ($reservation) {
+            $isUpdated = $model->update($reservation["id"], [
+                "reservation_status" => "Cancelled",
+                "cancellation_reason" => $reason
+            ]);
+
+            if ($isUpdated) {
+                $icon = FormatterHelper::$checkIcon;
+                $message = "Reservation has been cancelled";
+                $title = "Operation Successful";
+            } else {
+                $icon = FormatterHelper::$xIcon;
+                $message = "Failed to cancel reservation. Please try again.";
+                $title = "Operation Failed";
+            }
+        }
+
+        $session->setFlashdata("flash_message", [
+            "icon" => $icon,
+            "message" => $message,
+            "title" => $title
+        ]);
+
+        return redirect()->to(base_url("my_lots_and_estates"));
     }
 
     public function selectPaymentOption($reservationId, $assetId, $assetType)
@@ -101,7 +197,7 @@ class MyLotsAndEstatesController extends BaseController
             "assetType" => $assetType,
             "encryptedAssetType" => $assetType,
             "phase" => $phase,
-            "lotType" => $lotType,
+            "lotType" => $lotType . " Lot",
             "estateType" => $estateType,
 
             "session" => $session
@@ -128,7 +224,7 @@ class MyLotsAndEstatesController extends BaseController
 
         switch ($paymentOption) {
             case "Cash Sale":
-                $link = "cash-sale";
+                $link = "cash-sales";
                 break;
             case "6 Months":
                 $link = "six-months";
@@ -154,11 +250,11 @@ class MyLotsAndEstatesController extends BaseController
             ]);
 
             // Insert notification for the admin about the new reservation
-            $notificationMessage = "{$session->get("user_full_name")} has chosen $paymentOption as their payment option for Asset: {$formattedAssetId}.";
+            $notificationMessage = "{$session->get("user_full_name")} has chosen $paymentOption as their payment option for Asset: {$assetId}.";
             $notificationData = [
                 'admin_id' => null,  // Null for general admin notification
                 'message' => $notificationMessage,
-                'link' => 'lot-reservations-' . $link,  // Link to the reservations page
+                'link' => $link,  // Link to the reservations page
                 'is_read' => 0,
                 'created_at' => date('Y-m-d H:i:s')
             ];
@@ -172,13 +268,13 @@ class MyLotsAndEstatesController extends BaseController
                     
                     <div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
                         <p><strong>Reservation Details:</strong></p>
-                        <p><strong>Lot:</strong> ' . htmlspecialchars($formattedAssetId) . '</p>
+                        <p><strong>Lot:</strong> ' . htmlspecialchars($assetId) . '</p>
                         <p><strong>Payment Option:</strong> <span style="color: #28a745; font-weight: bold;">' . htmlspecialchars($paymentOption) . '</span></p>
                     </div>
 
                     <p style="margin-top: 20px; font-size: 16px;">Please review the details in the admin panel:</p>
                     <p style="text-align: center;">
-                        <a target="_blank" href="' . $this->admin_url('lot-reservations-' . $link) . '" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
+                        <a target="_blank" href="' . $this->admin_url($link) . '" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
                             View Reservation
                         </a>
                     </p>
@@ -215,11 +311,11 @@ class MyLotsAndEstatesController extends BaseController
             ]);
 
             // Insert notification for the admin about the new reservation
-            $notificationMessage = "{$session->get("user_full_name")} has chosen $paymentOption as their payment option for Asset: {$formattedAssetId}.";
+            $notificationMessage = "{$session->get("user_full_name")} has chosen $paymentOption as their payment option for Asset: {$assetId}.";
             $notificationData = [
                 'admin_id' => null,  // Null for general admin notification
                 'message' => $notificationMessage,
-                'link' => 'estate-reservations-' . $link,  // Link to the reservations page
+                'link' => $link,  // Link to the reservations page
                 'is_read' => 0,
                 'created_at' => date('Y-m-d H:i:s')
             ];
@@ -233,13 +329,13 @@ class MyLotsAndEstatesController extends BaseController
                 
                 <div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
                     <p><strong>Reservation Details:</strong></p>
-                    <p><strong>Estate:</strong> ' . htmlspecialchars($formattedAssetId) . '</p>
+                    <p><strong>Estate:</strong> ' . htmlspecialchars($assetId) . '</p>
                     <p><strong>Payment Option:</strong> <span style="color: #28a745; font-weight: bold;">' . htmlspecialchars($paymentOption) . '</span></p>
                 </div>
 
                 <p style="margin-top: 20px; font-size: 16px;">Please review the details in the admin panel:</p>
                 <p style="text-align: center;">
-                    <a target="_blank" href="' . $this->admin_url('estate-reservations-' . $link) . '" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
+                    <a target="_blank" href="' . $this->admin_url($link) . '" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
                         View Reservation
                     </a>
                 </p>
@@ -344,23 +440,30 @@ class MyLotsAndEstatesController extends BaseController
 
     private function applyInstallment($reservationModel, $reservationId, $assetId, $pricing, $termYears, $downPaymentDueDate)
     {
+        $termYearsNumeric = (int) $termYears;
         $years = ["1" => "one", "2" => "two", "3" => "three", "4" => "four", "5" => "five"];
 
-        if ($termYears == "1") {
-            $termYearsKey = $years[$termYears] . "_year";
-        } else if ($termYears > "1") {
-            $termYearsKey = $years[$termYears] . "_years";
+        if ($termYearsNumeric == 1) {
+            $termYearsKey = $years[$termYearsNumeric] . "_year";
+        } else if ($termYearsNumeric > 1) {
+            $termYearsKey = $years[$termYearsNumeric] . "_years";
         }
 
-        $termYears = $years[$termYears];
-
         $downPayment = $pricing["down_payment"];
-        $totalAmount = $this->getFinalBalance($pricing["monthly_amortization_" . $termYearsKey], $termYears);
-        // $totalAmount = $pricing["balance"];
-        $paymentAmount = $pricing["monthly_amortization_" . $termYearsKey];
+        $monthlyPayment = $pricing["monthly_amortization_" . $termYearsKey];
+        $totalAmount = $this->getFinalBalance($monthlyPayment, $termYearsNumeric);
         $interestRate = $pricing[$termYearsKey . "_interest_rate"];
 
-        $reservationModel->setInstallmentPayment($reservationId, $assetId, $termYears, $downPayment, $downPaymentDueDate, $totalAmount, $paymentAmount, $interestRate);
+        $reservationModel->setInstallmentPayment(
+            $reservationId,
+            $assetId,
+            $termYearsKey,
+            $downPayment,
+            $downPaymentDueDate,
+            $totalAmount,
+            $monthlyPayment,
+            $interestRate
+        );
     }
 
     private function generateCashSaleDueDate()

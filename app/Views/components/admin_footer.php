@@ -18,6 +18,7 @@
         <script src="<?= base_url("js/responsive.bootstrap5.js") ?>"></script>
         <script src="<?= base_url("js/bootstrap-toast.js") ?>"></script>
         <script src="<?= base_url("js/bootstrap-tooltip.js") ?>"></script>
+        <script src="<?= base_url("js/form_validation.js") ?>"></script>
 
         <?php
         if ($pageTitle == "My Lots & Estates") {
@@ -31,8 +32,16 @@
 
         <script>
             new DataTable("#table", {
-                responsive: true
-            })
+                responsive: true,
+                columnDefs: [
+                    {
+                        targets: 0,
+                        visible: false,
+                        searchable: false
+                    }
+                ],
+                order: [[0, "desc"]]
+            });
         </script>
 
         <script>

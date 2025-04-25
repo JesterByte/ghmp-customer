@@ -23,7 +23,7 @@ class Toast {
         const toastHeader = document.createElement('div');
         toastHeader.className = 'toast-header';
         toastHeader.innerHTML = `
-            ${htmlIcon}
+            <strong>${htmlIcon}</strong>
             <strong class="me-auto">${title}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         `;

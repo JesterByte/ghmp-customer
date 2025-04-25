@@ -32,8 +32,19 @@ $routes->post("/ownership_transfer/submit", "OwnershipTransferController::submit
 $routes->post("/ownership_transfer/verify_otp", "OwnershipTransferController::verifyOtp");
 
 $routes->get("/dashboard", "AdminController::index");
-$routes->get("/my_lots_and_estates", "MyLotsAndEstatesController::index");
+
+$routes->get("/my_lots_and_estates", "MyLotsAndEstatesController::index"); // my_lots_and_estates/restructure_request
+$routes->post("/my_lots_and_estates/restructure_request", "MyLotsAndEstatesController::restructureRequestSubmit");
 $routes->get("/select_payment_option/(:any)/(:any)/(:any)", "MyLotsAndEstatesController::selectPaymentOption/$1/$2/$3");
+$routes->post("/cancel_reservation", "MyLotsAndEstatesController::cancelReservation");
+
+$routes->get("/reserve", "ReserveController::index");
+$routes->post("reserve/submitReservationLot", "ReserveController::submitLotReservation");
+$routes->post("reserve/submitReservationEstate", "ReserveController::submitEstateReservation");
+$routes->get("/api/available_lots", "ReserveController::getAvailableLots");
+$routes->get("/api/chosen_lots", "ReserveController::getChosenLots");
+$routes->get("/api/available_estates", "ReserveController::getAvailableEstates");
+$routes->get("/api/chosen_estates", "ReserveController::getChosenEstates");
 
 $routes->get("/reserve_lot", "ReserveLotController::index");
 $routes->get("/reserve_estate", "ReserveEstateController::index");
@@ -48,15 +59,15 @@ $routes->post("/settings/change_password", "SettingsController::changePassword")
 $routes->post("/settings/remove_beneficiary", "SettingsController::removeBeneficiary");
 $routes->post("/settings/add_beneficiary", "SettingsController::addBeneficiary");
 
-$routes->post("reserve/submitReservation", "ReserveLotController::submitReservation");
-$routes->post("reserve/submitReservationEstate", "ReserveEstateController::submitReservation");
+// $routes->post("reserve/submitReservation", "ReserveLotController::submitReservation");
+// $routes->post("reserve/submitReservationEstate", "ReserveEstateController::submitReservation");
 $routes->post("/payment_option_submit", "MyLotsAndEstatesController::paymentOptionSubmit");
 
 $routes->get("/schedule_memorial_service", "ScheduleMemorialServiceController::index");
 $routes->get("/my_memorial_services", "MyMemorialServicesController::index");
 
-$routes->get("/api/available_lots", "ReserveLotController::getAvailableLots");
-$routes->get("/api/available_estates", "ReserveEstateController::getAvailableEstates");
+// $routes->get("/api/available_lots", "ReserveLotController::getAvailableLots");
+// $routes->get("/api/available_estates", "ReserveEstateController::getAvailableEstates");
 $routes->get("/api/cash_sales", "PaymentManagementController::getCashSales");
 $routes->get("/api/six_months", "PaymentManagementController::getSixMonths");
 $routes->get("/api/installments/down_payments", "PaymentManagementController::getInstallmentDownPayments");

@@ -10,7 +10,7 @@ class EstateReservationModel extends Model
     protected $primaryKey = 'id';
 
     protected $returnType     = 'array'; // Return results as an array
-    protected $allowedFields  = ['id', 'estate_id', 'reservee_id', 'estate_type', 'payment_option', 'reservation_status', 'reference_number', 'created_at', 'updated_at']; // Define the allowed fields
+    protected $allowedFields  = ['id', 'estate_id', 'reservee_id', 'estate_type', 'payment_option', 'reservation_status', "cancellation_reason", 'reference_number', 'created_at', 'updated_at']; // Define the allowed fields
     protected $useTimestamps = true;
 
     // Method to update the payment option for estate reservation

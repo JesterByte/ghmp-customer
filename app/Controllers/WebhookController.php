@@ -163,7 +163,7 @@ class WebhookController extends ResourceController
                 }
 
                 $installment = $db->table($paymentOptionTable)
-                    ->select("id, $assetIdColumn AS asset_id, down_reference_number, reference_number, monthly_payment")
+                    ->select("id, $assetIdColumn AS asset_id, down_reference_number, reference_number, monthly_payment, restructure_id")
                     ->where($assetIdColumn, $reservation->asset_id)
                     ->where("down_reference_number", $referenceNumber)
                     ->orWhere("reference_number", $referenceNumber)
@@ -207,6 +207,22 @@ class WebhookController extends ResourceController
                     ];
                     $notificationModel->insert($notificationData);
                 } else if ($installment->reference_number === $referenceNumber) {
+                    if ($installment->restructure_id !== null) {
+                        $db->table("restructure_requests")
+                            ->where("id", $installment->restructure_id)
+                            ->set([
+                                "payment_date" => "Y-m-d H:i:s",
+                                "status" => "Paid"
+                            ])
+                            ->update();
+                        
+                        
+                        $this->assignAssetOwnership($reservation->reservee_id, $reservation->asset_id);
+                        $this->completeInstallment($table, $installment->id, $installment->asset_id);
+
+                        return $this->respond(["message" => "Webhook received successfully"], 200);
+                    }
+
                     // Update Installment Status
                     $db->table($paymentOptionTable)
                         ->where($assetIdColumn, $reservation->asset_id)

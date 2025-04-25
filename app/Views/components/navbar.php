@@ -17,7 +17,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link <?= echo_if_route($pageTitle, "Pricing", "active") ?>" <?= echo_if_route($pageTitle, "Pricing", 'aria-current="page"') ?> href="<?= base_url("pricing") ?>">Pricing</a>
-          </li>F
+          </li>
           <li class="nav-item">
             <a class="nav-link <?= echo_if_route($pageTitle, "About", "active") ?>" <?= echo_if_route($pageTitle, "About", 'aria-current="page"') ?> href="<?= base_url("about") ?>">About</a>
           </li>

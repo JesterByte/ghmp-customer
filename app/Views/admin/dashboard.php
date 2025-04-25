@@ -129,7 +129,7 @@
             plugins: {
                 title: {
                     display: true,
-                    text: '6-Month Payment History'
+                    text: 'Payment History'
                 }
             },
             scales: {

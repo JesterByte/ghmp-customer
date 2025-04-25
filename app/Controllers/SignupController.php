@@ -18,7 +18,10 @@ class SignupController extends BaseController
             return redirect()->to(base_url("dashboard"));
         }
 
-        $data = ["pageTitle" => "Sign Up"];
+        $data = [
+            "pageTitle" => "Sign Up",
+            "session" => $session
+        ];
         return view("signup", $data);
     }
 
@@ -38,6 +41,13 @@ class SignupController extends BaseController
 
         $password = trim($this->request->getPost("password"));
         $confirmPassword = trim($this->request->getPost("confirm_password"));
+
+        $beneficiaryFirstName = FormatterHelper::cleanName($this->request->getPost("beneficiary_first_name"));
+        $beneficiaryMiddleName = FormatterHelper::cleanName($this->request->getPost("beneficiary_middle_name"));
+        $beneficiaryLastName = FormatterHelper::cleanName($this->request->getPost("beneficiary_last_name"));
+        $beneficiarySuffixName = $this->request->getPost("beneficiary_suffix");
+        $beneficiaryContactNumber = "+639{$this->request->getPost("beneficiary_contact_number")}";
+        $beneficiaryEmail = FormatterHelper::cleanEmail($this->request->getPost("beneficiary_email"));
 
         // Check if email already exists
         $existingCustomer = $customerModel->where("email_address", $email)->first();
@@ -67,12 +77,6 @@ class SignupController extends BaseController
             $beneficiaryRelationship = FormatterHelper::cleanName($this->request->getPost("beneficiary_relationship"));
         }
 
-        $beneficiaryFirstName = FormatterHelper::cleanName($this->request->getPost("beneficiary_first_name"));
-        $beneficiaryMiddleName = FormatterHelper::cleanName($this->request->getPost("beneficiary_middle_name"));
-        $beneficiaryLastName = FormatterHelper::cleanName($this->request->getPost("beneficiary_last_name"));
-        $beneficiarySuffixName = $this->request->getPost("beneficiary_suffix");
-        $beneficiaryContactNumber = "+639{$this->request->getPost("beneficiary_contact_number")}";
-        $beneficiaryEmail = FormatterHelper::cleanEmail($this->request->getPost("beneficiary_email"));
 
         $existingBeneficiary = $beneficiaryModel->where("email_address", $beneficiaryEmail)->first();
         if ($existingBeneficiary) {

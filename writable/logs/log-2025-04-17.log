@@ -1,0 +1,52 @@
+CRITICAL - 2025-04-17 05:40:00 --> ErrorException: Undefined property: stdClass::$lot_type
+[Method: POST, Route: reserve/submitReservationLot]
+in APPPATH\Controllers\ReserveController.php on line 34.
+ 1 APPPATH\Controllers\ReserveController.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$lot_type', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Controllers\\ReserveController.php', 34)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReserveController->submitLotReservation()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReserveController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-17 11:32:18 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: select_payment_option/d38adc134298998dfd6df29d3fbcc76a26198ccf898fb3116d8eea51b4924b5ba8406e44b53ab5fac3e616b961ac24257ad5a04d561dbb25d623d9765e1698fa7589db439f6e5e3121b833663211c43491/fd3e90d58df6a37995226c3e994de4b882ef1e122c2ded05058f94d053c3b51d46e3323f964677046f7c6ad58e61bd1bf1085d6e03fb0b8be8879b4c4ac757544e6ee424165894d1406d448dcdee2b5a298e01bbc0/12dc9df368675f42628f2471bc9bd8e11d94e340ecdc2328b4c4fcee8463299df3d486d9f08f657c254703a83ef6435d1330a0c69745c821a32cabca5b160edb0f81c44a17fbd7ffd17ad83ce2706e86e224b498fca16e]
+in APPPATH\Views\admin\payment_option.php on line 32.
+ 1 APPPATH\Views\admin\payment_option.php(32): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\payment_option.php', 32)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\payment_option.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/payment_option', [], true)
+ 5 APPPATH\Controllers\MyLotsAndEstatesController.php(109): view('admin/payment_option', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->selectPaymentOption('d38adc134298998dfd6df29d3fbcc76a26198ccf898fb3116d8eea51b4924b5ba8406e44b53ab5fac3e616b961ac24257ad5a04d561dbb25d623d9765e1698fa7589db439f6e5e3121b833663211c43491', 'fd3e90d58df6a37995226c3e994de4b882ef1e122c2ded05058f94d053c3b51d46e3323f964677046f7c6ad58e61bd1bf1085d6e03fb0b8be8879b4c4ac757544e6ee424165894d1406d448dcdee2b5a298e01bbc0', '12dc9df368675f42628f2471bc9bd8e11d94e340ecdc2328b4c4fcee8463299df3d486d9f08f657c254703a83ef6435d1330a0c69745c821a32cabca5b160edb0f81c44a17fbd7ffd17ad83ce2706e86e224b498fca16e')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-17 17:24:50 --> ErrorException: Undefined array key "cancellation_reason"
+[Method: GET, Route: my_lots_and_estates]
+in APPPATH\Views\admin\my_lots_and_estates.php on line 64.
+ 1 APPPATH\Views\admin\my_lots_and_estates.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "cancellation_reason"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_lots_and_estates.php', 64)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\my_lots_and_estates.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/my_lots_and_estates', [], true)
+ 5 APPPATH\Controllers\MyLotsAndEstatesController.php(63): view('admin/my_lots_and_estates', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-17 21:47:58 --> ErrorException: Undefined array key "six_monthsbalance"
+[Method: GET, Route: select_payment_option/7a65262f62e62b52c8ad840cfd8c4fab7153671f84a5d674716954649340f0fff503865d0bf3fc3da479017501af399f50113e9b9c616b2a943bf01acbaf0b48ebd6750f972c46becf04907b4a820fb90f/1ef5021ba9057c3ef16a1ed0882a311dedb4ded167362ff4b215619b9a3607b0ada26a7b895de00c2e1c042f5ea7199488093c01f8dfb9f19f6e9569930c32ab2c9d04ffb058bf4bda37432e07b9325ef97d69f81b/6902578c788c57afc72777cf713575071f514b74d13058b5caf208528f1168fdcaab60e1bf7b929d3445ff6136f8e72d1cd0b2c38d6388e8b21bd9963d2be1c5fe30745ac49007151d65cb395a5dbdece17a5ba6d11870]
+in APPPATH\Views\admin\payment_option.php on line 111.
+ 1 APPPATH\Views\admin\payment_option.php(111): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "six_monthsbalance"', 'C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\payment_option.php', 111)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ghmp-customer\\app\\Views\\admin\\payment_option.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/payment_option', [], true)
+ 5 APPPATH\Controllers\MyLotsAndEstatesController.php(162): view('admin/payment_option', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLotsAndEstatesController->selectPaymentOption('7a65262f62e62b52c8ad840cfd8c4fab7153671f84a5d674716954649340f0fff503865d0bf3fc3da479017501af399f50113e9b9c616b2a943bf01acbaf0b48ebd6750f972c46becf04907b4a820fb90f', '1ef5021ba9057c3ef16a1ed0882a311dedb4ded167362ff4b215619b9a3607b0ada26a7b895de00c2e1c042f5ea7199488093c01f8dfb9f19f6e9569930c32ab2c9d04ffb058bf4bda37432e07b9325ef97d69f81b', '6902578c788c57afc72777cf713575071f514b74d13058b5caf208528f1168fdcaab60e1bf7b929d3445ff6136f8e72d1cd0b2c38d6388e8b21bd9963d2be1c5fe30745ac49007151d65cb395a5dbdece17a5ba6d11870')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLotsAndEstatesController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
