@@ -20,6 +20,34 @@
         maxZoom: 22
     }).addTo(map);
 
+    // Add this function to determine button and rectangle style
+    var getRectangleStyle = (asset) => {
+        if ((asset.asset_type === 'estate' && asset.occupancy === asset.capacity) || 
+            (asset.asset_type === 'lot' && asset.status === 'Occupied')) {
+            return {
+                color: "red",
+                weight: 2,
+                fillColor: "#ff0000",
+                fillOpacity: 0.4
+            };
+        }
+        return {
+            color: "green",
+            weight: 2,
+            fillColor: "#00ff00",
+            fillOpacity: 0.4
+        };
+    };
+
+    // Add this function to determine button state and style
+    var getButtonHtml = (asset) => {
+        if ((asset.asset_type === 'estate' && asset.occupancy === asset.capacity) || 
+            (asset.asset_type === 'lot' && asset.status === 'Occupied')) {
+            return '<button class="btn btn-danger" disabled>Full</button>';
+        }
+        return `<button class="btn btn-primary" onclick="showReserveModal('${asset.asset_id}', '${asset.asset_type}')">Schedule Burial</button>`;
+    };
+
     // Fetch lot data from the API
     fetch("<?= base_url('api/owned_assets') ?>")
         .then(response => response.json())
@@ -33,18 +61,13 @@
                 var occupancy = asset.occupancy || "0";
                 var capacity = asset.capacity || "1";
 
-                var rectangle = L.rectangle(bounds, {
-                    color: "green",
-                    weight: 2,
-                    fillColor: "#00ff00",
-                    fillOpacity: 0.4
-                }).addTo(map);
+                var rectangle = L.rectangle(bounds, getRectangleStyle(asset)).addTo(map);
 
                 rectangle.bindPopup(`
                     <b>Asset ID:</b> ${asset.formatted_asset_id}<br>
                     <b>Capacity:</b> ${occupancy}/${capacity}<br>
                     <div class="text-center my-3">
-                        <button class="btn btn-primary" onclick="showReserveModal('${asset.asset_id}', '${asset.asset_type}')">Schedule Burial</button>
+                        ${getButtonHtml(asset)}
                     </div>
                 `);
             });

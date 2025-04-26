@@ -126,6 +126,13 @@ use App\Helpers\FormatterHelper;
                 </div>
 
                 <form action="<?= base_url("payment_option_submit") ?>" method="post">
+                    <p><b>Original Price:</b> <?= FormatterHelper::formatPrice($pricing["total_purchase_price"]) ?></p>
+                    <p><b>Down Payment (<?= FormatterHelper::formatRate($pricing["down_payment_rate"]) ?>):</b> <?= FormatterHelper::formatPrice($pricing["down_payment"]) ?></p>
+                    <p><b>Balance:</b> <?= FormatterHelper::formatPrice($pricing["balance"]) ?></p>
+                    <p><b>6 Months Discount:</b> <?= FormatterHelper::formatRate($pricing["six_months_discount"]) ?></p>
+                    <p><b>Monthly Payment:</b> <span id="sixMonthsMonthlyPayment"></span></p>
+                    <p><b>Total Payable Amount:</b> <span id="sixMonthsTotalPayable"></span></p>
+                    
                     <input type="hidden" value="<?= $encryptedReservationId ?>" name="reservation_id">
                     <input type="hidden" value="<?= $encryptedAssetId ?>" name="asset_id">
                     <input type="hidden" value="<?= $encryptedAssetType ?>" name="reservation_type">

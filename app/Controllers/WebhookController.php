@@ -113,13 +113,13 @@ class WebhookController extends ResourceController
                 $paymentOptionTable = $prefix . "six_months";
                 $installmentPaymentsTable = $prefix . "six_months_payments";
 
-                log_message('error', "Payment option:" . $reservation->payment_option);
+                log_message('error', "Payment option: " . $reservation->payment_option);
                 break;
             case (strpos($reservation->payment_option, "Installment") !== false):
                 $paymentOptionTable = $prefix . "installments";
                 $installmentPaymentsTable = $prefix . "installment_payments";
 
-                log_message('error', "Payment option:" . $reservation->payment_option);
+                log_message('error', "Payment option: " . $reservation->payment_option);
                 break;
             default:
                 log_message('error', "Unknown payment option for Reference Number: $referenceNumber");
@@ -138,7 +138,7 @@ class WebhookController extends ResourceController
         }
 
         if ($status === "paid") {
-            if ($reservation->payment_option == "6 Months" || str_contains($reservation->payment_option, "Installment")) {
+            if ($reservation->payment_option === "6 Months" || str_contains($reservation->payment_option, "Installment")) {
                 log_message('error', "Payment is paid and is 6 Months or Installment");
                 switch ($assetType) {
                     case "lot":
@@ -154,11 +154,15 @@ class WebhookController extends ResourceController
                         $paymentOptionIdKey = "six_months_id";
                         $installmentType = "six_months";
                         $table = "six_months";
+                        $link = "six-months";
+                        $linKDownPayment = "six-months-down-payments";
                         break;
                     case (strpos($reservation->payment_option, "Installment") !== false):
                         $paymentOptionIdKey = "installment_id";
                         $installmentType = "installment";
                         $table = "installments";
+                        $link = "installments";
+                        $linKDownPayment = "installments-down-payments";
                         break;
                 }
 
@@ -189,7 +193,7 @@ class WebhookController extends ResourceController
                     $notificationData = [
                         'admin_id' => null,  // Null for general admin notification
                         'message' => $notificationMessage,
-                        'link' => 'installments',  // Link to the reservations page
+                        'link' => $linKDownPayment,  // Link to the reservations page
                         'is_read' => 0,
                         'created_at' => date('Y-m-d H:i:s')
                     ];
@@ -199,13 +203,18 @@ class WebhookController extends ResourceController
                     $notificationModel = new NotificationModel();
                     $notificationMessage = "Your down payment for Asset ID: {$formattedAssetId} has been successfully received.";
                     $notificationData = [
-                        'admin_id' => null,  // Null for general admin notification
+                        'customer_id' => $reservation->reservee_id,  // Null for general admin notification
                         'message' => $notificationMessage,
-                        'link' => 'installments',  // Link to the reservations page
+                        'link' => 'payment_log',  // Link to the reservations page
                         'is_read' => 0,
                         'created_at' => date('Y-m-d H:i:s')
                     ];
                     $notificationModel->insert($notificationData);
+
+                    $db->table($paymentOptionTable)
+                        ->where("down_reference_number", $referenceNumber)
+                        ->set("down_reference_number", "")
+                        ->update();
                 } else if ($installment->reference_number === $referenceNumber) {
                     if ($installment->restructure_id !== null) {
                         $db->table("restructure_requests")
@@ -246,7 +255,7 @@ class WebhookController extends ResourceController
                     $notificationData = [
                         'admin_id' => null,  // Null for general admin notification
                         'message' => $notificationMessage,
-                        'link' => 'installments',  // Link to the reservations page
+                        'link' => $link,  // Link to the reservations page
                         'is_read' => 0,
                         'created_at' => date('Y-m-d H:i:s')
                     ];
@@ -256,7 +265,7 @@ class WebhookController extends ResourceController
                     $notificationModel = new NotificationModel();
                     $notificationMessage = "Your installment payment for Asset ID: {$formattedAssetId} has been successfully received.";
                     $notificationData = [
-                        'admin_id' => null,  // Null for general admin notification
+                        'customer_id' => $reservation->reservee_id,  // Null for general admin notification
                         'message' => $notificationMessage,
                         'link' => 'payment_log',  // Link to the reservations page
                         'is_read' => 0,
@@ -286,7 +295,7 @@ class WebhookController extends ResourceController
                             $notificationModel = new NotificationModel();
                             $notificationMessage = "You have successfully completed the installment for Asset ID: {$formattedAssetId}, congratulations!";
                             $notificationData = [
-                                'admin_id' => null,  // Null for general admin notification
+                                'customer_id' => $reservation->reservee_id,  // Null for general admin notification
                                 'message' => $notificationMessage,
                                 'link' => 'my_lots_and_estates',  // Link to the reservations page
                                 'is_read' => 0,
@@ -294,8 +303,18 @@ class WebhookController extends ResourceController
                             ];
                             $notificationModel->insert($notificationData);
 
+                            $db->table($paymentOptionTable)
+                                ->where("reference_number", $referenceNumber)
+                                ->set("reference_number", "")
+                                ->update();
+
                             return $this->respond(["message" => "Webhook received successfully"], 200);
                         case false:
+
+                            $db->table($paymentOptionTable)
+                                ->where("reference_number", $referenceNumber)
+                                ->set("reference_number", "")
+                                ->update();
                             return $this->respond(["message" => "Webhook received successfully"], 200);
                     }
                 }
@@ -335,13 +354,27 @@ class WebhookController extends ResourceController
                 $notificationModel = new NotificationModel();
                 $notificationMessage = "You have successfully completed the {$reservation->payment_option} payment for Asset ID: {$formattedAssetId}, congratulations!";
                 $notificationData = [
-                    'admin_id' => null,  // Null for general admin notification
+                    'customer_id' => $reservation->reservee_id,  // Null for general admin notification
                     'message' => $notificationMessage,
                     'link' => 'my_lots_and_estates',  // Link to the reservations page
                     'is_read' => 0,
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 $notificationModel->insert($notificationData);
+
+                switch ($assetType) {
+                    case "lot":
+                        $reservationsTable = "lot_reservations";
+                        break;
+                    case "estate":
+                        $reservationsTable = "estate_reservations";
+                        break;
+                }
+
+                $db->table($reservationsTable)
+                    ->where("reference_number", $referenceNumber)
+                    ->set(["reference_number" => ""])
+                    ->update();
             }
 
             log_message('info', "Reservation and Payment updated successfully for Reference Number: $referenceNumber");

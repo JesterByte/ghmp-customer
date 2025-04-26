@@ -12,7 +12,7 @@
                     <p class="card-text">
                         <?php
 
-                                            use App\Helpers\FormatterHelper;
+                        use App\Helpers\FormatterHelper;
 
                         if (empty($nextPaymentDueDate)) {
                             $nextPaymentDueDate = "N/A";
@@ -57,7 +57,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
+                                if (!empty($lastTwoPayments)) {
                                     foreach ($lastTwoPayments as $row) {
                                         $date = date("M d, Y", strtotime($row["date"]));
                                         $description = $row["description"];
@@ -71,6 +72,11 @@
                                         echo "<td>$status</td>";
                                         echo "</tr>";
                                     }
+                                } else {
+                                    echo "<tr>";
+                                    echo "<td class='text-center' colspan='4'>No recent transactions</td>";
+                                    echo "</tr>";
+                                }
                                 ?>
                             </tbody>
                         </table>
@@ -115,12 +121,14 @@
     new Chart(paymentCtx, {
         type: 'line',
         data: {
-            labels: <?= $chartData['paymentMonths'] ?>,
+            labels: <?= $chartData["paymentMonths"] ?>,
             datasets: [{
                 label: 'Monthly Payments',
-                data: <?= $chartData['paymentAmounts'] ?>,
+                data: <?= $chartData["paymentAmounts"] ?>,
                 borderColor: '#0d6efd',
-                tension: 0.1
+                backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                tension: 0.4,
+                fill: true
             }]
         },
         options: {

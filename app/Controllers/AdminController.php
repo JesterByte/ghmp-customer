@@ -18,32 +18,45 @@ class AdminController extends BaseController
         $session = session();
 
         if (!$session->get("user_id")) {
-            return redirect()->to(base_url("signin")); // Redirect to signin if not logged in
+            return redirect()->to(base_url("signin"));
         }
 
-        $userFullName = $session->get("user_full_name");
+        try {
+            $userId = $session->get("user_id");
+            $userFullName = $session->get("user_full_name");
 
-        $ownedPropertiesCount = $this->adminModel->getOwnerAssetsCount($session->get("user_id"));
-        $scheduledMemorialServices = $this->adminModel->getScheduledMemorialServices($session->get("user_id"));
-        $nextPaymentDueDate = $this->adminModel->getNextPaymentDueDate($session->get("user_id"));
-        $lastTwoPayments = $this->adminModel->getLastTwoPayments($session->get("user_id"));
-        $paymentHistory = $this->adminModel->getPaymentHistory($session->get("user_id"));
-        $propertyDistribution = $this->adminModel->getAssetDistribution($session->get("user_id"));
+            // Get all dashboard data
+            $ownedPropertiesCount = $this->adminModel->getOwnerAssetsCount($userId);
+            $scheduledMemorialServices = $this->adminModel->getScheduledMemorialServices($userId);
+            $nextPaymentDueDate = $this->adminModel->getNextPaymentDueDate($userId);
+            $lastTwoPayments = $this->adminModel->getLastTwoPayments($userId);
+            $paymentHistory = $this->adminModel->getPaymentHistory($userId);
+            $propertyDistribution = $this->adminModel->getAssetDistribution($userId);
 
+            // Format payment history data for the chart
+            $chartData = [
+                'paymentMonths' => json_encode($paymentHistory['months'] ?? []),
+                'paymentAmounts' => json_encode($paymentHistory['amounts'] ?? []),
+                'propertyCounts' => json_encode($propertyDistribution['counts'] ?? [])
+            ];
 
-        $data = [
-            "pageTitle" => "Dashboard",
-            "session" => $session,
-            "ownedPropertiesCount" => $ownedPropertiesCount,
-            "scheduledMemorialServices" => $scheduledMemorialServices,
-            "nextPaymentDueDate" => $nextPaymentDueDate,
-            "lastTwoPayments" => $lastTwoPayments,
-            'chartData' => [
-                'paymentMonths' => json_encode($paymentHistory['months']),
-                'paymentAmounts' => json_encode($paymentHistory['amounts']),
-                'propertyCounts' => json_encode($propertyDistribution['counts'])
-            ]
-        ];
-        return view("admin/dashboard", $data);
+            return view("admin/dashboard", [
+                "pageTitle" => "Dashboard",
+                "session" => $session,
+                "ownedPropertiesCount" => $ownedPropertiesCount,
+                "scheduledMemorialServices" => $scheduledMemorialServices,
+                "nextPaymentDueDate" => $nextPaymentDueDate,
+                "lastTwoPayments" => $lastTwoPayments,
+                "chartData" => $chartData
+            ]);
+
+        } catch (\Exception $e) {
+            log_message('error', 'Dashboard data fetch error: ' . $e->getMessage());
+            return view("admin/dashboard", [
+                "pageTitle" => "Dashboard",
+                "session" => $session,
+                "error" => "Unable to load dashboard data. Please try again later."
+            ]);
+        }
     }
 }

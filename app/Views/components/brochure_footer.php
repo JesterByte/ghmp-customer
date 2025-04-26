@@ -1,7 +1,7 @@
 <?php if ($pageTitle == "Home"): ?>
   <footer class="container">
     <p class="float-end"><a href="#" class="btn btn-primary rounded-circle"><i class="bi bi-arrow-up"></i></a></p>
-    <p>&copy; 2017–<?= date("Y") ?> Green Haven Memorial Park &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p>&copy; 2017–<?= date("Y") ?> Green Haven Memorial Park</p>
   </footer>
 <?php endif; ?>
 
